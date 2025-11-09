@@ -20,6 +20,8 @@ from .game_state import GameState
 
 from .sounds import SoundManager
 
+from .enemy_logic.enemy import Enemy
+
 class Game:
     def __init__(self):
         pygame.mixer.pre_init(44100, -16, 2, 256)
@@ -93,6 +95,7 @@ class Game:
         #11) Pausa Logic
         self.pause_menu = PauseMenu((window_w, window_h), self.hud_font, self.small_font, self._save_game)
 
+        self.enemy = Enemy((0, 0))
 
     # --------- Ciclo principal ---------
     def run(self):
@@ -118,6 +121,9 @@ class Game:
             # Dibuja mundo de fondo siempre:
             self.map.draw(self.screen)
             self.player.draw(self.screen)
+
+            self.enemy.draw(self.screen)
+
             self.weather.draw_weather_overlay(self.screen, self.player,dt)
             self.player.draw_stamina(self.screen)
             draw()
@@ -148,6 +154,8 @@ class Game:
         
         # reset simple del jugador
         self.player.reset()
+
+        self.enemy.reset()
 
         # Reinicia pedidos
         self.job_logic.reset()
@@ -245,7 +253,12 @@ class Game:
             dy *= diag
 
         self.player.move_with_collision(dx, dy, self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
+
+        self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
+
         self.player.update(dt)
+
+        self.enemy.update(dt)
 
 
         # 3) Actualiza Estadísticas

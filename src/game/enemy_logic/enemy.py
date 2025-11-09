@@ -36,7 +36,7 @@ class Enemy:
 
     def _select_Image(self):
         assets_dir = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "images")
-        return  pygame.image.load(os.path.join(assets_dir, "player.png")).convert_alpha()
+        return  pygame.image.load(os.path.join(assets_dir, "enemy.png")).convert_alpha()
 
 
     def _collides_at(self, nx, ny, game_map):
