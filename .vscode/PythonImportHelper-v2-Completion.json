@@ -123,7 +123,7 @@
         "documentation": {}
     },
     {
-        "label": "dataclass",
+        "label": "asdict",
         "importPath": "dataclasses",
         "description": "dataclasses",
         "isExtraImport": true,
@@ -131,7 +131,7 @@
         "documentation": {}
     },
     {
-        "label": "asdict",
+        "label": "dataclass",
         "importPath": "dataclasses",
         "description": "dataclasses",
         "isExtraImport": true,
@@ -574,24 +574,6 @@
         "documentation": {}
     },
     {
-        "label": "PickupMarker",
-        "kind": 6,
-        "importPath": "src.game.jobs_logic.job_logic",
-        "description": "src.game.jobs_logic.job_logic",
-        "peekOfCode": "class PickupMarker:\n    px: int\n    py: int\n    job_id: str\n    expires_at: float\n@dataclass\nclass DropoffMarker:\n    px: int\n    py: int\n    job_id: str",
-        "detail": "src.game.jobs_logic.job_logic",
-        "documentation": {}
-    },
-    {
-        "label": "DropoffMarker",
-        "kind": 6,
-        "importPath": "src.game.jobs_logic.job_logic",
-        "description": "src.game.jobs_logic.job_logic",
-        "peekOfCode": "class DropoffMarker:\n    px: int\n    py: int\n    job_id: str\n    due_at: float\nclass JobLogic:\n    \"\"\"\n    Maneja ofertas (pickup), aceptaciones (inventory) y entregas (dropoff + history).\n    Mantiene y dibuja marcadores y maneja timers relativos.\n    \"\"\"",
-        "detail": "src.game.jobs_logic.job_logic",
-        "documentation": {}
-    },
-    {
         "label": "JobLogic",
         "kind": 6,
         "importPath": "src.game.jobs_logic.job_logic",
@@ -616,6 +598,24 @@
         "description": "src.game.jobs_logic.job_manager",
         "peekOfCode": "class OrderManager:\n    def __init__(self, repo) -> None:\n        self.repo = repo\n        # 1) Cola de lanzamiento por release_time (IDs)\n        self.release_queue: Deque[str] = deque()\n        self._base_ids_sorted: List[str] = []  # respaldo para recargar cuando se vacíe\n        # 2) Historial\n        self.history: List[HistoryEntry] = []\n        self.enemyHistory: List[HistoryEntry] = []\n        # 3) Inventario (IDs aceptados, aún sin entregar)",
         "detail": "src.game.jobs_logic.job_manager",
+        "documentation": {}
+    },
+    {
+        "label": "PickupMarker",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.markers",
+        "description": "src.game.jobs_logic.markers",
+        "peekOfCode": "class PickupMarker:\n    px: int\n    py: int\n    job_id: str\n    expires_at: float\n@dataclass\nclass DropoffMarker:\n    px: int\n    py: int\n    job_id: str",
+        "detail": "src.game.jobs_logic.markers",
+        "documentation": {}
+    },
+    {
+        "label": "DropoffMarker",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.markers",
+        "description": "src.game.jobs_logic.markers",
+        "peekOfCode": "class DropoffMarker:\n    px: int\n    py: int\n    job_id: str\n    due_at: float",
+        "detail": "src.game.jobs_logic.markers",
         "documentation": {}
     },
     {

@@ -1,5 +1,4 @@
 from __future__ import annotations
-from dataclasses import dataclass
 from typing import List, Tuple, Dict, Any, Optional
 import pygame
 import os
@@ -11,20 +10,7 @@ from .job import Job
 
 from .job_manager import HistoryEntry
 # ---- Marcadores en pantalla ----
-@dataclass
-class PickupMarker:
-    px: int
-    py: int
-    job_id: str
-    expires_at: float
-
-@dataclass
-class DropoffMarker:
-    px: int
-    py: int
-    job_id: str
-    due_at: float
-
+from .markers import PickupMarker, DropoffMarker
 
 class JobLogic:
     """
@@ -128,6 +114,42 @@ class JobLogic:
             screen.blit(enemy_dropoff_icon, rect)
     
     # Getters y Setters
+
+    def getPickupMarkers(self) -> List[Dict[str, Any]]:
+        """Devuelve la lista de marcadores de pickup activos."""
+        out: List = []
+        for m in self._pickup_markers:
+            out.append({
+                "px": m.px,
+                "py": m.py,
+                "job_id": m.job_id,
+                "time_remaining": m.expires_at-self._game_elapsed,
+            })
+        return out
+    
+    def getDropoffMarkers(self) -> List[Dict[str, Any]]:
+        """Devuelve la lista de marcadores de dropoff activos."""
+        out: List = []
+        for m in self._dropoff_markers:
+            out.append({
+                "px": m.px,
+                "py": m.py,
+                "job_id": m.job_id,
+                "time_remaining": m.due_at-self._game_elapsed,
+            })
+        return out
+    
+    def getEnemyDropoffMarkers(self) -> List[Dict[str, Any]]:
+        """Devuelve la lista de marcadores de dropoff activos del enemigo."""
+        out: List = []
+        for m in self._enemy_dropoff_markers:
+            out.append({
+                "px": m.px,
+                "py": m.py,
+                "job_id": m.job_id,
+                "time_remaining": m.due_at-self._game_elapsed,
+            })
+        return out
 
     def getInventory(self) -> List[Dict[str, Any]]:
         """Devuelve la lista de objetos Job actualmente en inventario."""
