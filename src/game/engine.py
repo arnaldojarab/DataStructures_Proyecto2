@@ -21,6 +21,7 @@ from .game_state import GameState
 from .sounds import SoundManager
 
 from .enemy_logic.enemy import Enemy
+from .enemy_logic.enemy_control import EnemyControl 
 
 class Game:
     def __init__(self):
@@ -96,6 +97,7 @@ class Game:
         self.pause_menu = PauseMenu((window_w, window_h), self.hud_font, self.small_font, self._save_game)
 
         self.enemy = Enemy((0, 0))
+        self.enemy_control = EnemyControl(self.enemy, self.map)
 
     # --------- Ciclo principal ---------
     def run(self):
@@ -248,13 +250,13 @@ class Game:
 
         # Normaliza velocidad en diagonal (sin ventaja al moverse en 45°)
         if dx != 0 and dy != 0:
-            diag = 0.70710678  # 1/sqrt(2)
+            diag = 0.70710678  # 1/sqrt(2) 
             dx *= diag
             dy *= diag
 
         self.player.move_with_collision(dx, dy, self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
-
-        self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
+        self.enemy_control.MoveEnemy("easy",self.job_logic.getEnemyWeight(),self.weather.get_current_condition())
+        ##self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
 
         self.player.update(dt)
 
