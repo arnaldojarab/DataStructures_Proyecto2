@@ -2,6 +2,7 @@ from __future__ import annotations
 from collections import deque
 from dataclasses import dataclass
 from typing import Deque, List, Optional, Dict
+from src.game.enemy_logic.enemy import Enemy
 from .job import Job
 
 @dataclass
@@ -20,12 +21,15 @@ class OrderManager:
 
         # 2) Historial
         self.history: List[HistoryEntry] = []
+        self.enemyHistory: List[HistoryEntry] = []
 
         # 3) Inventario (IDs aceptados, aún sin entregar)
         self.inventory: List[str] = []
+        self.enemyInventory: List[str] = []
 
         # Job actual
         self.currentJob_id: Optional[str] = None
+        self.currentEnemyJob_id: Optional[str] = None
 
     # ---------- (1) Cola por release_time ----------
     def fill_release_queue_from_repo(self) -> None:
@@ -60,6 +64,9 @@ class OrderManager:
     # ---------- (2) Historial ----------
     def record_offer_result(self, job_id: str, accepted: bool, onTime=False) -> None:
         self.history.append(HistoryEntry(job_id=job_id, accepted=accepted, onTime=onTime))
+    
+    def record_enemy_offer_result(self, job_id: str, accepted: bool, onTime=False) -> None:
+        self.enemyHistory.append(HistoryEntry(job_id=job_id, accepted=accepted, onTime=onTime))
 
     def mark_delivered(self, job_id: str, delivered_on_time: bool) -> bool:
         """
@@ -77,6 +84,22 @@ class OrderManager:
         
         return True
 
+    def mark_enemy_delivered(self, job_id: str, delivered_on_time: bool) -> bool:
+        """
+        Marca como entregado: saca del inventario y actualiza onTime en el historial.
+        """
+        try:
+            self.enemyInventory.remove(job_id)
+        except ValueError:
+            return False
+
+        # Registrar la entrega directamente en el historial
+        self.enemyHistory.append(HistoryEntry(job_id=job_id, accepted=True, onTime=delivered_on_time))
+
+        self.currentEnemyJob_id = None
+        
+        return True
+
     # ---------- (3) Inventario ----------
     def accept_job(self, job_id: str) -> None:
         if job_id not in self.inventory:
@@ -84,6 +107,13 @@ class OrderManager:
         # Si no hay current, lo selecciona por conveniencia
         if self.currentJob_id is None:
             self.currentJob_id = job_id
+
+    def accept_enemy_job(self, job_id: str) -> None:
+        if job_id not in self.enemyInventory:
+            self.enemyInventory.append(job_id)
+        # Si no hay current, lo selecciona por conveniencia
+        if self.currentEnemyJob_id is None:
+            self.currentEnemyJob_id = job_id
 
     # ---------- Current job ----------
     def set_current_job(self, job_id: Optional[str]) -> bool:
@@ -94,25 +124,53 @@ class OrderManager:
             self.currentJob_id = job_id
             return True
         return False
+
+    def set_current_enemy_job(self, job_id: Optional[str]) -> bool:
+        if job_id is None:
+            self.currentEnemyJob_id = None
+            return True
+        if job_id in self.enemyInventory:
+            self.currentEnemyJob_id = job_id
+            return True
+        return False
     
     def set_current_job_default(self) -> None:
         self.currentJob_id = self.inventory[0] if self.inventory else None
+
+    def set_current_enemy_job_default(self) -> None:
+        self.currentEnemyJob_id = self.enemyInventory[0] if self.enemyInventory else None
     
     def getCurrentJobID(self) -> Optional[str]:
         """Devuelve el ID del job actual o None si no hay."""
         return self.currentJob_id
     
+    def getCurrentEnemyJobID(self) -> Optional[str]:
+        """Devuelve el ID del job actual del enemigo o None si no hay."""
+        return self.currentEnemyJob_id
+    
     def getCurrentJob(self) -> Optional[Job]:
         """Devuelve el objeto Job del job actual o None si no hay."""
         return self.repo.get(self.currentJob_id) if self.currentJob_id else None
 
+    def getCurrentEnemyJob(self) -> Optional[Job]:
+        """Devuelve el objeto Job del job actual del enemigo o None si no hay."""
+        return self.repo.get(self.currentEnemyJob_id) if self.currentEnemyJob_id else None
+
     # ---------- Helpers de lectura ----------
     def inventory_jobs(self) -> List[Job]:
         return [self.repo.get(jid) for jid in self.inventory]
+    def enemy_inventory_jobs(self) -> List[Job]:
+        return [self.repo.get(jid) for jid in self.enemyInventory]
 
     def history_summary(self) -> List[Dict]:
         """
         Resumen útil para UI/depuración.
         """
         return [{"id": h.job_id, "accepted": h.accepted, "onTime": h.onTime} for h in self.history]
+    
+    def enemy_history_summary(self) -> List[Dict]:
+        """
+        Resumen útil para UI/depuración.
+        """
+        return [{"id": h.job_id, "accepted": h.accepted, "onTime": h.onTime} for h in self.enemyHistory]
     

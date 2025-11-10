@@ -1,0 +1,1404 @@
+[
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "pygame",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pygame",
+        "description": "pygame",
+        "detail": "pygame",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "Enemy",
+        "importPath": "enemy",
+        "description": "enemy",
+        "isExtraImport": true,
+        "detail": "enemy",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "asdict",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Deque",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Enemy",
+        "importPath": "src.game.enemy_logic.enemy",
+        "description": "src.game.enemy_logic.enemy",
+        "isExtraImport": true,
+        "detail": "src.game.enemy_logic.enemy",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
+        "label": "URLError",
+        "importPath": "urllib.error",
+        "description": "urllib.error",
+        "isExtraImport": true,
+        "detail": "urllib.error",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPError",
+        "importPath": "urllib.error",
+        "description": "urllib.error",
+        "isExtraImport": true,
+        "detail": "urllib.error",
+        "documentation": {}
+    },
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "auto",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Enemy",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.enemy",
+        "description": "src.game.enemy_logic.enemy",
+        "peekOfCode": "class Enemy:\n    def __init__(self, cell_pos):\n        ts = settings.TILE_SIZE\n        self.x = cell_pos[0] * ts + ts // 2\n        self.y = cell_pos[1] * ts + ts // 2\n        # Radio proporcional al tamaño del tile\n        self.radius = int(ts * 0.35)\n         # resistencia \n        self.stamina = 100        \n        self.exhausted = False   ",
+        "detail": "src.game.enemy_logic.enemy",
+        "documentation": {}
+    },
+    {
+        "label": "EnemyControl",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.enemy_control",
+        "description": "src.game.enemy_logic.enemy_control",
+        "peekOfCode": "class EnemyControl:\n    def __init__(self):\n        self.enemy = Enemy()\n    def MoveEnemy(self, diff):\n        if diff == \"easy\":\n            self.RandomPath()\n        elif diff == \"medium\":\n            self.GreedyPath()\n        elif diff == \"hard\":\n            self.DijkstraPath()",
+        "detail": "src.game.enemy_logic.enemy_control",
+        "documentation": {}
+    },
+    {
+        "label": "Job",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.job",
+        "description": "src.game.jobs_logic.job",
+        "peekOfCode": "class Job:\n    id: str\n    pickup: Tuple[int, int]          # (x, y)\n    dropoff: Tuple[int, int]         # (x, y)\n    payout: float\n    deadline: datetime               # naive (UTC-normalized) para cálculos simples\n    weight: float\n    priority: int                    # 0 = normal; mayor => más urgente\n    release_time: int                # segundos desde t=0 del juego\n    # ---------- Constructores ----------",
+        "detail": "src.game.jobs_logic.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobLoader",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.job_loader",
+        "description": "src.game.jobs_logic.job_loader",
+        "peekOfCode": "class JobLoader:\n    \"\"\"\n    Jobs + fábrica de OrderManager.\n    \"\"\"\n    def __init__(self, api_client: Optional[APIClient] = None) -> None:\n        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), \"../..\", \"..\"))\n        self.api = api_client or APIClient(base_dir)\n        self._jobs: Dict[str, Job] = {}\n    # -------- Fetch + carga ----------\n    def load_from_api(self) -> None:",
+        "detail": "src.game.jobs_logic.job_loader",
+        "documentation": {}
+    },
+    {
+        "label": "PickupMarker",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.job_logic",
+        "description": "src.game.jobs_logic.job_logic",
+        "peekOfCode": "class PickupMarker:\n    px: int\n    py: int\n    job_id: str\n    expires_at: float\n@dataclass\nclass DropoffMarker:\n    px: int\n    py: int\n    job_id: str",
+        "detail": "src.game.jobs_logic.job_logic",
+        "documentation": {}
+    },
+    {
+        "label": "DropoffMarker",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.job_logic",
+        "description": "src.game.jobs_logic.job_logic",
+        "peekOfCode": "class DropoffMarker:\n    px: int\n    py: int\n    job_id: str\n    due_at: float\nclass JobLogic:\n    \"\"\"\n    Maneja ofertas (pickup), aceptaciones (inventory) y entregas (dropoff + history).\n    Mantiene y dibuja marcadores y maneja timers relativos.\n    \"\"\"",
+        "detail": "src.game.jobs_logic.job_logic",
+        "documentation": {}
+    },
+    {
+        "label": "JobLogic",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.job_logic",
+        "description": "src.game.jobs_logic.job_logic",
+        "peekOfCode": "class JobLogic:\n    \"\"\"\n    Maneja ofertas (pickup), aceptaciones (inventory) y entregas (dropoff + history).\n    Mantiene y dibuja marcadores y maneja timers relativos.\n    \"\"\"\n    _PICKUP_RADIUS_TILES = 3\n    _DROPOFF_RADIUS_TILES = 3\n    def __init__(self, tile_size: int, max_active_offers: int = 4) -> None:\n        self.tile_size = tile_size\n        self.max_active_offers = max_active_offers",
+        "detail": "src.game.jobs_logic.job_logic",
+        "documentation": {}
+    },
+    {
+        "label": "HistoryEntry",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.job_manager",
+        "description": "src.game.jobs_logic.job_manager",
+        "peekOfCode": "class HistoryEntry:\n    job_id: str\n    accepted: bool\n    onTime: bool = False\nclass OrderManager:\n    def __init__(self, repo) -> None:\n        self.repo = repo\n        # 1) Cola de lanzamiento por release_time (IDs)\n        self.release_queue: Deque[str] = deque()\n        self._base_ids_sorted: List[str] = []  # respaldo para recargar cuando se vacíe",
+        "detail": "src.game.jobs_logic.job_manager",
+        "documentation": {}
+    },
+    {
+        "label": "OrderManager",
+        "kind": 6,
+        "importPath": "src.game.jobs_logic.job_manager",
+        "description": "src.game.jobs_logic.job_manager",
+        "peekOfCode": "class OrderManager:\n    def __init__(self, repo) -> None:\n        self.repo = repo\n        # 1) Cola de lanzamiento por release_time (IDs)\n        self.release_queue: Deque[str] = deque()\n        self._base_ids_sorted: List[str] = []  # respaldo para recargar cuando se vacíe\n        # 2) Historial\n        self.history: List[HistoryEntry] = []\n        self.enemyHistory: List[HistoryEntry] = []\n        # 3) Inventario (IDs aceptados, aún sin entregar)",
+        "detail": "src.game.jobs_logic.job_manager",
+        "documentation": {}
+    },
+    {
+        "label": "MapLoader",
+        "kind": 6,
+        "importPath": "src.game.map_logic.map_loader",
+        "description": "src.game.map_logic.map_loader",
+        "peekOfCode": "class MapLoader:\n    def __init__(self):\n        self.meta = {}\n        self.tiles = []        # tiles[y][x] = [sym, variant]\n        self.legend = {}\n        self.renderer = TileRenderer()\n        self._w = 0\n        self._h = 0\n    def load_default(self):\n        \"\"\"",
+        "detail": "src.game.map_logic.map_loader",
+        "documentation": {}
+    },
+    {
+        "label": "TileRenderer",
+        "kind": 6,
+        "importPath": "src.game.map_logic.tileRenderer",
+        "description": "src.game.map_logic.tileRenderer",
+        "peekOfCode": "class TileRenderer:\n    \"\"\"\n    Encargada de asignar variantes a cada tile y devolver la superficie correcta.\n    Mantiene cache de superficies para no recargarlas cada frame.\n    \"\"\"\n    def __init__(self):\n        self.cache = {}  # {(sym, variant): surface}\n        self.assets_dir = os.path.join(os.path.dirname(__file__),\"..\", \"..\", \"assets\", \"tiles\")\n    def get_surface(self, sym, variant, tiles, x=None, y=None):\n        key = (sym, variant)",
+        "detail": "src.game.map_logic.tileRenderer",
+        "documentation": {}
+    },
+    {
+        "label": "statisticLogic",
+        "kind": 6,
+        "importPath": "src.game.statistics_logic.statistic_logic",
+        "description": "src.game.statistics_logic.statistic_logic",
+        "peekOfCode": "class statisticLogic:\n    \"\"\"\n    Administra estadísticas del HUD. \n    \"\"\"\n    def __init__(\n        self,\n        align_x: AlignX = \"center\",\n        align_y: AlignY = \"top\",\n        margin_x: int = 0,\n        margin_y: int = 5,",
+        "detail": "src.game.statistics_logic.statistic_logic",
+        "documentation": {}
+    },
+    {
+        "label": "AlignX",
+        "kind": 5,
+        "importPath": "src.game.statistics_logic.statistic_logic",
+        "description": "src.game.statistics_logic.statistic_logic",
+        "peekOfCode": "AlignX = Literal[\"left\", \"center\", \"right\"]\nAlignY = Literal[\"top\", \"center\", \"bottom\"]\nclass statisticLogic:\n    \"\"\"\n    Administra estadísticas del HUD. \n    \"\"\"\n    def __init__(\n        self,\n        align_x: AlignX = \"center\",\n        align_y: AlignY = \"top\",",
+        "detail": "src.game.statistics_logic.statistic_logic",
+        "documentation": {}
+    },
+    {
+        "label": "AlignY",
+        "kind": 5,
+        "importPath": "src.game.statistics_logic.statistic_logic",
+        "description": "src.game.statistics_logic.statistic_logic",
+        "peekOfCode": "AlignY = Literal[\"top\", \"center\", \"bottom\"]\nclass statisticLogic:\n    \"\"\"\n    Administra estadísticas del HUD. \n    \"\"\"\n    def __init__(\n        self,\n        align_x: AlignX = \"center\",\n        align_y: AlignY = \"top\",\n        margin_x: int = 0,",
+        "detail": "src.game.statistics_logic.statistic_logic",
+        "documentation": {}
+    },
+    {
+        "label": "Button",
+        "kind": 6,
+        "importPath": "src.game.ui.button",
+        "description": "src.game.ui.button",
+        "peekOfCode": "class Button:\n    def __init__(self, rect: pygame.Rect, text: str, font: pygame.font.Font,\n                 bg, bg_hover, fg):\n        self.rect = rect\n        self.text = text\n        self.font = font\n        self.bg = bg\n        self.bg_hover = bg_hover\n        self.fg = fg\n        self._label = self.font.render(self.text, True, self.fg)",
+        "detail": "src.game.ui.button",
+        "documentation": {}
+    },
+    {
+        "label": "GameOverLogic",
+        "kind": 6,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "class GameOverLogic:\n    def __init__(self, hud_font: pygame.font.Font, small_font: pygame.font.Font):\n        self.hud_font = hud_font\n        self.small_font = small_font\n        self.title_font = pygame.font.Font(settings.UI_FONT_NAME, settings.MENU_TITLE_FONT_SIZE)\n        self.title = \"GAME OVER\"\n        self.win = False\n        self._phase: Optional[str] = None      # \"ASK\" | \"NAME\" | \"TABLE\"\n        self._choice_idx: int = 0              # 0 => \"Sí\", 1 => \"No\"\n        self._name_buf: str = \"\"               # typed name (1..4)",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TITLE_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_TITLE_Y_RATIO = 0.12\nGO_ASK_PROMPT_Y_RATIO = 0.35\nGO_ASK_BUTTONS_Y_RATIO = 0.52\nGO_NAME_PROMPT_Y_RATIO = 0.32\nGO_NAME_BOX_Y_RATIO = 0.45\nGO_NAME_HINT_Y_RATIO = 0.65\nGO_TABLE_TOP_Y_RATIO = 0.30\nGO_CONTINUE_BTN_Y_RATIO = 0.82\n# ---- Buttons (ASK + Continue) ----\nGO_ASK_BUTTON_SPACING = 140",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_ASK_PROMPT_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_ASK_PROMPT_Y_RATIO = 0.35\nGO_ASK_BUTTONS_Y_RATIO = 0.52\nGO_NAME_PROMPT_Y_RATIO = 0.32\nGO_NAME_BOX_Y_RATIO = 0.45\nGO_NAME_HINT_Y_RATIO = 0.65\nGO_TABLE_TOP_Y_RATIO = 0.30\nGO_CONTINUE_BTN_Y_RATIO = 0.82\n# ---- Buttons (ASK + Continue) ----\nGO_ASK_BUTTON_SPACING = 140\nGO_BUTTON_PADDING_X = 28",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_ASK_BUTTONS_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_ASK_BUTTONS_Y_RATIO = 0.52\nGO_NAME_PROMPT_Y_RATIO = 0.32\nGO_NAME_BOX_Y_RATIO = 0.45\nGO_NAME_HINT_Y_RATIO = 0.65\nGO_TABLE_TOP_Y_RATIO = 0.30\nGO_CONTINUE_BTN_Y_RATIO = 0.82\n# ---- Buttons (ASK + Continue) ----\nGO_ASK_BUTTON_SPACING = 140\nGO_BUTTON_PADDING_X = 28\nGO_BUTTON_PADDING_Y = 12",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_NAME_PROMPT_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_NAME_PROMPT_Y_RATIO = 0.32\nGO_NAME_BOX_Y_RATIO = 0.45\nGO_NAME_HINT_Y_RATIO = 0.65\nGO_TABLE_TOP_Y_RATIO = 0.30\nGO_CONTINUE_BTN_Y_RATIO = 0.82\n# ---- Buttons (ASK + Continue) ----\nGO_ASK_BUTTON_SPACING = 140\nGO_BUTTON_PADDING_X = 28\nGO_BUTTON_PADDING_Y = 12\nGO_BUTTON_BORDER_RADIUS = 10",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_NAME_BOX_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_NAME_BOX_Y_RATIO = 0.45\nGO_NAME_HINT_Y_RATIO = 0.65\nGO_TABLE_TOP_Y_RATIO = 0.30\nGO_CONTINUE_BTN_Y_RATIO = 0.82\n# ---- Buttons (ASK + Continue) ----\nGO_ASK_BUTTON_SPACING = 140\nGO_BUTTON_PADDING_X = 28\nGO_BUTTON_PADDING_Y = 12\nGO_BUTTON_BORDER_RADIUS = 10\n# ---- Name input box ----",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_NAME_HINT_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_NAME_HINT_Y_RATIO = 0.65\nGO_TABLE_TOP_Y_RATIO = 0.30\nGO_CONTINUE_BTN_Y_RATIO = 0.82\n# ---- Buttons (ASK + Continue) ----\nGO_ASK_BUTTON_SPACING = 140\nGO_BUTTON_PADDING_X = 28\nGO_BUTTON_PADDING_Y = 12\nGO_BUTTON_BORDER_RADIUS = 10\n# ---- Name input box ----\nGO_NAME_BOX_WIDTH = 360",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TABLE_TOP_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_TABLE_TOP_Y_RATIO = 0.30\nGO_CONTINUE_BTN_Y_RATIO = 0.82\n# ---- Buttons (ASK + Continue) ----\nGO_ASK_BUTTON_SPACING = 140\nGO_BUTTON_PADDING_X = 28\nGO_BUTTON_PADDING_Y = 12\nGO_BUTTON_BORDER_RADIUS = 10\n# ---- Name input box ----\nGO_NAME_BOX_WIDTH = 360\nGO_NAME_BOX_HEIGHT = 72",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_CONTINUE_BTN_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_CONTINUE_BTN_Y_RATIO = 0.82\n# ---- Buttons (ASK + Continue) ----\nGO_ASK_BUTTON_SPACING = 140\nGO_BUTTON_PADDING_X = 28\nGO_BUTTON_PADDING_Y = 12\nGO_BUTTON_BORDER_RADIUS = 10\n# ---- Name input box ----\nGO_NAME_BOX_WIDTH = 360\nGO_NAME_BOX_HEIGHT = 72\nGO_NAME_BOX_BORDER_RADIUS = 8",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_ASK_BUTTON_SPACING",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_ASK_BUTTON_SPACING = 140\nGO_BUTTON_PADDING_X = 28\nGO_BUTTON_PADDING_Y = 12\nGO_BUTTON_BORDER_RADIUS = 10\n# ---- Name input box ----\nGO_NAME_BOX_WIDTH = 360\nGO_NAME_BOX_HEIGHT = 72\nGO_NAME_BOX_BORDER_RADIUS = 8\n# ---- Table ----\nGO_TABLE_PAD_X = 30",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_BUTTON_PADDING_X",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_BUTTON_PADDING_X = 28\nGO_BUTTON_PADDING_Y = 12\nGO_BUTTON_BORDER_RADIUS = 10\n# ---- Name input box ----\nGO_NAME_BOX_WIDTH = 360\nGO_NAME_BOX_HEIGHT = 72\nGO_NAME_BOX_BORDER_RADIUS = 8\n# ---- Table ----\nGO_TABLE_PAD_X = 30\nGO_TABLE_HEADER_HEIGHT = 50",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_BUTTON_PADDING_Y",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_BUTTON_PADDING_Y = 12\nGO_BUTTON_BORDER_RADIUS = 10\n# ---- Name input box ----\nGO_NAME_BOX_WIDTH = 360\nGO_NAME_BOX_HEIGHT = 72\nGO_NAME_BOX_BORDER_RADIUS = 8\n# ---- Table ----\nGO_TABLE_PAD_X = 30\nGO_TABLE_HEADER_HEIGHT = 50\nGO_TABLE_HEADER_BORDER_RADIUS = 8",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_BUTTON_BORDER_RADIUS",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_BUTTON_BORDER_RADIUS = 10\n# ---- Name input box ----\nGO_NAME_BOX_WIDTH = 360\nGO_NAME_BOX_HEIGHT = 72\nGO_NAME_BOX_BORDER_RADIUS = 8\n# ---- Table ----\nGO_TABLE_PAD_X = 30\nGO_TABLE_HEADER_HEIGHT = 50\nGO_TABLE_HEADER_BORDER_RADIUS = 8\nGO_TABLE_ROW_HEIGHT = 46",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_NAME_BOX_WIDTH",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_NAME_BOX_WIDTH = 360\nGO_NAME_BOX_HEIGHT = 72\nGO_NAME_BOX_BORDER_RADIUS = 8\n# ---- Table ----\nGO_TABLE_PAD_X = 30\nGO_TABLE_HEADER_HEIGHT = 50\nGO_TABLE_HEADER_BORDER_RADIUS = 8\nGO_TABLE_ROW_HEIGHT = 46\nGO_TABLE_ROW_GAP = 8\nGO_TABLE_ROW_BORDER_RADIUS = 6",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_NAME_BOX_HEIGHT",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_NAME_BOX_HEIGHT = 72\nGO_NAME_BOX_BORDER_RADIUS = 8\n# ---- Table ----\nGO_TABLE_PAD_X = 30\nGO_TABLE_HEADER_HEIGHT = 50\nGO_TABLE_HEADER_BORDER_RADIUS = 8\nGO_TABLE_ROW_HEIGHT = 46\nGO_TABLE_ROW_GAP = 8\nGO_TABLE_ROW_BORDER_RADIUS = 6\nclass GameOverLogic:",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_NAME_BOX_BORDER_RADIUS",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_NAME_BOX_BORDER_RADIUS = 8\n# ---- Table ----\nGO_TABLE_PAD_X = 30\nGO_TABLE_HEADER_HEIGHT = 50\nGO_TABLE_HEADER_BORDER_RADIUS = 8\nGO_TABLE_ROW_HEIGHT = 46\nGO_TABLE_ROW_GAP = 8\nGO_TABLE_ROW_BORDER_RADIUS = 6\nclass GameOverLogic:\n    def __init__(self, hud_font: pygame.font.Font, small_font: pygame.font.Font):",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TABLE_PAD_X",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_TABLE_PAD_X = 30\nGO_TABLE_HEADER_HEIGHT = 50\nGO_TABLE_HEADER_BORDER_RADIUS = 8\nGO_TABLE_ROW_HEIGHT = 46\nGO_TABLE_ROW_GAP = 8\nGO_TABLE_ROW_BORDER_RADIUS = 6\nclass GameOverLogic:\n    def __init__(self, hud_font: pygame.font.Font, small_font: pygame.font.Font):\n        self.hud_font = hud_font\n        self.small_font = small_font",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TABLE_HEADER_HEIGHT",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_TABLE_HEADER_HEIGHT = 50\nGO_TABLE_HEADER_BORDER_RADIUS = 8\nGO_TABLE_ROW_HEIGHT = 46\nGO_TABLE_ROW_GAP = 8\nGO_TABLE_ROW_BORDER_RADIUS = 6\nclass GameOverLogic:\n    def __init__(self, hud_font: pygame.font.Font, small_font: pygame.font.Font):\n        self.hud_font = hud_font\n        self.small_font = small_font\n        self.title_font = pygame.font.Font(settings.UI_FONT_NAME, settings.MENU_TITLE_FONT_SIZE)",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TABLE_HEADER_BORDER_RADIUS",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_TABLE_HEADER_BORDER_RADIUS = 8\nGO_TABLE_ROW_HEIGHT = 46\nGO_TABLE_ROW_GAP = 8\nGO_TABLE_ROW_BORDER_RADIUS = 6\nclass GameOverLogic:\n    def __init__(self, hud_font: pygame.font.Font, small_font: pygame.font.Font):\n        self.hud_font = hud_font\n        self.small_font = small_font\n        self.title_font = pygame.font.Font(settings.UI_FONT_NAME, settings.MENU_TITLE_FONT_SIZE)\n        self.title = \"GAME OVER\"",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TABLE_ROW_HEIGHT",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_TABLE_ROW_HEIGHT = 46\nGO_TABLE_ROW_GAP = 8\nGO_TABLE_ROW_BORDER_RADIUS = 6\nclass GameOverLogic:\n    def __init__(self, hud_font: pygame.font.Font, small_font: pygame.font.Font):\n        self.hud_font = hud_font\n        self.small_font = small_font\n        self.title_font = pygame.font.Font(settings.UI_FONT_NAME, settings.MENU_TITLE_FONT_SIZE)\n        self.title = \"GAME OVER\"\n        self.win = False",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TABLE_ROW_GAP",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_TABLE_ROW_GAP = 8\nGO_TABLE_ROW_BORDER_RADIUS = 6\nclass GameOverLogic:\n    def __init__(self, hud_font: pygame.font.Font, small_font: pygame.font.Font):\n        self.hud_font = hud_font\n        self.small_font = small_font\n        self.title_font = pygame.font.Font(settings.UI_FONT_NAME, settings.MENU_TITLE_FONT_SIZE)\n        self.title = \"GAME OVER\"\n        self.win = False\n        self._phase: Optional[str] = None      # \"ASK\" | \"NAME\" | \"TABLE\"",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TABLE_ROW_BORDER_RADIUS",
+        "kind": 5,
+        "importPath": "src.game.ui.game_over",
+        "description": "src.game.ui.game_over",
+        "peekOfCode": "GO_TABLE_ROW_BORDER_RADIUS = 6\nclass GameOverLogic:\n    def __init__(self, hud_font: pygame.font.Font, small_font: pygame.font.Font):\n        self.hud_font = hud_font\n        self.small_font = small_font\n        self.title_font = pygame.font.Font(settings.UI_FONT_NAME, settings.MENU_TITLE_FONT_SIZE)\n        self.title = \"GAME OVER\"\n        self.win = False\n        self._phase: Optional[str] = None      # \"ASK\" | \"NAME\" | \"TABLE\"\n        self._choice_idx: int = 0              # 0 => \"Sí\", 1 => \"No\"",
+        "detail": "src.game.ui.game_over",
+        "documentation": {}
+    },
+    {
+        "label": "InventoryUI",
+        "kind": 6,
+        "importPath": "src.game.ui.inventory",
+        "description": "src.game.ui.inventory",
+        "peekOfCode": "class InventoryUI:\n    def __init__(self, job_logic, font: Optional[pygame.font.Font] = None) -> None:\n        pygame.font.init()\n        self.font = font or pygame.font.SysFont(\"Segoe UI\", 16)\n        self.job_logic = job_logic\n        self.selected_index: int = 0\n        self._sort_key: Optional[str] = \"priority\"   # \"priority\" | \"deadline\"\n        self._sort_desc: bool = True                 \n        self.on_pick_job: Optional[Callable[[JobT], None]] = None\n        self.on_close_inventory: Optional[Callable[[], None]] = None",
+        "detail": "src.game.ui.inventory",
+        "documentation": {}
+    },
+    {
+        "label": "JobT",
+        "kind": 5,
+        "importPath": "src.game.ui.inventory",
+        "description": "src.game.ui.inventory",
+        "peekOfCode": "JobT = Any\nclass InventoryUI:\n    def __init__(self, job_logic, font: Optional[pygame.font.Font] = None) -> None:\n        pygame.font.init()\n        self.font = font or pygame.font.SysFont(\"Segoe UI\", 16)\n        self.job_logic = job_logic\n        self.selected_index: int = 0\n        self._sort_key: Optional[str] = \"priority\"   # \"priority\" | \"deadline\"\n        self._sort_desc: bool = True                 \n        self.on_pick_job: Optional[Callable[[JobT], None]] = None",
+        "detail": "src.game.ui.inventory",
+        "documentation": {}
+    },
+    {
+        "label": "MainMenu",
+        "kind": 6,
+        "importPath": "src.game.ui.menu",
+        "description": "src.game.ui.menu",
+        "peekOfCode": "class MainMenu:\n    def __init__(self, screen_size, on_load: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_load = on_load\n        base_dir = os.path.dirname(os.path.abspath(__file__))\n        bg_path = os.path.normpath(os.path.join(base_dir, \"..\", \"..\", \"assets\", \"images\", \"menu_bg.png\"))\n        self.bg_surf = pygame.image.load(bg_path).convert()  \n        self.bg_surf = pygame.transform.smoothscale(self.bg_surf, (self.w, self.h))\n        #Mover botones e imagen",
+        "detail": "src.game.ui.menu",
+        "documentation": {}
+    },
+    {
+        "label": "draw_text_outline",
+        "kind": 2,
+        "importPath": "src.game.ui.menu",
+        "description": "src.game.ui.menu",
+        "peekOfCode": "def draw_text_outline(surface, text, font, pos, color_fg, color_outline, outline_width=2):\n    \"\"\"Dibuja texto con contorno 'stroke' usando múltiples blits alrededor.\"\"\"\n    x, y = pos\n    base = font.render(text, True, color_fg)\n    # Render auxiliar en color de contorno\n    outline_surf = font.render(text, True, color_outline)\n    offsets = []\n    r = outline_width\n    for dx in (-r, 0, r):\n        for dy in (-r, 0, r):",
+        "detail": "src.game.ui.menu",
+        "documentation": {}
+    },
+    {
+        "label": "PauseMenu",
+        "kind": 6,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "class PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_save = on_save\n        self.hud_font = hud_font\n        self.small_font = small_font\n        # Estado general del menú de pausa\n        self.phase = \"MAIN\"        # MAIN | NAME | RESULT\n        # Estado de sonido",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_TITLE_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_TITLE_Y_RATIO = 0.12\nPM_NAME_PROMPT_Y_RATIO = 0.32\nPM_NAME_BOX_Y_RATIO = 0.45\nPM_NAME_HINT_Y_RATIO = 0.65\nPM_CONTINUE_BTN_Y_RATIO = 0.72\nPM_NAME_BOX_WIDTH = 460\nPM_NAME_BOX_HEIGHT = 72\nPM_NAME_BOX_BORDER_RADIUS = 8\nPM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_NAME_PROMPT_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_NAME_PROMPT_Y_RATIO = 0.32\nPM_NAME_BOX_Y_RATIO = 0.45\nPM_NAME_HINT_Y_RATIO = 0.65\nPM_CONTINUE_BTN_Y_RATIO = 0.72\nPM_NAME_BOX_WIDTH = 460\nPM_NAME_BOX_HEIGHT = 72\nPM_NAME_BOX_BORDER_RADIUS = 8\nPM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_NAME_BOX_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_NAME_BOX_Y_RATIO = 0.45\nPM_NAME_HINT_Y_RATIO = 0.65\nPM_CONTINUE_BTN_Y_RATIO = 0.72\nPM_NAME_BOX_WIDTH = 460\nPM_NAME_BOX_HEIGHT = 72\nPM_NAME_BOX_BORDER_RADIUS = 8\nPM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_NAME_HINT_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_NAME_HINT_Y_RATIO = 0.65\nPM_CONTINUE_BTN_Y_RATIO = 0.72\nPM_NAME_BOX_WIDTH = 460\nPM_NAME_BOX_HEIGHT = 72\nPM_NAME_BOX_BORDER_RADIUS = 8\nPM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_CONTINUE_BTN_Y_RATIO",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_CONTINUE_BTN_Y_RATIO = 0.72\nPM_NAME_BOX_WIDTH = 460\nPM_NAME_BOX_HEIGHT = 72\nPM_NAME_BOX_BORDER_RADIUS = 8\nPM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_NAME_BOX_WIDTH",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_NAME_BOX_WIDTH = 460\nPM_NAME_BOX_HEIGHT = 72\nPM_NAME_BOX_BORDER_RADIUS = 8\nPM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_NAME_BOX_HEIGHT",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_NAME_BOX_HEIGHT = 72\nPM_NAME_BOX_BORDER_RADIUS = 8\nPM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_save = on_save",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_NAME_BOX_BORDER_RADIUS",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_NAME_BOX_BORDER_RADIUS = 8\nPM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_save = on_save\n        self.hud_font = hud_font",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_BUTTON_PADDING_X",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_BUTTON_PADDING_X = 28\nPM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_save = on_save\n        self.hud_font = hud_font\n        self.small_font = small_font",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_BUTTON_PADDING_Y",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_BUTTON_PADDING_Y = 12\nPM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_save = on_save\n        self.hud_font = hud_font\n        self.small_font = small_font\n        # Estado general del menú de pausa",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "PM_BUTTON_BORDER_RADIUS",
+        "kind": 5,
+        "importPath": "src.game.ui.pause_menu",
+        "description": "src.game.ui.pause_menu",
+        "peekOfCode": "PM_BUTTON_BORDER_RADIUS = 10\nclass PauseMenu:\n    def __init__(self, screen_size, hud_font: pygame.font.Font, small_font: pygame.font.Font, on_save: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_save = on_save\n        self.hud_font = hud_font\n        self.small_font = small_font\n        # Estado general del menú de pausa\n        self.phase = \"MAIN\"        # MAIN | NAME | RESULT",
+        "detail": "src.game.ui.pause_menu",
+        "documentation": {}
+    },
+    {
+        "label": "WeatherManager",
+        "kind": 6,
+        "importPath": "src.game.weather_logic.weather",
+        "description": "src.game.weather_logic.weather",
+        "peekOfCode": "class WeatherManager:\n    \"\"\"\n    Lógica del clima: ráfagas, condiciones actuales y transiciones.\n    \"\"\"\n    BASE_MULTIPLIERS = {\n        \"clear\": 1.00,\n        \"clouds\": 0.98,\n        \"rain_light\": 0.90,\n        \"rain\": 0.85,\n        \"storm\": 0.75,",
+        "detail": "src.game.weather_logic.weather",
+        "documentation": {}
+    },
+    {
+        "label": "Cloud",
+        "kind": 6,
+        "importPath": "src.game.weather_logic.weather_Items",
+        "description": "src.game.weather_logic.weather_Items",
+        "peekOfCode": "class Cloud:\n    def __init__(self, img_white, img_gray, x, y, speed, variant_index=0):\n        self.img_white = img_white\n        self.img_gray = img_gray\n        self.x = x\n        self.y = y\n        self.speed = speed\n        self.variant_index = variant_index\n        self.alpha_white = 0\n        self.alpha_gray = 0",
+        "detail": "src.game.weather_logic.weather_Items",
+        "documentation": {}
+    },
+    {
+        "label": "WeatherVisuals",
+        "kind": 6,
+        "importPath": "src.game.weather_logic.weather_visuals",
+        "description": "src.game.weather_logic.weather_visuals",
+        "peekOfCode": "class WeatherVisuals:\n    \"\"\"\n    Maneja la parte visual del clima (nubes, overlays, efectos).\n    Recibe la condición actual desde WeatherManager.\n    \"\"\"\n    def __init__(self, window_w, window_h):\n        self.clouds = []\n        self._cloud_spawn_timer = 0.0\n        self._max_clouds = 0\n        self.rain_timer = 0.0 ",
+        "detail": "src.game.weather_logic.weather_visuals",
+        "documentation": {}
+    },
+    {
+        "label": "APIClient",
+        "kind": 6,
+        "importPath": "src.game.api_client",
+        "description": "src.game.api_client",
+        "peekOfCode": "class APIClient:\n    def __init__(self, base_dir: str):\n        \"\"\"\n        base_dir: ruta absoluta a la carpeta raíz del proyecto (la que contiene /data)\n        \"\"\"\n        self.base_dir = base_dir\n    def _fetch_json(self, url: str, timeout: float = 8.0) -> dict:\n        req = urllib.request.Request(url, headers={\"User-Agent\": \"CourierQuest/1.0\"})\n        with urllib.request.urlopen(req, timeout=timeout) as response:\n            # Carga directo como dict (igual que tu ejemplo)",
+        "detail": "src.game.api_client",
+        "documentation": {}
+    },
+    {
+        "label": "API_CITY_MAP_URL",
+        "kind": 5,
+        "importPath": "src.game.api_client",
+        "description": "src.game.api_client",
+        "peekOfCode": "API_CITY_MAP_URL = (\n    \"https://tigerds-api.kindflower-ccaf48b6.eastus.azurecontainerapps.io/city/map\"\n)\nAPI_CITY_WEATHER_URL = (\n    \"https://tigerds-api.kindflower-ccaf48b6.eastus.azurecontainerapps.io/city/weather\"\n)\nAPI_JOBS_URL = (\n    \"https://tigerds-api.kindflower-ccaf48b6.eastus.azurecontainerapps.io/city/jobs\"\n)\nclass APIClient:",
+        "detail": "src.game.api_client",
+        "documentation": {}
+    },
+    {
+        "label": "API_CITY_WEATHER_URL",
+        "kind": 5,
+        "importPath": "src.game.api_client",
+        "description": "src.game.api_client",
+        "peekOfCode": "API_CITY_WEATHER_URL = (\n    \"https://tigerds-api.kindflower-ccaf48b6.eastus.azurecontainerapps.io/city/weather\"\n)\nAPI_JOBS_URL = (\n    \"https://tigerds-api.kindflower-ccaf48b6.eastus.azurecontainerapps.io/city/jobs\"\n)\nclass APIClient:\n    def __init__(self, base_dir: str):\n        \"\"\"\n        base_dir: ruta absoluta a la carpeta raíz del proyecto (la que contiene /data)",
+        "detail": "src.game.api_client",
+        "documentation": {}
+    },
+    {
+        "label": "API_JOBS_URL",
+        "kind": 5,
+        "importPath": "src.game.api_client",
+        "description": "src.game.api_client",
+        "peekOfCode": "API_JOBS_URL = (\n    \"https://tigerds-api.kindflower-ccaf48b6.eastus.azurecontainerapps.io/city/jobs\"\n)\nclass APIClient:\n    def __init__(self, base_dir: str):\n        \"\"\"\n        base_dir: ruta absoluta a la carpeta raíz del proyecto (la que contiene /data)\n        \"\"\"\n        self.base_dir = base_dir\n    def _fetch_json(self, url: str, timeout: float = 8.0) -> dict:",
+        "detail": "src.game.api_client",
+        "documentation": {}
+    },
+    {
+        "label": "Game",
+        "kind": 6,
+        "importPath": "src.game.engine",
+        "description": "src.game.engine",
+        "peekOfCode": "class Game:\n    def __init__(self):\n        pygame.mixer.pre_init(44100, -16, 2, 256)\n        pygame.init()\n        # 1) Cargar mapa\n        self.map = MapLoader().load_default()\n        # 2) Ventana del tamaño del mapa\n        window_w = self.map.width * settings.TILE_SIZE\n        window_h = self.map.height * settings.TILE_SIZE\n        self.screen = pygame.display.set_mode((window_w, window_h))",
+        "detail": "src.game.engine",
+        "documentation": {}
+    },
+    {
+        "label": "GameState",
+        "kind": 6,
+        "importPath": "src.game.game_state",
+        "description": "src.game.game_state",
+        "peekOfCode": "class GameState(Enum):\n    MENU = auto()\n    PLAYING = auto()\n    INVENTORY = auto()\n    GAME_OVER = auto()\n    PAUSED = auto()",
+        "detail": "src.game.game_state",
+        "documentation": {}
+    },
+    {
+        "label": "Player",
+        "kind": 6,
+        "importPath": "src.game.player",
+        "description": "src.game.player",
+        "peekOfCode": "class Player:\n    def __init__(self, cell_pos):\n        ts = settings.TILE_SIZE\n        self.x = cell_pos[0] * ts + ts // 2\n        self.y = cell_pos[1] * ts + ts // 2\n        # Radio proporcional al tamaño del tile\n        self.radius = int(ts * 0.35)\n         # resistencia \n        self.stamina = 100        \n        self.exhausted = False   ",
+        "detail": "src.game.player",
+        "documentation": {}
+    },
+    {
+        "label": "TILE_SIZE",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "TILE_SIZE = 20\nFPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*8\nTIMER_TEXT = (240, 240, 240)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "FPS",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "FPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*8\nTIMER_TEXT = (240, 240, 240)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIMER_START_SECONDS",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "TIMER_START_SECONDS = 60*8\nTIMER_TEXT = (240, 240, 240)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIMER_TEXT",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "TIMER_TEXT = (240, 240, 240)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_SPEED",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "BASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)\nMENU_BG_HOVER = (53, 53, 64)\nBUTTON_BG = (200, 200, 200)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STAMINA_MAX",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "STAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)\nMENU_BG_HOVER = (53, 53, 64)\nBUTTON_BG = (200, 200, 200)\nBUTTON_BG_SELECTED = (255, 220, 120)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STAMINA_CONSUME_PER_CELL",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "STAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)\nMENU_BG_HOVER = (53, 53, 64)\nBUTTON_BG = (200, 200, 200)\nBUTTON_BG_SELECTED = (255, 220, 120)\nBTN_BG_HOVER = (233, 233, 233)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STAMINA_RECOVERY_IDLE",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "STAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)\nMENU_BG_HOVER = (53, 53, 64)\nBUTTON_BG = (200, 200, 200)\nBUTTON_BG_SELECTED = (255, 220, 120)\nBTN_BG_HOVER = (233, 233, 233)\nTEXT_LIGHT = (219, 219, 219)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MENU_TITLE_FONT_SIZE",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "MENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)\nMENU_BG_HOVER = (53, 53, 64)\nBUTTON_BG = (200, 200, 200)\nBUTTON_BG_SELECTED = (255, 220, 120)\nBTN_BG_HOVER = (233, 233, 233)\nTEXT_LIGHT = (219, 219, 219)\nTEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MENU_PANEL_WIDTH",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "MENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)\nMENU_BG_HOVER = (53, 53, 64)\nBUTTON_BG = (200, 200, 200)\nBUTTON_BG_SELECTED = (255, 220, 120)\nBTN_BG_HOVER = (233, 233, 233)\nTEXT_LIGHT = (219, 219, 219)\nTEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MENU_BG",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "MENU_BG = (20, 20, 24)         # fondo general (opcional)\nMENU_BG_HOVER = (53, 53, 64)\nBUTTON_BG = (200, 200, 200)\nBUTTON_BG_SELECTED = (255, 220, 120)\nBTN_BG_HOVER = (233, 233, 233)\nTEXT_LIGHT = (219, 219, 219)\nTEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MENU_BG_HOVER",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "MENU_BG_HOVER = (53, 53, 64)\nBUTTON_BG = (200, 200, 200)\nBUTTON_BG_SELECTED = (255, 220, 120)\nBTN_BG_HOVER = (233, 233, 233)\nTEXT_LIGHT = (219, 219, 219)\nTEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "BUTTON_BG",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "BUTTON_BG = (200, 200, 200)\nBUTTON_BG_SELECTED = (255, 220, 120)\nBTN_BG_HOVER = (233, 233, 233)\nTEXT_LIGHT = (219, 219, 219)\nTEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28\n# --- UI / GAME OVER ---",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "BUTTON_BG_SELECTED",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "BUTTON_BG_SELECTED = (255, 220, 120)\nBTN_BG_HOVER = (233, 233, 233)\nTEXT_LIGHT = (219, 219, 219)\nTEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28\n# --- UI / GAME OVER ---\nGO_TEXT_COLOR = (230, 230, 230)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "BTN_BG_HOVER",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "BTN_BG_HOVER = (233, 233, 233)\nTEXT_LIGHT = (219, 219, 219)\nTEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28\n# --- UI / GAME OVER ---\nGO_TEXT_COLOR = (230, 230, 230)\nGO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEXT_LIGHT",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "TEXT_LIGHT = (219, 219, 219)\nTEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28\n# --- UI / GAME OVER ---\nGO_TEXT_COLOR = (230, 230, 230)\nGO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)\nGO_HEADER_BG = (50, 50, 60)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEXT_DARK",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "TEXT_DARK = (10, 10, 10)\nTEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28\n# --- UI / GAME OVER ---\nGO_TEXT_COLOR = (230, 230, 230)\nGO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)\nGO_HEADER_BG = (50, 50, 60)\nGO_BUTTON_BG_SELECTED = (255, 220, 120)",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEXT_RED",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "TEXT_RED = (214, 0, 0)\nTEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28\n# --- UI / GAME OVER ---\nGO_TEXT_COLOR = (230, 230, 230)\nGO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)\nGO_HEADER_BG = (50, 50, 60)\nGO_BUTTON_BG_SELECTED = (255, 220, 120)\nGO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEXT_GREEN",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "TEXT_GREEN = (0, 214, 93)\nUI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28\n# --- UI / GAME OVER ---\nGO_TEXT_COLOR = (230, 230, 230)\nGO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)\nGO_HEADER_BG = (50, 50, 60)\nGO_BUTTON_BG_SELECTED = (255, 220, 120)\nGO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD\n# Formato de puntaje",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "UI_FONT_NAME",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "UI_FONT_NAME = None            # None = fuente por defecto de pygame\nUI_FONT_SIZE = 28\n# --- UI / GAME OVER ---\nGO_TEXT_COLOR = (230, 230, 230)\nGO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)\nGO_HEADER_BG = (50, 50, 60)\nGO_BUTTON_BG_SELECTED = (255, 220, 120)\nGO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD\n# Formato de puntaje\nGO_SCORE_DECIMALS = 2",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "UI_FONT_SIZE",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "UI_FONT_SIZE = 28\n# --- UI / GAME OVER ---\nGO_TEXT_COLOR = (230, 230, 230)\nGO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)\nGO_HEADER_BG = (50, 50, 60)\nGO_BUTTON_BG_SELECTED = (255, 220, 120)\nGO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD\n# Formato de puntaje\nGO_SCORE_DECIMALS = 2\n# --- Tipografía ---",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TEXT_COLOR",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "GO_TEXT_COLOR = (230, 230, 230)\nGO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)\nGO_HEADER_BG = (50, 50, 60)\nGO_BUTTON_BG_SELECTED = (255, 220, 120)\nGO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD\n# Formato de puntaje\nGO_SCORE_DECIMALS = 2\n# --- Tipografía ---\nSTATS_FONT_SIZE = 20\n# --- Condicion Victoria y derrrota ---",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "GO_HIGHLIGHT_ROW",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "GO_HIGHLIGHT_ROW = (255, 235, 128)       # amarillo suave (fila del jugador)\nGO_HEADER_BG = (50, 50, 60)\nGO_BUTTON_BG_SELECTED = (255, 220, 120)\nGO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD\n# Formato de puntaje\nGO_SCORE_DECIMALS = 2\n# --- Tipografía ---\nSTATS_FONT_SIZE = 20\n# --- Condicion Victoria y derrrota ---\nMETA_INGRESOS = TIMER_START_SECONDS*16",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "GO_HEADER_BG",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "GO_HEADER_BG = (50, 50, 60)\nGO_BUTTON_BG_SELECTED = (255, 220, 120)\nGO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD\n# Formato de puntaje\nGO_SCORE_DECIMALS = 2\n# --- Tipografía ---\nSTATS_FONT_SIZE = 20\n# --- Condicion Victoria y derrrota ---\nMETA_INGRESOS = TIMER_START_SECONDS*16\nMIN_REPUTACION = 20",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "GO_BUTTON_BG_SELECTED",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "GO_BUTTON_BG_SELECTED = (255, 220, 120)\nGO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD\n# Formato de puntaje\nGO_SCORE_DECIMALS = 2\n# --- Tipografía ---\nSTATS_FONT_SIZE = 20\n# --- Condicion Victoria y derrrota ---\nMETA_INGRESOS = TIMER_START_SECONDS*16\nMIN_REPUTACION = 20",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "GO_TITLE_FONT_SIZE",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "GO_TITLE_FONT_SIZE = 35        # reutiliza fuente del HUD\n# Formato de puntaje\nGO_SCORE_DECIMALS = 2\n# --- Tipografía ---\nSTATS_FONT_SIZE = 20\n# --- Condicion Victoria y derrrota ---\nMETA_INGRESOS = TIMER_START_SECONDS*16\nMIN_REPUTACION = 20",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "GO_SCORE_DECIMALS",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "GO_SCORE_DECIMALS = 2\n# --- Tipografía ---\nSTATS_FONT_SIZE = 20\n# --- Condicion Victoria y derrrota ---\nMETA_INGRESOS = TIMER_START_SECONDS*16\nMIN_REPUTACION = 20",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATS_FONT_SIZE",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "STATS_FONT_SIZE = 20\n# --- Condicion Victoria y derrrota ---\nMETA_INGRESOS = TIMER_START_SECONDS*16\nMIN_REPUTACION = 20",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "META_INGRESOS",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "META_INGRESOS = TIMER_START_SECONDS*16\nMIN_REPUTACION = 20",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIN_REPUTACION",
+        "kind": 5,
+        "importPath": "src.game.settings",
+        "description": "src.game.settings",
+        "peekOfCode": "MIN_REPUTACION = 20",
+        "detail": "src.game.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SoundManager",
+        "kind": 6,
+        "importPath": "src.game.sounds",
+        "description": "src.game.sounds",
+        "peekOfCode": "class SoundManager:\n    def __init__(self, default_volume: float = 0.30): \n        self.sfx_dir = Path(__file__).resolve().parent.parent / \"assets\" / \"sfx\"\n        self._cache: dict[str, pygame.mixer.Sound] = {}\n        self._current_volume: float = float(default_volume)\n        self._load(\"undo\", \"undo.ogg\")  \n        self.set_master_volume(self._current_volume)  \n    def _load(self, key: str, filename: str) -> None:\n        path = self.sfx_dir / filename\n        if not path.exists():",
+        "detail": "src.game.sounds",
+        "documentation": {}
+    },
+    {
+        "label": "CountdownTimer",
+        "kind": 6,
+        "importPath": "src.game.util",
+        "description": "src.game.util",
+        "peekOfCode": "class CountdownTimer:\n    def __init__(self, seconds: float):\n        self.initial = float(seconds)\n        self.time_left = float(seconds)\n    def reset(self):\n        self.time_left = self.initial\n    def tick(self, dt: float):\n        self.time_left = max(0.0, self.time_left - dt)\n    def finished(self) -> bool:\n        return self.time_left <= 0.0",
+        "detail": "src.game.util",
+        "documentation": {}
+    },
+    {
+        "label": "format_mmss",
+        "kind": 2,
+        "importPath": "src.game.util",
+        "description": "src.game.util",
+        "peekOfCode": "def format_mmss(total_seconds: float) -> str:\n    s = max(0, int(total_seconds))\n    m, s = divmod(s, 60)\n    return f\"{m:02d}:{s:02d}\"\nclass CountdownTimer:\n    def __init__(self, seconds: float):\n        self.initial = float(seconds)\n        self.time_left = float(seconds)\n    def reset(self):\n        self.time_left = self.initial",
+        "detail": "src.game.util",
+        "documentation": {}
+    }
+]

@@ -274,7 +274,7 @@ class Game:
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         # 4) Actualiza pedidos
-        self.job_logic.update(dt, self.player.x, self.player.y)
+        self.job_logic.update(dt, self.player.x, self.player.y, self.enemy.x, self.enemy.y)
 
 
     # --------- Estado: GAME OVER ---------
