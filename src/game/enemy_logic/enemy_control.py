@@ -29,7 +29,7 @@ class EnemyControl:
 
         # cambiar de dirección 
         if self.change_dir_timer <= 0:
-            self.direction = self.get_random_valid_direction_V2()
+            self.direction = self.get_random_valid_direction_v2()
             self.change_dir_timer = random.randint(30, 90)  # Pone el timepo en el que va a esa direccion
 
         # se mueve a la dirección actual
