@@ -1,192 +1,176 @@
-# enemy_controller.py
+# enemy_logic/enemy_controller.py
+
 from __future__ import annotations
-from typing import Tuple, List, Optional, Dict
-import math
+from typing import List, Tuple, Optional, Dict, Iterable
 import random
+import heapq
+from enum import Enum
 
-# Importa el cerebro y presets
-from .ai_policies import (
-    CourierAI,
-    EasyPolicy,
-    MediumPolicy,
-    HardPolicy,
-    DecisionPolicy,
-    PathPlanner,
-)
+# Tipos: coordenadas de grid (tx, ty) y pixeles (px, py)
+GridPos = Tuple[int, int]
+PixelPos = Tuple[int, int]
 
-Cell = Tuple[int, int]  # (row, col)
+class State(Enum):
+    IDLE = 0
+    TO_PICKUP = 1
+    TO_DROPOFF = 2
 
+class Strategy:
+    """
+    Interfaz mínima: debe implementar `plan(enemy_x, enemy_y) -> List[GridPos]`
+    donde la lista es una ruta (secuencia de tiles) que el enemigo debe seguir.
+    """
+    def plan(self, enemy_x: float, enemy_y: float) -> Optional[List[GridPos]]:
+        raise NotImplementedError()
 
-def pixel_to_cell(x: float, y: float, tile_size: int) -> Cell:
-    """Convierte coordenadas en píxeles al índice de celda."""
-    col = int(x // tile_size)
-    row = int(y // tile_size)
-    return (row, col)
+# ---------- A* (grid) ----------
+def astar(start: GridPos, goal: GridPos, is_blocked_fn, w:int, h:int) -> Optional[List[GridPos]]:
+    """
+    Devuelve lista de nodos (incluyendo start y goal) o None si no se encuentra ruta.
+    Heurística: Manhattan.
+    Complejidad: O(N log N) en nodos explorados.
+    """
+    def h_cost(a, b):
+        return abs(a[0]-b[0]) + abs(a[1]-b[1])
 
+    open_heap = []
+    heapq.heappush(open_heap, (h_cost(start, goal), 0, start, None))
+    came_from: Dict[GridPos, Optional[GridPos]] = {}
+    g_score = {start: 0}
+    closed = set()
 
-def cell_center(cell: Cell, tile_size: int) -> Tuple[float, float]:
-    """Centro en píxeles de una celda (para dirigir el movimiento)."""
-    r, c = cell
-    cx = c * tile_size + tile_size / 2.0
-    cy = r * tile_size + tile_size / 2.0
-    return (cx, cy)
+    while open_heap:
+        _, g, current, parent = heapq.heappop(open_heap)
+        if current in closed:
+            continue
+        came_from[current] = parent
+        if current == goal:
+            # reconstruir
+            path = []
+            cur = current
+            while cur is not None:
+                path.append(cur)
+                cur = came_from.get(cur)
+            path.reverse()
+            return path
+        closed.add(current)
+        cx, cy = current
+        for nx, ny in ((cx+1,cy),(cx-1,cy),(cx,cy+1),(cx,cy-1)):
+            if nx < 0 or ny < 0 or nx >= w or ny >= h:
+                continue
+            if is_blocked_fn(nx, ny):
+                continue
+            tentative_g = g + 1
+            if tentative_g < g_score.get((nx,ny), float('inf')):
+                g_score[(nx,ny)] = tentative_g
+                f = tentative_g + h_cost((nx,ny), goal)
+                heapq.heappush(open_heap, (f, tentative_g, (nx,ny), current))
+    return None
 
+# ---------- Estrategia Random ----------
+class RandomStrategy(Strategy):
+    def __init__(self, job_logic, map_loader, prefer_nearby: bool = True):
+        self.job_logic = job_logic
+        self.map_loader = map_loader
+        self.pref_nearby = prefer_nearby
 
+    def plan(self, enemy_x: float, enemy_y: float) -> Optional[List[GridPos]]:
+        pickups = self.job_logic.getPickupMarkers()
+        if not pickups:
+            return None
+        # convertir px,py a grid
+        def px_to_grid(px, py):
+            ts = self.map_loader.renderer and getattr(self.map_loader, "tile_size", None)
+            # no confiamos en renderer tile_size; calculamos por settings.TILE_SIZE en tiempo de ejecución
+            from .. import settings as _s
+            return int(px // _s.TILE_SIZE), int(py // _s.TILE_SIZE)
+        # ordenar o elegir al azar
+        choices = pickups[:]
+        if self.pref_nearby:
+            # ordenar por distancia Manhattan a enemigo
+            ex_g = int(enemy_x // __import__('..').settings.TILE_SIZE)  # quick import
+            ey_g = int(enemy_y // __import__('..').settings.TILE_SIZE)
+            choices.sort(key=lambda p: abs(int(p["px"]//__import__('..').settings.TILE_SIZE)-ex_g) + abs(int(p["py"]//__import__('..').settings.TILE_SIZE)-ey_g))
+            chosen = random.choice(choices[: min(3, len(choices)) ])
+        else:
+            chosen = random.choice(choices)
+        job_id = chosen["job_id"]
+        job = self.job_logic.jobs.get(job_id)
+        if not job:
+            return None
+        pickup = job.pickup   # (gx, gy)
+        dropoff = job.dropoff # (gx, gy)
+        # planear ruta enemy -> pickup -> dropoff
+        start_tile = (int(enemy_x // __import__('..').settings.TILE_SIZE), int(enemy_y // __import__('..').settings.TILE_SIZE))
+        w, h = self.map_loader.width, self.map_loader.height
+        path1 = astar(start_tile, pickup, self.map_loader.is_blocked, w, h)
+        if path1 is None:
+            return None
+        path2 = astar(pickup, dropoff, self.map_loader.is_blocked, w, h)
+        if path2 is None:
+            return path1
+        # concatenar (evitar duplicar pickup)
+        return path1 + path2[1:]
+
+# ---------- EnemyController ----------
 class EnemyController:
     """
-    Orquesta a un Enemy (física y render) con CourierAI (planificación en grilla).
-
-    - Traduce celdas <-> píxeles.
-    - Llama a enemy.move_with_collision(dx, dy, game_map, weight, weather).
-    - Permite cambiar dificultad en caliente (easy/medium/hard) o inyectar políticas personalizadas.
-
-    Parámetros:
-      enemy: instancia de tu Enemy (debe exponer .x, .y, get_speed(peso), move_with_collision(...))
-      grid: matriz 0/1 (0 = libre, 1 = edificio)
-      orders: lista de pedidos en celdas [(r,c), ...] (se elimina cuando se entrega)
-      tile_size: tamaño del “tile” en píxeles
-      difficulty: "easy" | "medium" | "hard"  (o pasa None y usa set_policy() luego)
-      base_cells_per_second: velocidad base en celdas/seg (se multiplica por enemy.get_speed)
-      rng: Random opcional
+    Orquesta la estrategia elegida y gestiona la ejecución paso a paso.
+    state: IDLE, TO_PICKUP, TO_DROPOFF
+    ruta: lista de GridPos que se van siguiendo (cada frame se avanza hacia el centro del siguiente tile)
     """
-
-    def __init__(
-        self,
-        enemy,
-        grid: List[List[int]],
-        orders: List[Cell],
-        tile_size: int,
-        difficulty: str = "easy",
-        base_cells_per_second: float = 5.0,
-        rng: Optional[random.Random] = None,
-        # Si usas Medium/Hard con mapas de tráfico:
-        medium_traffic_prob: Optional[Dict[Cell, float]] = None,
-        hard_live_traffic_cost: Optional[Dict[Cell, float]] = None,
-    ):
+    def __init__(self, enemy, map_loader, job_logic, strategy: Optional[Strategy] = None):
         self.enemy = enemy
-        self.grid = grid
-        self.orders = orders
-        self.tile_size = int(tile_size)
-        self.rng = rng or random.Random()
+        self.map = map_loader
+        self.job_logic = job_logic
+        self.strategy = strategy or RandomStrategy(job_logic, map_loader)
+        self.state = State.IDLE
+        self.route: List[GridPos] = []
+        self._route_idx = 0
 
-        # Cerebro (CourierAI) con preset por dificultad
-        start_cell = pixel_to_cell(enemy.x, enemy.y, self.tile_size)
-        if difficulty == "easy":
-            preset = EasyPolicy()
-        elif difficulty == "medium":
-            preset = MediumPolicy(traffic_prob_map=medium_traffic_prob)
-        elif difficulty == "hard":
-            preset = HardPolicy(live_traffic_cost=hard_live_traffic_cost, min_cost=1.0)
-        else:
-            preset = EasyPolicy()
+    def set_strategy(self, s: Strategy):
+        self.strategy = s
 
-        self.ai = CourierAI(
-            grid=self.grid,
-            orders=self.orders,
-            start=start_cell,
-            policy=preset,
-            cells_per_second=base_cells_per_second,
-            rng=self.rng,
-        )
+    def update(self, dt: float, enemy_weight: float, weather: str):
+        # Si no hay ruta activa, pedir nueva planificación
+        if not self.route or self._route_idx >= len(self.route):
+            plan = self.strategy.plan(self.enemy.x, self.enemy.y)
+            if plan:
+                self.route = plan
+                self._route_idx = 0
+                self.state = State.TO_PICKUP
+            else:
+                self.state = State.IDLE
+                return
 
-        # Para suavizar el movimiento en píxel: pixels/sec = tile_size * cells_per_second * speed_factor
-        self.base_cells_per_second = float(base_cells_per_second)
+        # Mover hacia centro del tile objetivo
+        next_tile = self.route[self._route_idx]
+        target_px = next_tile[0] * __import__('..').settings.TILE_SIZE + __import__('..').settings.TILE_SIZE // 2
+        target_py = next_tile[1] * __import__('..').settings.TILE_SIZE + __import__('..').settings.TILE_SIZE // 2
 
-    # ---------- Cambios de dificultad / políticas en caliente ----------
-    def set_easy(self):
-        self.ai.set_policy(EasyPolicy())
-
-    def set_medium(self, traffic_prob_map: Optional[Dict[Cell, float]] = None, penalty_weight: float = 0.75):
-        self.ai.set_policy(MediumPolicy(traffic_prob_map=traffic_prob_map, penalty_weight=penalty_weight))
-
-    def set_hard(self, live_traffic_cost: Optional[Dict[Cell, float]] = None, min_cost: float = 1.0):
-        self.ai.set_policy(HardPolicy(live_traffic_cost=live_traffic_cost, min_cost=min_cost))
-
-    def set_custom(
-        self,
-        decision: DecisionPolicy,
-        planner: PathPlanner,
-        step_cost,
-        retarget_interval_range=(6.0, 14.0),
-        replanning_cooldown=1.0,
-    ):
-        # Modo avanzado: sustituir componentes sin usar presets
-        self.ai.set_decision(decision)
-        self.ai.set_planner(planner)
-        self.ai.set_step_cost(step_cost)
-        # timers
-        self.ai._retarget_range = retarget_interval_range
-        self.ai._replan_cd = float(replanning_cooldown)
-        self.ai._retarget_timer = self.ai._roll_retarget_time()
-        self.ai._replan_timer = self.ai._replan_cd
-
-    def set_speed_cells_per_second(self, cps: float):
-        """Ajusta la velocidad base del cerebro (antes de factor de estamina/peso)."""
-        self.base_cells_per_second = max(0.0001, float(cps))
-        self.ai.set_cells_per_second(self.base_cells_per_second)
-
-    # ---------- Bucle de actualización ----------
-    def _sync_ai_with_enemy_pos(self):
-        """Si Enemy fue empujado/teleportado en píxeles, actualiza la celda lógica del AI."""
-        current_cell = pixel_to_cell(self.enemy.x, self.enemy.y, self.tile_size)
-        if current_cell != self.ai.get_cell():
-            self.ai.pos = current_cell
-            self.ai._recompute()
-
-    def update(self, dt: float, game_map, weight: float, weather: str):
-        """
-        Avanza IA y mueve al Enemy hacia la siguiente celda objetivo, respetando colisiones por píxel.
-        - dt: segundos desde el último frame.
-        - game_map: lo que tu Enemy espera para colisiones (tiles sólidos, etc.).
-        - weight: peso total que afecta get_speed().
-        - weather: clima actual (si tu Enemy lo usa).
-        """
-        # 1) Sincroniza posición
-        self._sync_ai_with_enemy_pos()
-
-        # 2) Corre el “cerebro”
-        self.ai.update(dt)
-
-        # 3) Obtén el siguiente waypoint en celdas y mueve en píxeles
-        path = self.ai.get_path()
-        if not path:
+        dx = target_px - self.enemy.x
+        dy = target_py - self.enemy.y
+        dist = (abs(dx) + abs(dy))
+        if dist < 1.0:
+            # llegó al centro del tile
+            self._route_idx += 1
+            # si completó ruta, cambiar a IDLE
+            if self._route_idx >= len(self.route):
+                self.route = []
+                self.state = State.IDLE
             return
 
-        me_cell = pixel_to_cell(self.enemy.x, self.enemy.y, self.tile_size)
-        # Si el path arranca en mi celda, toma el siguiente; si no, el primero
-        idx = 1 if len(path) >= 2 and path[0] == me_cell else 0
-        next_cell = path[idx]
-        wx, wy = cell_center(next_cell, self.tile_size)
-
-        # Dirección hacia el centro del tile objetivo
-        dx_pix = wx - self.enemy.x
-        dy_pix = wy - self.enemy.y
-        dist = math.hypot(dx_pix, dy_pix)
-        if dist <= 1e-3:
+        # calcular paso en pixeles considerando velocidad y dt
+        speed = self.enemy.get_speed(enemy_weight)
+        step = speed * __import__('..').settings.TILE_SIZE * dt  # mover máximo ~ tile_size * speed * dt
+        # normalizar vector
+        total = (dx**2 + dy**2) ** 0.5
+        if total == 0:
             return
+        nx = (dx / total) * min(step, total)
+        ny = (dy / total) * min(step, total)
 
-        # Velocidad en píxeles/seg: celdas/seg * tile_size, modulada por Enemy.get_speed(peso)
-        speed_factor = float(self.enemy.get_speed(weight))  # usa la versión corregida de get_speed
-        pixels_per_sec = self.base_cells_per_second * self.tile_size * speed_factor
-        if pixels_per_sec <= 0.0:
-            return
+        # utilizar el método existente para moverse con colisiones
+        self.enemy.move_with_collision(nx, ny, self.map, enemy_weight, weather)
 
-        # Paso limitado por dt
-        max_step = pixels_per_sec * dt
-        step = min(max_step, dist)
-        dx = (dx_pix / dist) * step
-        dy = (dy_pix / dist) * step
-
-        # 4) Mover con colisión (tu Enemy ya resuelve paredes/estamina/orientación)
-        self.enemy.move_with_collision(dx, dy, game_map, weight, weather)
-
-    # ---------- Accesores útiles (debug/dibujo) ----------
-    def get_logic_cell(self) -> Cell:
-        return self.ai.get_cell()
-
-    def get_target_cell(self) -> Optional[Cell]:
-        return self.ai.get_target()
-
-    def get_current_path(self) -> List[Cell]:
-        return self.ai.get_path()
 
