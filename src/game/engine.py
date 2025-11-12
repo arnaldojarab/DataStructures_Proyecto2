@@ -21,6 +21,7 @@ from .game_state import GameState
 from .sounds import SoundManager
 
 from .enemy_logic.enemy import Enemy
+from .enemy_logic.enemy_controller import EnemyController
 
 class Game:
     def __init__(self):
@@ -96,6 +97,8 @@ class Game:
         self.pause_menu = PauseMenu((window_w, window_h), self.hud_font, self.small_font, self._save_game)
 
         self.enemy = Enemy((0, 0))
+
+        
 
     # --------- Ciclo principal ---------
     def run(self):

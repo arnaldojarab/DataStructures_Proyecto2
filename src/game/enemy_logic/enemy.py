@@ -141,11 +141,9 @@ class Enemy:
             speed = speed * 1
 
         Mpeso = max(0.8, 1 - 0.03 * peso_total )
-
-        speed * Mpeso
         
 
-        return speed
+        return speed * Mpeso
     
 
     def reset(self):
