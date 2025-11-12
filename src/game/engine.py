@@ -21,6 +21,7 @@ from .game_state import GameState
 from .sounds import SoundManager
 
 from .enemy_logic.enemy import Enemy
+from .enemy_logic.enemy_control import EnemyControl 
 from .enemy_logic.enemy_controller import EnemyController
 
 class Game:
@@ -97,6 +98,9 @@ class Game:
         self.pause_menu = PauseMenu((window_w, window_h), self.hud_font, self.small_font, self._save_game)
 
         self.enemy = Enemy((0, 0))
+        self.enemy_control = EnemyControl(self.enemy, self.map)
+
+        
 
         
 
@@ -251,13 +255,13 @@ class Game:
 
         # Normaliza velocidad en diagonal (sin ventaja al moverse en 45°)
         if dx != 0 and dy != 0:
-            diag = 0.70710678  # 1/sqrt(2)
+            diag = 0.70710678  # 1/sqrt(2) 
             dx *= diag
             dy *= diag
 
         self.player.move_with_collision(dx, dy, self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
-
-        self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
+        self.enemy_control.MoveEnemy("easy",self.job_logic.getEnemyWeight(),self.weather.get_current_condition())
+        ##self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
 
         self.player.update(dt)
 
@@ -277,7 +281,7 @@ class Game:
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         # 4) Actualiza pedidos
-        self.job_logic.update(dt, self.player.x, self.player.y)
+        self.job_logic.update(dt, self.player.x, self.player.y, self.enemy.x, self.enemy.y)
 
 
     # --------- Estado: GAME OVER ---------
