@@ -114,7 +114,7 @@ class Player:
         bar_w, bar_h = 120, 14   
         margin = 10              
 
-        x = screen.get_width() - bar_w - margin
+        x = 10
         y = margin
 
         pygame.draw.rect(screen, (100, 100, 100), (x, y, bar_w, bar_h))

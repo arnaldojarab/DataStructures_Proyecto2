@@ -54,7 +54,9 @@ class Enemy:
         return False
 
     def move_with_collision(self, dx, dy, game_map, weight, weather):
-
+        if self.exhausted:
+            return
+        
         stamina_cost = 0.5
 
         stamina_cost += self.get_stamina_extra(weight, weather) / 2.5
@@ -115,12 +117,11 @@ class Enemy:
         margin = 10              
 
         x = screen.get_width() - bar_w - margin
-        y = margin * 2
-
+        y = margin
         pygame.draw.rect(screen, (100, 100, 100), (x, y, bar_w, bar_h))
 
         fill_w = int(bar_w * (self.stamina / 100))
-        color = (0, 0, 255) if self.exhausted else (50, 200, 50)
+        color = (235, 25, 25) if self.exhausted or self.stamina <= 30 else (0, 0, 255)
         pygame.draw.rect(screen, color, (x, y, fill_w, bar_h))
 
         pygame.draw.rect(screen, (255, 255, 255), (x, y, bar_w, bar_h), 2)

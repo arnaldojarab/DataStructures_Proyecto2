@@ -32,9 +32,13 @@ class statisticLogic:
         self._margin_x = margin_x
         self._margin_y = margin_y
 
-        self._money: float = 0.0
+        self._money: float = 1000.0
         self._reputation: int = 70
         self._meta_ingresos: float = float(settings.META_INGRESOS)
+
+        self._moneyEnemy: float = 0.0
+        self._reputationEnemy: int = 70
+        self._meta_ingresosEnemy: float = float(settings.META_INGRESOS)
 
     # ---------------- API pública mínima ----------------
     def reset(self) -> None:
@@ -49,11 +53,17 @@ class statisticLogic:
         self._update_money(money)
         self._update_reputation(reputation)
 
+    def updateEnemy(self, dt: float, money: float = 0.0, reputation: int = 70)-> None:
+        pass
+
     def draw(self, surface: pygame.Surface) -> None:
         """Dibuja TODAS las estadísticas en pantalla."""
         self._draw_timer(surface)
         self._draw_money(surface)
+        self._draw_moneyEnemy(surface)
         self._draw_reputation(surface)
+        self._draw_reputationEnemy(surface)
+
 
     # ---------------- Métodos privados (segmentados) ----------------
     def _reset_timer(self) -> None:
@@ -78,10 +88,16 @@ class statisticLogic:
         self._money = amount
     
     def _draw_money(self, surface: pygame.Surface) -> None:
-        label = f'dinero: ${self._money:,.0f} / ${self._meta_ingresos:,.0f}'
+        label = f'Dinero: ${self._money:,.0f} / ${self._meta_ingresos:,.0f}'
         fg = (16, 110, 16)
-        pos = (10, 10) # margen sup-izq
+        pos = (10, 30) # margen sup-izq
         self._draw_text_with_outline(surface, label, fg, pos)
+
+    def _draw_moneyEnemy(self, surface: pygame.Surface) -> None:
+        label = f'Dinero:\n${self._moneyEnemy:,.0f} / ${self._meta_ingresos:,.0f}'
+        fg = (16, 110, 16)
+        pos = (471, 30)  # margen sup-izq
+        self._draw_text_with_outline_v2(surface, label, fg, pos)
 
     def _reset_reputation(self) -> None:
         self._reputation = 70
@@ -90,11 +106,20 @@ class statisticLogic:
         self._reputation = amount
     
     def _draw_reputation(self, surface: pygame.Surface) -> None:
-        label = f'reputacion: {self._reputation}'
+        label = f'Reputacion: {self._reputation}'
         fg = (255, 255, 255)
-        # calcular Y usando la altura de la fuente (+4px de padding)
-        line_h = self._font.get_height() + 4
+        # calcular Y usando la altura de la fuente (+20px de padding)
+        line_h = self._font.get_height() + 20
         pos = (10, 10 + line_h)
+        text_surf = self._font_stats.render(label, True, fg)
+        surface.blit(text_surf, pos)
+
+    def _draw_reputationEnemy(self, surface: pygame.Surface) -> None:
+        label = f'Reputacion: {self._reputationEnemy}'
+        fg = (255, 255, 255)
+        # calcular Y usando la altura de la fuente (+20px de padding)
+        line_h = self._font.get_height() + 40
+        pos = (470, 10 + line_h)
         text_surf = self._font_stats.render(label, True, fg)
         surface.blit(text_surf, pos)
 
@@ -134,6 +159,35 @@ class statisticLogic:
                     continue
                 surface.blit(txt_out, (x + ox, y + oy))
         surface.blit(txt_main, (x, y))
+    def _draw_text_with_outline_v2(
+        self, 
+        surface: pygame.Surface, 
+        text: str, 
+        fg: tuple[int,int,int], 
+        pos: tuple[int,int], 
+        outline=(0,0,0), 
+        thickness: int = 2, 
+        line_spacing: int = 5
+    ) -> None:
+        """Render simple de contorno con soporte para múltiples líneas."""
+        x, y = pos
+        lines = text.splitlines()  # divide el texto en líneas si hay '\n'
+
+        for i, line in enumerate(lines):
+            txt_main = self._font_stats.render(line, True, fg)
+            txt_out  = self._font_stats.render(line, True, outline)
+
+            line_y = y + i * (txt_main.get_height() + line_spacing)
+
+            # contorno en cruz + diagonales
+            for ox in (-thickness, 0, thickness):
+                for oy in (-thickness, 0, thickness):
+                    if ox == 0 and oy == 0:
+                        continue
+                    surface.blit(txt_out, (x + ox, line_y + oy))
+
+            # texto principal
+            surface.blit(txt_main, (x, line_y))
     
     def set_time_left(self, seconds: float) -> None:
         """

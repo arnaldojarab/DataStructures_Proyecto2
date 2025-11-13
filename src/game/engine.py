@@ -133,6 +133,7 @@ class Game:
 
             self.weather.draw_weather_overlay(self.screen, self.player,dt)
             self.player.draw_stamina(self.screen)
+            self.enemy.draw_stamina(self.screen)
             draw()
 
             pygame.display.flip()
