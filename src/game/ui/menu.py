@@ -9,28 +9,34 @@ class MainMenu:
         self.w, self.h = screen_size
         self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)
         self.on_load = on_load
+        self.difficulty = ""  # dificultad seleccionada ("Easy", "Medium", "Hard")
 
         base_dir = os.path.dirname(os.path.abspath(__file__))
         bg_path = os.path.normpath(os.path.join(base_dir, "..", "..", "assets", "images", "menu_bg.png"))
-        self.bg_surf = pygame.image.load(bg_path).convert()  
+        self.bg_surf = pygame.image.load(bg_path).convert()
         self.bg_surf = pygame.transform.smoothscale(self.bg_surf, (self.w, self.h))
 
-        #Mover botones e imagen
-        self.offset_x = -150 
+        # Desplazamiento horizontal para icono y botones
+        self.offset_x = -150
 
-        # phases: MAIN (botones principales) | LOAD (lista de partidas)
+        # phases: MAIN (botones principales) | LOAD (lista de partidas) | DIFFICULTY (selección de dificultad)
         self.phase = "MAIN"
 
-        # icon 
+        # icono
         self.icon_surf = self._load_circular_icon(size=224)
         self.icon_rect = pygame.Rect(0, 0, 0, 0)
 
         # placeholders
         self.panel_rect = pygame.Rect(0, 0, self.w, self.h)
-        self.btn_start = None
-        self.btn_load = None
+        self.btn_start: Button | None = None
+        self.btn_load: Button | None = None
 
-        # LOAD-phase UI
+        # botones de dificultad
+        self.btn_easy: Button | None = None
+        self.btn_medium: Button | None = None
+        self.btn_hard: Button | None = None
+
+        # UI para LOAD
         self.load_title = "Cargar partida"
         self.save_buttons: list[Button] = []
         self.load_feedback: Optional[str] = None  # para mostrar errores (opcional)
@@ -63,23 +69,21 @@ class MainMenu:
             return None
 
     def _layout(self, screen_size):
-        """Recalcula panel y posiciones según el tamaño actual (centrado vertical del bloque)."""
+        """Recalcula panel y posiciones según el tamaño actual."""
         self.w, self.h = screen_size
         self.panel_rect = pygame.Rect(0, 0, self.w, self.h)
 
-        # MAIN buttons
+        # --- MAIN buttons ---
         btn_w, btn_h = 248, 54
         gap_y = 16                   # separación entre botones
         icon_gap = 48                # separación entre icono y primer botón
 
-        # --- cálculo del ancho y x centrado ---
         btn_x = self.w // 2 - btn_w // 2 + self.offset_x
 
-        # --- medir el alto del bloque (icono + gap + botón + gap + botón) ---
         has_icon = self.icon_surf is not None
         icon_h = self.icon_surf.get_height() if has_icon else 0
 
-        # alto de los dos botones + su separación
+        # alto de los dos botones principales + su separación
         buttons_block_h = btn_h + gap_y + btn_h
 
         # alto total del bloque (si hay icono, se suma icono + icon_gap)
@@ -88,23 +92,19 @@ class MainMenu:
         # y inicial para centrar verticalmente todo el bloque
         y0 = max(0, self.h // 2 - block_h // 2)
 
-        # --- posiciones verticales ---
+        # posiciones verticales
         if has_icon:
-            # icono centrado horizontalmente en y0
             ix = self.w // 2 - self.icon_surf.get_width() // 2 + self.offset_x
             iy = y0
             self.icon_rect = pygame.Rect(ix, iy, self.icon_surf.get_width(), self.icon_surf.get_height())
-            # primer botón debajo del icono
             btn_y = iy + icon_h + icon_gap
         else:
-            # si no hay icono, el bloque comienza en y0 con el primer botón
             self.icon_rect = pygame.Rect(0, 0, 0, 0)
             btn_y = y0
 
-        # segundo botón debajo del primero
         load_y = btn_y + btn_h + gap_y
 
-        # --- instanciar/actualizar botones centrados ---
+        # Botón "Iniciar nueva partida"
         self.btn_start = Button(
             rect=pygame.Rect(btn_x, btn_y, btn_w, btn_h),
             text="Iniciar nueva partida",
@@ -114,6 +114,7 @@ class MainMenu:
             fg=settings.TEXT_LIGHT,
         )
 
+        # Botón "Cargar partida"
         self.btn_load = Button(
             rect=pygame.Rect(btn_x, load_y, btn_w, btn_h),
             text="Cargar partida",
@@ -123,6 +124,47 @@ class MainMenu:
             fg=settings.TEXT_LIGHT,
         )
 
+        # --- DIFFICULTY buttons ---
+        # Tres botones centrados verticalmente para seleccionar dificultad
+        diff_btn_w, diff_btn_h = 248, 54
+        diff_gap_y = 16
+        diff_x = self.w // 2 - diff_btn_w // 2
+
+        # alto total de los 3 botones de dificultad
+        diff_block_h = diff_btn_h * 3 + diff_gap_y * 2
+        diff_y0 = self.h // 2 - diff_block_h // 2
+
+        easy_y = diff_y0
+        medium_y = easy_y + diff_btn_h + diff_gap_y
+        hard_y = medium_y + diff_btn_h + diff_gap_y
+
+        # Botones de dificultad (texto en español, código en inglés)
+        self.btn_easy = Button(
+            rect=pygame.Rect(diff_x, easy_y, diff_btn_w, diff_btn_h),
+            text="Fácil",
+            font=self.font,
+            bg=settings.BTN_BG_HOVER,
+            bg_hover=settings.MENU_BG_HOVER,
+            fg=settings.MENU_BG,
+        )
+        self.btn_medium = Button(
+            rect=pygame.Rect(diff_x, medium_y, diff_btn_w, diff_btn_h),
+            text="Medio",
+            font=self.font,
+            bg=settings.BTN_BG_HOVER,
+            bg_hover=settings.MENU_BG_HOVER,
+            fg=settings.MENU_BG,
+        )
+        self.btn_hard = Button(
+            rect=pygame.Rect(diff_x, hard_y, diff_btn_w, diff_btn_h),
+            text="Difícil",
+            font=self.font,
+            bg=settings.BTN_BG_HOVER,
+            bg_hover=settings.MENU_BG_HOVER,
+            fg=settings.MENU_BG,
+        )
+
+        # Si estamos en fase LOAD, reconstruir la lista de partidas
         if self.phase == "LOAD":
             self._build_save_list()
 
@@ -130,22 +172,29 @@ class MainMenu:
         self._layout(screen_size)
 
     def draw(self, surface: pygame.Surface):
-        # Si el tamaño del surface cambió, adapta el layout al nuevo
+        # Adaptar layout si el tamaño del surface cambió
         current_size = surface.get_size()
         if current_size != (self.w, self.h):
             self._layout(current_size)
             self.bg_surf = pygame.transform.scale(self.bg_surf, current_size)
 
-        # Fondo
-        surface.blit(self.bg_surf, (0, 0)) 
-        
+        # Fondo según la fase
+        if self.phase in ("MAIN", "LOAD"):
+            # Fondo con imagen para menú principal y carga
+            surface.blit(self.bg_surf, (0, 0))
+        elif self.phase == "DIFFICULTY":
+            # Fondo plano para menú de dificultad
+            surface.fill(settings.MENU_BG)
+
+        # Dibujar según fase
         if self.phase == "MAIN":
-            # Icon
             if self.icon_surf and self.icon_rect.width > 0:
                 surface.blit(self.icon_surf, (self.icon_rect.x, self.icon_rect.y))
             self._draw_main(surface)
-        else:  # LOAD
+        elif self.phase == "LOAD":
             self._draw_load(surface)
+        elif self.phase == "DIFFICULTY":
+            self._draw_difficulty(surface)
 
     def _draw_main(self, surface: pygame.Surface):
         self.btn_start.draw(surface)
@@ -163,38 +212,98 @@ class MainMenu:
             title,
             self.font,
             (title_x, title_y),
-            color_fg=settings.TEXT_LIGHT,       # color de las letras
-            color_outline=settings.MENU_BG,     # color del contorno
-            outline_width=2                     # grosor del contorno (ajústalo)
+            color_fg=settings.TEXT_LIGHT,
+            color_outline=settings.MENU_BG,
+            outline_width=2
         )
 
+        # Mensaje de feedback si hay error al cargar
         if self.load_feedback:
             fb = self.font.render(self.load_feedback, True, settings.TEXT_RED)
             fb_x = self.w // 2 - fb.get_width() // 2
             fb_y = self.h // 2 - fb.get_height() // 2
-            fb_rect = fb.get_rect(topleft=(fb_x, fb_y)).inflate(16, 10)  # padding
+            fb_rect = fb.get_rect(topleft=(fb_x, fb_y)).inflate(16, 10)
             pygame.draw.rect(surface, settings.MENU_BG, fb_rect, border_radius=6)
             surface.blit(fb, (fb_x, fb_y))
-
         else:
-          for b in self.save_buttons:
-              b.draw(surface)
+            for b in self.save_buttons:
+                b.draw(surface)
 
         hint = "ESC para volver"
         hint_surf = pygame.font.Font(settings.UI_FONT_NAME, 18).render(hint, True, settings.BUTTON_BG)
-        surface.blit(hint_surf, (self.w // 2 - hint_surf.get_width() // 2 , int(self.h * 0.88)))
+        surface.blit(hint_surf, (self.w // 2 - hint_surf.get_width() // 2, int(self.h * 0.88)))
+
+    def _draw_difficulty(self, surface: pygame.Surface):
+        """Dibuja el submenú de selección de dificultad."""
+        # Título centrado
+        title = "Seleccionar dificultad"
+        title_surf = self.font.render(title, True, settings.TEXT_LIGHT)
+        title_x = self.w // 2 - title_surf.get_width() // 2
+        title_y = int(self.h * 0.18)
+
+        draw_text_outline(
+            surface,
+            title,
+            self.font,
+            (title_x, title_y),
+            color_fg=settings.TEXT_LIGHT,
+            color_outline=settings.MENU_BG_HOVER,
+            outline_width=2
+        )
+
+        # Dibujar botones de dificultad
+        if self.btn_easy:
+            self.btn_easy.draw(surface)
+        if self.btn_medium:
+            self.btn_medium.draw(surface)
+        if self.btn_hard:
+            self.btn_hard.draw(surface)
+
+        # Pista para volver
+        hint = "ESC para volver"
+        hint_surf = pygame.font.Font(settings.UI_FONT_NAME, 18).render(hint, True, settings.TEXT_LIGHT)
+        surface.blit(hint_surf, (self.w // 2 - hint_surf.get_width() // 2, int(self.h * 0.88)))
 
     def handle_event(self, event) -> str | None:
+        # Fase principal
         if self.phase == "MAIN":
-            if self.btn_start.handle_event(event):
-                return "start"
-            if self.btn_load.handle_event(event):
+            if self.btn_start and self.btn_start.handle_event(event):
+                # Cambia a fase de selección de dificultad, aún no empieza el juego
+                self.phase = "DIFFICULTY"
+                self._layout((self.w, self.h))
+                return None
+
+            if self.btn_load and self.btn_load.handle_event(event):
                 self.phase = "LOAD"
                 self._layout((self.w, self.h))
                 return None
+
             return None
 
-        # LOAD phase
+        # Fase de selección de dificultad
+        if self.phase == "DIFFICULTY":
+            # Volver al menú principal con ESC
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                self.phase = "MAIN"
+                return None
+
+            # Selección de dificultad con clic
+            if self.btn_easy and self.btn_easy.handle_event(event):
+                # Guardar dificultad en inglés
+                self.set_difficulty("Easy")
+                return "start"
+
+            if self.btn_medium and self.btn_medium.handle_event(event):
+                self.set_difficulty("Medium")
+                return "start"
+
+            if self.btn_hard and self.btn_hard.handle_event(event):
+                self.set_difficulty("Hard")
+                return "start"
+
+            return None
+
+        # Fase de carga de partidas (LOAD)
         if self.phase == "LOAD":
             # Volver con ESC
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -217,14 +326,15 @@ class MainMenu:
             return None
 
         return None
-    
+
     def reset_menu(self):
+        """Resetea el menú al estado principal."""
         self.phase = "MAIN"
 
     def on_load_game(self):
         """Placeholder for Load Game action (no-op for now)."""
         pass
-    
+
     def _build_save_list(self):
         """Crea botones para cada .sav en /saves, centrados en vertical."""
         self.save_buttons.clear()
@@ -241,10 +351,11 @@ class MainMenu:
             entries.sort(key=str.lower)
         except Exception:
             entries = []
+
         btn_w, btn_h = 320, 48
         total_h = len(entries) * btn_h + max(0, (len(entries) - 1)) * 10
         y0 = self.h // 2 - total_h // 2
-        x = self.w // 2 - btn_w // 2 
+        x = self.w // 2 - btn_w // 2
 
         for idx, fname in enumerate(entries):
             y = y0 + idx * (btn_h + 10)
@@ -263,12 +374,18 @@ class MainMenu:
         if not self.save_buttons:
             self.load_feedback = "No se encontraron partidas guardadas."
 
+    def get_difficulty(self) -> str:
+        return self.difficulty
+
+    def set_difficulty(self, difficulty: str):
+        self.difficulty = difficulty
+
+
 # --- helper: outlined text ---
 def draw_text_outline(surface, text, font, pos, color_fg, color_outline, outline_width=2):
     """Dibuja texto con contorno 'stroke' usando múltiples blits alrededor."""
     x, y = pos
     base = font.render(text, True, color_fg)
-    # Render auxiliar en color de contorno
     outline_surf = font.render(text, True, color_outline)
     offsets = []
     r = outline_width
@@ -278,6 +395,7 @@ def draw_text_outline(surface, text, font, pos, color_fg, color_outline, outline
                 continue
             offsets.append((dx, dy))
 
+        # blits del contorno
     for dx, dy in offsets:
         surface.blit(outline_surf, (x + dx, y + dy))
     surface.blit(base, (x, y))

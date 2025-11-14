@@ -67,11 +67,12 @@
         "documentation": {}
     },
     {
-        "label": "Enemy",
-        "importPath": "enemy",
-        "description": "enemy",
+        "label": "random",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "enemy",
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
         "documentation": {}
     },
     {
@@ -115,35 +116,51 @@
         "documentation": {}
     },
     {
-        "label": "dataclass",
-        "importPath": "dataclasses",
-        "description": "dataclasses",
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
         "isExtraImport": true,
-        "detail": "dataclasses",
+        "detail": "__future__",
         "documentation": {}
     },
     {
-        "label": "asdict",
-        "importPath": "dataclasses",
-        "description": "dataclasses",
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "dataclasses",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "dataclass",
-        "importPath": "dataclasses",
-        "description": "dataclasses",
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "dataclasses",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "dataclass",
-        "importPath": "dataclasses",
-        "description": "dataclasses",
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "dataclasses",
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Iterable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
         "documentation": {}
     },
     {
@@ -411,6 +428,71 @@
         "documentation": {}
     },
     {
+        "label": "heapq",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "heapq",
+        "description": "heapq",
+        "detail": "heapq",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "auto",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "asdict",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -441,15 +523,6 @@
         "importPath": "json",
         "description": "json",
         "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "random",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "random",
-        "description": "random",
-        "detail": "random",
         "documentation": {}
     },
     {
@@ -514,22 +587,6 @@
         "documentation": {}
     },
     {
-        "label": "Enum",
-        "importPath": "enum",
-        "description": "enum",
-        "isExtraImport": true,
-        "detail": "enum",
-        "documentation": {}
-    },
-    {
-        "label": "auto",
-        "importPath": "enum",
-        "description": "enum",
-        "isExtraImport": true,
-        "detail": "enum",
-        "documentation": {}
-    },
-    {
         "label": "Path",
         "importPath": "pathlib",
         "description": "pathlib",
@@ -551,8 +608,71 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.enemy_control",
         "description": "src.game.enemy_logic.enemy_control",
-        "peekOfCode": "class EnemyControl:\n    def __init__(self):\n        self.enemy = Enemy()\n    def MoveEnemy(self, diff):\n        if diff == \"easy\":\n            self.RandomPath()\n        elif diff == \"medium\":\n            self.GreedyPath()\n        elif diff == \"hard\":\n            self.DijkstraPath()",
+        "peekOfCode": "class EnemyControl:\n    def __init__(self, enemy=None, game_map=None):\n        self.enemy = enemy or Enemy()\n        self.game_map = game_map\n        self.change_dir_timer = 0\n        self.direction = pygame.Vector2(0, 0)\n        self.speed = 2  # píxeles por frame aprox., puedes ajustarlo\n    def MoveEnemy(self, diff,weight, weather):\n        if diff == \"easy\":\n            self.test(weight, weather)",
         "detail": "src.game.enemy_logic.enemy_control",
+        "documentation": {}
+    },
+    {
+        "label": "State",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.enemy_controller",
+        "description": "src.game.enemy_logic.enemy_controller",
+        "peekOfCode": "class State(Enum):\n    IDLE = 0\n    TO_PICKUP = 1\n    TO_DROPOFF = 2\nclass Strategy:\n    \"\"\"\n    Interfaz mínima: debe implementar `plan(enemy_x, enemy_y) -> List[GridPos]`\n    donde la lista es una ruta (secuencia de tiles) que el enemigo debe seguir.\n    \"\"\"\n    def plan(self, enemy_x: float, enemy_y: float) -> Optional[List[GridPos]]:",
+        "detail": "src.game.enemy_logic.enemy_controller",
+        "documentation": {}
+    },
+    {
+        "label": "Strategy",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.enemy_controller",
+        "description": "src.game.enemy_logic.enemy_controller",
+        "peekOfCode": "class Strategy:\n    \"\"\"\n    Interfaz mínima: debe implementar `plan(enemy_x, enemy_y) -> List[GridPos]`\n    donde la lista es una ruta (secuencia de tiles) que el enemigo debe seguir.\n    \"\"\"\n    def plan(self, enemy_x: float, enemy_y: float) -> Optional[List[GridPos]]:\n        raise NotImplementedError()\n# ---------- A* (grid) ----------\ndef astar(start: GridPos, goal: GridPos, is_blocked_fn, w:int, h:int) -> Optional[List[GridPos]]:\n    \"\"\"",
+        "detail": "src.game.enemy_logic.enemy_controller",
+        "documentation": {}
+    },
+    {
+        "label": "RandomStrategy",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.enemy_controller",
+        "description": "src.game.enemy_logic.enemy_controller",
+        "peekOfCode": "class RandomStrategy(Strategy):\n    def __init__(self, job_logic, map_loader, prefer_nearby: bool = True):\n        self.job_logic = job_logic\n        self.map_loader = map_loader\n        self.pref_nearby = prefer_nearby\n    def plan(self, enemy_x: float, enemy_y: float) -> Optional[List[GridPos]]:\n        pickups = self.job_logic.getPickupMarkers()\n        if not pickups:\n            return None\n        # convertir px,py a grid",
+        "detail": "src.game.enemy_logic.enemy_controller",
+        "documentation": {}
+    },
+    {
+        "label": "EnemyController",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.enemy_controller",
+        "description": "src.game.enemy_logic.enemy_controller",
+        "peekOfCode": "class EnemyController:\n    \"\"\"\n    Orquesta la estrategia elegida y gestiona la ejecución paso a paso.\n    state: IDLE, TO_PICKUP, TO_DROPOFF\n    ruta: lista de GridPos que se van siguiendo (cada frame se avanza hacia el centro del siguiente tile)\n    \"\"\"\n    def __init__(self, enemy, map_loader, job_logic, strategy: Optional[Strategy] = None):\n        self.enemy = enemy\n        self.map = map_loader\n        self.job_logic = job_logic",
+        "detail": "src.game.enemy_logic.enemy_controller",
+        "documentation": {}
+    },
+    {
+        "label": "astar",
+        "kind": 2,
+        "importPath": "src.game.enemy_logic.enemy_controller",
+        "description": "src.game.enemy_logic.enemy_controller",
+        "peekOfCode": "def astar(start: GridPos, goal: GridPos, is_blocked_fn, w:int, h:int) -> Optional[List[GridPos]]:\n    \"\"\"\n    Devuelve lista de nodos (incluyendo start y goal) o None si no se encuentra ruta.\n    Heurística: Manhattan.\n    Complejidad: O(N log N) en nodos explorados.\n    \"\"\"\n    def h_cost(a, b):\n        return abs(a[0]-b[0]) + abs(a[1]-b[1])\n    open_heap = []\n    heapq.heappush(open_heap, (h_cost(start, goal), 0, start, None))",
+        "detail": "src.game.enemy_logic.enemy_controller",
+        "documentation": {}
+    },
+    {
+        "label": "GridPos",
+        "kind": 5,
+        "importPath": "src.game.enemy_logic.enemy_controller",
+        "description": "src.game.enemy_logic.enemy_controller",
+        "peekOfCode": "GridPos = Tuple[int, int]\nPixelPos = Tuple[int, int]\nclass State(Enum):\n    IDLE = 0\n    TO_PICKUP = 1\n    TO_DROPOFF = 2\nclass Strategy:\n    \"\"\"\n    Interfaz mínima: debe implementar `plan(enemy_x, enemy_y) -> List[GridPos]`\n    donde la lista es una ruta (secuencia de tiles) que el enemigo debe seguir.",
+        "detail": "src.game.enemy_logic.enemy_controller",
+        "documentation": {}
+    },
+    {
+        "label": "PixelPos",
+        "kind": 5,
+        "importPath": "src.game.enemy_logic.enemy_controller",
+        "description": "src.game.enemy_logic.enemy_controller",
+        "peekOfCode": "PixelPos = Tuple[int, int]\nclass State(Enum):\n    IDLE = 0\n    TO_PICKUP = 1\n    TO_DROPOFF = 2\nclass Strategy:\n    \"\"\"\n    Interfaz mínima: debe implementar `plan(enemy_x, enemy_y) -> List[GridPos]`\n    donde la lista es una ruta (secuencia de tiles) que el enemigo debe seguir.\n    \"\"\"",
+        "detail": "src.game.enemy_logic.enemy_controller",
         "documentation": {}
     },
     {
@@ -893,7 +1013,7 @@
         "kind": 6,
         "importPath": "src.game.ui.menu",
         "description": "src.game.ui.menu",
-        "peekOfCode": "class MainMenu:\n    def __init__(self, screen_size, on_load: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_load = on_load\n        base_dir = os.path.dirname(os.path.abspath(__file__))\n        bg_path = os.path.normpath(os.path.join(base_dir, \"..\", \"..\", \"assets\", \"images\", \"menu_bg.png\"))\n        self.bg_surf = pygame.image.load(bg_path).convert()  \n        self.bg_surf = pygame.transform.smoothscale(self.bg_surf, (self.w, self.h))\n        #Mover botones e imagen",
+        "peekOfCode": "class MainMenu:\n    def __init__(self, screen_size, on_load: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_load = on_load\n        self.difficulty = \"\"  # dificultad seleccionada (\"Easy\", \"Medium\", \"Hard\")\n        base_dir = os.path.dirname(os.path.abspath(__file__))\n        bg_path = os.path.normpath(os.path.join(base_dir, \"..\", \"..\", \"assets\", \"images\", \"menu_bg.png\"))\n        self.bg_surf = pygame.image.load(bg_path).convert()\n        self.bg_surf = pygame.transform.smoothscale(self.bg_surf, (self.w, self.h))",
         "detail": "src.game.ui.menu",
         "documentation": {}
     },
@@ -902,7 +1022,7 @@
         "kind": 2,
         "importPath": "src.game.ui.menu",
         "description": "src.game.ui.menu",
-        "peekOfCode": "def draw_text_outline(surface, text, font, pos, color_fg, color_outline, outline_width=2):\n    \"\"\"Dibuja texto con contorno 'stroke' usando múltiples blits alrededor.\"\"\"\n    x, y = pos\n    base = font.render(text, True, color_fg)\n    # Render auxiliar en color de contorno\n    outline_surf = font.render(text, True, color_outline)\n    offsets = []\n    r = outline_width\n    for dx in (-r, 0, r):\n        for dy in (-r, 0, r):",
+        "peekOfCode": "def draw_text_outline(surface, text, font, pos, color_fg, color_outline, outline_width=2):\n    \"\"\"Dibuja texto con contorno 'stroke' usando múltiples blits alrededor.\"\"\"\n    x, y = pos\n    base = font.render(text, True, color_fg)\n    outline_surf = font.render(text, True, color_outline)\n    offsets = []\n    r = outline_width\n    for dx in (-r, 0, r):\n        for dy in (-r, 0, r):\n            if dx == 0 and dy == 0:",
         "detail": "src.game.ui.menu",
         "documentation": {}
     },
