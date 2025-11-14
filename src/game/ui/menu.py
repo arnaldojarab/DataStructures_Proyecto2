@@ -9,7 +9,7 @@ class MainMenu:
         self.w, self.h = screen_size
         self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)
         self.on_load = on_load
-        self.difficulty = ""  # dificultad seleccionada ("Easy", "Medium", "Hard")
+        self.difficulty = "Hard"  # dificultad seleccionada ("Easy", "Medium", "Hard")
 
         base_dir = os.path.dirname(os.path.abspath(__file__))
         bg_path = os.path.normpath(os.path.join(base_dir, "..", "..", "assets", "images", "menu_bg.png"))
@@ -125,7 +125,6 @@ class MainMenu:
         )
 
         # --- DIFFICULTY buttons ---
-        # Tres botones centrados verticalmente para seleccionar dificultad
         diff_btn_w, diff_btn_h = 248, 54
         diff_gap_y = 16
         diff_x = self.w // 2 - diff_btn_w // 2
@@ -138,7 +137,7 @@ class MainMenu:
         medium_y = easy_y + diff_btn_h + diff_gap_y
         hard_y = medium_y + diff_btn_h + diff_gap_y
 
-        # Botones de dificultad (texto en español, código en inglés)
+        # Botones de dificultad
         self.btn_easy = Button(
             rect=pygame.Rect(diff_x, easy_y, diff_btn_w, diff_btn_h),
             text="Fácil",
@@ -268,7 +267,6 @@ class MainMenu:
         # Fase principal
         if self.phase == "MAIN":
             if self.btn_start and self.btn_start.handle_event(event):
-                # Cambia a fase de selección de dificultad, aún no empieza el juego
                 self.phase = "DIFFICULTY"
                 self._layout((self.w, self.h))
                 return None
@@ -289,7 +287,6 @@ class MainMenu:
 
             # Selección de dificultad con clic
             if self.btn_easy and self.btn_easy.handle_event(event):
-                # Guardar dificultad en inglés
                 self.set_difficulty("Easy")
                 return "start"
 

@@ -1013,7 +1013,7 @@
         "kind": 6,
         "importPath": "src.game.ui.menu",
         "description": "src.game.ui.menu",
-        "peekOfCode": "class MainMenu:\n    def __init__(self, screen_size, on_load: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_load = on_load\n        self.difficulty = \"\"  # dificultad seleccionada (\"Easy\", \"Medium\", \"Hard\")\n        base_dir = os.path.dirname(os.path.abspath(__file__))\n        bg_path = os.path.normpath(os.path.join(base_dir, \"..\", \"..\", \"assets\", \"images\", \"menu_bg.png\"))\n        self.bg_surf = pygame.image.load(bg_path).convert()\n        self.bg_surf = pygame.transform.smoothscale(self.bg_surf, (self.w, self.h))",
+        "peekOfCode": "class MainMenu:\n    def __init__(self, screen_size, on_load: Optional[Callable[[str], bool]] = None):\n        self.w, self.h = screen_size\n        self.font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)\n        self.on_load = on_load\n        self.difficulty = \"Hard\"  # dificultad seleccionada (\"Easy\", \"Medium\", \"Hard\")\n        base_dir = os.path.dirname(os.path.abspath(__file__))\n        bg_path = os.path.normpath(os.path.join(base_dir, \"..\", \"..\", \"assets\", \"images\", \"menu_bg.png\"))\n        self.bg_surf = pygame.image.load(bg_path).convert()\n        self.bg_surf = pygame.transform.smoothscale(self.bg_surf, (self.w, self.h))",
         "detail": "src.game.ui.menu",
         "documentation": {}
     },
