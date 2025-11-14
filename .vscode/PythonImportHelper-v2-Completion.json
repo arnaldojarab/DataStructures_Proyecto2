@@ -608,7 +608,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.enemy_control",
         "description": "src.game.enemy_logic.enemy_control",
-        "peekOfCode": "class EnemyControl:\n    def __init__(self, enemy=None, game_map=None):\n        self.enemy = enemy or Enemy()\n        self.game_map = game_map\n        self.change_dir_timer = 0\n        self.direction = pygame.Vector2(0, 0)\n        self.speed = 2  # píxeles por frame aprox., puedes ajustarlo\n    def MoveEnemy(self, diff,weight, weather):\n        if diff == \"easy\":\n            self.test(weight, weather)",
+        "peekOfCode": "class EnemyControl:\n    def __init__(self, enemy=None, game_map=None):\n        self.enemy = enemy or Enemy()\n        self.game_map = game_map\n        self.change_dir_timer = 0\n        self.direction = pygame.Vector2(0, 0)\n        self.speed = 2  # píxeles por frame aprox., puedes ajustarlo\n    def update(self, dt, diffuculty):\n        pass\n    def MoveEnemy(self, diff,weight, weather):",
         "detail": "src.game.enemy_logic.enemy_control",
         "documentation": {}
     },

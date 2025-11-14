@@ -87,42 +87,29 @@ class Enemy:
             if self.stamina <= 0:
                 self.exhausted = True
 
-    def update(self, dt, difficulty):
-        "Delta time es tiempo en segundos."
 
-        if difficulty == "Easy":
-            self.easy_update(dt)
-        if difficulty == "Medium":
-            self.medium_update(dt)
-        if difficulty == "Hard":
-            self.hard_update(dt)
-        
-    def easy_update(self, dt):
-      recover_rate = 10 * dt  # puntos por segundo 
-      if self.exhausted:
+    def update(self, dt):
+        "Delta time es tiempo en segundos."
+        recover_rate = 10 * dt  # puntos por segundo 
+        if self.exhausted:
             # Solo recupera hasta 30%
             if self.stamina < 30:
                 self.stamina = min(30, self.stamina + recover_rate)
             if self.stamina >= 30:
                 self.exhausted = False
-      else:
-          # Recupera poco a poco hasta 100
-          if self.stamina < 100:
-              self.stamina = min(100, self.stamina + recover_rate)
+        else:
+            # Recupera poco a poco hasta 100
+            if self.stamina < 100:
+                self.stamina = min(100, self.stamina + recover_rate)
 
-      self._snapshot_timer += dt
-      if self._snapshot_timer >= self._snapshot_every:
-          self._snapshot_timer = 0.0
-          last = self._pos_history[-1] if self._pos_history else None
-          moved = (not last) or (abs(self.x - last[0]) + abs(self.y - last[1]) >= 1.0)
-          if moved:
-              self._pos_history.append((self.x, self.y))
-    
-    def medium_update(self, dt):
-        pass  # Implementa la lógica específica para dificultad media aquí
-    def hard_update(self, dt):
-        pass  # Implementa la lógica específica para dificultad difícil aquí
-    
+        self._snapshot_timer += dt
+        if self._snapshot_timer >= self._snapshot_every:
+            self._snapshot_timer = 0.0
+            last = self._pos_history[-1] if self._pos_history else None
+            moved = (not last) or (abs(self.x - last[0]) + abs(self.y - last[1]) >= 1.0)
+            if moved:
+                self._pos_history.append((self.x, self.y))
+
     def draw_stamina(self, screen):
         bar_w, bar_h = 120, 14   
         margin = 10              
@@ -177,9 +164,7 @@ class Enemy:
             self.x, self.y = x, y
 
     def get_stamina_extra(self, weight, weather):
-
         stamina_cost = 0
-
         if weight > 3:
             weight_multiplier = weight - 3
             stamina_cost += 0.2 * weight_multiplier
@@ -233,7 +218,6 @@ class Enemy:
 
             if not self._pos_history:
                 self._pos_history.append((self.x, self.y))
-
             return True
         except Exception as e:
             print(f"Player.load_state error: {e}")

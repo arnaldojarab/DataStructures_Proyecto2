@@ -261,12 +261,15 @@ class Game:
             dy *= diag
 
         self.player.move_with_collision(dx, dy, self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
-        self.enemy_control.MoveEnemy("easy",self.job_logic.getEnemyWeight(),self.weather.get_current_condition())
-        ##self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
+        
+        # self.enemy_control.MoveEnemy("easy",self.job_logic.getEnemyWeight(),self.weather.get_current_condition())
+        # self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
+
+        self.enemy_control.update(dt, self.menu.get_difficulty())
 
         self.player.update(dt)
 
-        self.enemy.update(dt, self.menu.get_difficulty())
+        self.enemy.update(dt)
 
 
         # 3) Actualiza Estadísticas
