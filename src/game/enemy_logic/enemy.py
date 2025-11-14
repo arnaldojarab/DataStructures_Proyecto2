@@ -87,31 +87,42 @@ class Enemy:
             if self.stamina <= 0:
                 self.exhausted = True
 
-
-    def update(self, dt):
+    def update(self, dt, difficulty):
         "Delta time es tiempo en segundos."
-        
-        recover_rate = 10 * dt  # puntos por segundo 
 
-        if self.exhausted:
+        if difficulty == "Easy":
+            self.easy_update(dt)
+        if difficulty == "Medium":
+            self.medium_update(dt)
+        if difficulty == "Hard":
+            self.hard_update(dt)
+        
+    def easy_update(self, dt):
+      recover_rate = 10 * dt  # puntos por segundo 
+      if self.exhausted:
             # Solo recupera hasta 30%
             if self.stamina < 30:
                 self.stamina = min(30, self.stamina + recover_rate)
             if self.stamina >= 30:
                 self.exhausted = False
-        else:
-            # Recupera poco a poco hasta 100
-            if self.stamina < 100:
-                self.stamina = min(100, self.stamina + recover_rate)
+      else:
+          # Recupera poco a poco hasta 100
+          if self.stamina < 100:
+              self.stamina = min(100, self.stamina + recover_rate)
 
-        self._snapshot_timer += dt
-        if self._snapshot_timer >= self._snapshot_every:
-            self._snapshot_timer = 0.0
-            last = self._pos_history[-1] if self._pos_history else None
-            moved = (not last) or (abs(self.x - last[0]) + abs(self.y - last[1]) >= 1.0)
-            if moved:
-                self._pos_history.append((self.x, self.y))
-
+      self._snapshot_timer += dt
+      if self._snapshot_timer >= self._snapshot_every:
+          self._snapshot_timer = 0.0
+          last = self._pos_history[-1] if self._pos_history else None
+          moved = (not last) or (abs(self.x - last[0]) + abs(self.y - last[1]) >= 1.0)
+          if moved:
+              self._pos_history.append((self.x, self.y))
+    
+    def medium_update(self, dt):
+        pass  # Implementa la lógica específica para dificultad media aquí
+    def hard_update(self, dt):
+        pass  # Implementa la lógica específica para dificultad difícil aquí
+    
     def draw_stamina(self, screen):
         bar_w, bar_h = 120, 14   
         margin = 10              
@@ -126,11 +137,8 @@ class Enemy:
 
         pygame.draw.rect(screen, (255, 255, 255), (x, y, bar_w, bar_h), 2)
 
-
-
     def draw(self, screen):
         screen.blit(self.image, self.rect)
-
 
     def get_speed(self, peso_total):
         speed = 1
@@ -140,12 +148,8 @@ class Enemy:
             speed = speed * 0
         else:
             speed = speed * 1
-
         Mpeso = max(0.8, 1 - 0.03 * peso_total )
-        
-
         return speed * Mpeso
-    
 
     def reset(self):
         self.grid_pos = (1, 1)
@@ -234,12 +238,3 @@ class Enemy:
         except Exception as e:
             print(f"Player.load_state error: {e}")
             return False
-    
-
-
-
-        
-        
-
-
-

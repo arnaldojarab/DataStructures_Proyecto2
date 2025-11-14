@@ -266,7 +266,7 @@ class Game:
 
         self.player.update(dt)
 
-        self.enemy.update(dt)
+        self.enemy.update(dt, self.menu.get_difficulty())
 
 
         # 3) Actualiza Estadísticas
