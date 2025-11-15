@@ -92,8 +92,6 @@ class MapLoader:
         self._h = 0
         self.load_default()
 
-
-
     @property
     def width(self) -> int:
         return self._w
@@ -111,6 +109,25 @@ class MapLoader:
         sym = self.tiles[y][x][0]  # ahora accedemos al primer elemento [sym, variant]
         info = self.legend.get(sym, {})
         return bool(info.get("blocked", False))
+    
+    def get_valid_position(self, x, y):
+        """
+        Devuelve una posición válida cercana a (x, y).
+        Si la posición original es válida, se devuelve tal cual.
+        Si no, busca en los tiles adyacentes (arriba, abajo, izquierda, derecha).
+        Si ninguno es válido, devuelve None.
+        """
+        if not self.is_blocked(x, y):
+            return (x, y)
+
+        # direcciones adyacentes: arriba, abajo, izquierda, derecha
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            if not self.is_blocked(nx, ny):
+                return (nx, ny)
+
+        return None
 
     def surface_weight(self, x: float, y: float) -> float:
         """
@@ -125,6 +142,9 @@ class MapLoader:
 
         sym = self.tiles[ty][tx][0]  # accedemos al símbolo
         info = self.legend.get(sym, {})
+        # Verifica si es parque
+        if sym == "P" or (self.legend.get(sym, {}).get("name", "").lower() == "park"):
+            return 0.5  # peso reducido para parques
         return float(info.get("surface_weight", 1.0))
     
     def is_park(self, x: int, y: int) -> bool:
