@@ -1,6 +1,7 @@
 from __future__ import annotations
 import pygame
 from typing import Literal, Optional
+import os
 
 from .. import settings
 from ..util import format_mmss, CountdownTimer  # usas estos en tu engine actual
@@ -40,6 +41,8 @@ class statisticLogic:
         self._reputationEnemy: int = 70
         self._meta_ingresosEnemy: float = float(settings.META_INGRESOS)
 
+        self.border_image = self._load_Border()
+
     # ---------------- API pública mínima ----------------
     def reset(self) -> None:
         """Reinicia TODAS las estadísticas manejadas por esta clase."""
@@ -59,6 +62,7 @@ class statisticLogic:
 
     def draw(self, surface: pygame.Surface) -> None:
         """Dibuja TODAS las estadísticas en pantalla."""
+        self._draw_Border(surface)
         self._draw_timer(surface)
         self._draw_money(surface)
         self._draw_moneyEnemy(surface)
@@ -98,7 +102,7 @@ class statisticLogic:
         
         label = f'Dinero: ${self._money:,.0f} / ${self._meta_ingresos:,.0f}'
         fg = (16, 110, 16)
-        pos = (10, 30) # margen sup-izq
+        pos = (10, 30 + 25) # margen sup-izq
         self._draw_text_with_outline(surface, label, fg, pos)
 
     def _draw_moneyEnemy(self, surface: pygame.Surface) -> None:
@@ -122,7 +126,7 @@ class statisticLogic:
 
         # X fija donde siempre aparecerá ":Dinero"
         base_x = 543
-        y = 30
+        y = 30 + 25
 
         x_money = base_x - (money_w + 5 + meta_w + 5)
         x_meta = base_x - (meta_w + 5)
@@ -149,7 +153,7 @@ class statisticLogic:
         fg = (255, 255, 255)
         # calcular Y usando la altura de la fuente (+20px de padding)
         line_h = self._font.get_height() + 20
-        pos = (10, 10 + line_h)
+        pos = (10, 10 + line_h + 25)
         text_surf = self._font_stats.render(label, True, fg)
         surface.blit(text_surf, pos)
 
@@ -171,13 +175,26 @@ class statisticLogic:
        
         base_x = 512
         line_h = self._font.get_height()
-        y = 30 + line_h
+        y = 30 + line_h + 25
 
        
         surface.blit(rep_surf, (base_x - rep_width - 5, y))
 
         
         surface.blit(static_surf, (base_x, y))
+
+    def _load_Border(self):
+        assets_dir = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "images")
+        original = pygame.image.load(os.path.join(assets_dir, "border.png")).convert_alpha()
+
+        new_width =600
+        new_height = 600
+
+        return pygame.transform.smoothscale(original, (new_width, new_height))
+        
+
+    def _draw_Border(self, surface):
+        surface.blit(self.border_image, (0, 0))
 
     # ---------------- Utilidades de posicionamiento ----------------
     def _place_rect(self, surface: pygame.Surface, rect: pygame.Rect) -> pygame.Rect:

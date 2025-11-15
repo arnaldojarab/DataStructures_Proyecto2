@@ -112,7 +112,7 @@ class Player:
 
     def draw_stamina(self, screen):
         bar_w, bar_h = 120, 14   
-        margin = 10              
+        margin = 10 + 25            
 
         x = 10
         y = margin

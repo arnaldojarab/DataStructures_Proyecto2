@@ -54,7 +54,7 @@ class Game:
 
         # 3) Reloj y jugador
         self.clock = pygame.time.Clock()
-        self.player = Player((0, 0))
+        self.player = Player((50, 0))
 
         # 4) UI: menú + fuentes HUD 
         self.menu = MainMenu((window_w, window_h), self._load_game)
@@ -96,7 +96,7 @@ class Game:
         #11) Pausa Logic
         self.pause_menu = PauseMenu((window_w, window_h), self.hud_font, self.small_font, self._save_game)
 
-        self.enemy = Enemy((0, 0))
+        self.enemy = Enemy((5, 0))
         self.enemy_controller = EnemyController(self.enemy, self.map, self.job_logic)
 
     # --------- Ciclo principal ---------

@@ -113,10 +113,10 @@ class Enemy:
 
     def draw_stamina(self, screen):
         bar_w, bar_h = 120, 14   
-        margin = 10              
+        margin = 10           
 
         x = screen.get_width() - bar_w - margin
-        y = margin
+        y = margin + 25
         pygame.draw.rect(screen, (100, 100, 100), (x, y, bar_w, bar_h))
 
         fill_w = int(bar_w * (self.stamina / 100))
