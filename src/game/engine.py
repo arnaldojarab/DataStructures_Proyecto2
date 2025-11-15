@@ -54,7 +54,7 @@ class Game:
 
         # 3) Reloj y jugador
         self.clock = pygame.time.Clock()
-        self.player = Player((50, 0))
+        self.player = Player((0, 0))
 
         # 4) UI: menú + fuentes HUD 
         self.menu = MainMenu((window_w, window_h), self._load_game)

@@ -1,4 +1,5 @@
 import math
+import heapq
 from .. import settings
 
 class EnemyController:
@@ -70,7 +71,63 @@ class EnemyController:
         self.moveEnemy(dir_x, dir_y, dt, enemy_weight, weather)
     
     def hard_algorithm(self, dt: float, enemy_weight: float, weather: str):
-        pass  # Implementa la lógica difícil aquí
+
+        # 1) Obtener marcadores actuales (dropoffs enemigos primero)
+        enemy_dropoffs = self.job_logic.getEnemyDropoffMarkers()
+        pickups = self.job_logic.getPickupMarkers()
+
+        if enemy_dropoffs:
+            # Mejor dropoff: tiempo + distancia
+            target_marker = min(
+                enemy_dropoffs,
+                key=lambda m: (
+                    m["time_remaining"],
+                    (m["px"] - self.enemy.x) ** 2 + (m["py"] - self.enemy.y) ** 2,
+                ),
+            )
+        elif pickups:
+            target_marker = min(
+                pickups,
+                key=lambda m: (
+                    m["time_remaining"],
+                    (m["px"] - self.enemy.x) ** 2 + (m["py"] - self.enemy.y) ** 2,
+                ),
+            )
+        else:
+            return  # No hay nada que hacer
+
+        # 2) El target está en píxeles → convertir a tiles
+        ts = settings.TILE_SIZE
+        tx = int(target_marker["px"] // ts)
+        ty = int(target_marker["py"] // ts)
+
+        # Asegurar que no sea un edificio
+        valid_tile = self.map.get_valid_position(tx, ty)
+        if valid_tile is None:
+            return  # algo raro pasó, no hay calle cerca
+
+        tx, ty = valid_tile
+
+        # 3) Calcular A*
+        path = self.astar_tile_to_tile(tx, ty)
+
+        if not path or len(path) < 2:
+            return  # no hay ruta
+
+        # El siguiente paso es path[1]
+        nx, ny = path[1]
+
+        # 4) Convertir a píxeles centro
+        next_x = nx * ts + ts // 2
+        next_y = ny * ts + ts // 2
+
+        # 5) Convertir a dirección
+        dir_x, dir_y = self.position_to_direction(next_x, next_y)
+
+        # 6) Mover enemigo con tu sistema completo
+        self.moveEnemy(dir_x, dir_y, dt, enemy_weight, weather)
+
+
 
     def Greedy_BestFirst(self, enemy_x: float, enemy_y: float,
                      target_x: float, target_y: float):
@@ -172,6 +229,7 @@ class EnemyController:
       best_py = best_global_cell[1] * ts + ts // 2
 
       return best_px, best_py
+    
 
 
     def position_to_direction(self, next_x: float, next_y: float):
@@ -205,3 +263,101 @@ class EnemyController:
 
       # El clima sigue afectando dentro de move_with_collision/map.surface_weight
       self.enemy.move_with_collision(dx, dy, self.map, enemy_weight, weather)
+
+    def astar_tile_to_tile(self, goal_tx, goal_ty):
+        ts = settings.TILE_SIZE
+
+        # convertir posición del enemigo a tile
+        start_tx = int(self.enemy.x // ts)
+        start_ty = int(self.enemy.y // ts)
+
+        # si está dentro de edificio, corregir
+        valid = self.map.get_valid_position(start_tx, start_ty)
+        if valid is None:
+            return None
+        start_tx, start_ty = valid
+
+        # A*
+        open_heap = []
+        heapq.heappush(open_heap, (0, (start_tx, start_ty)))  # (f_score, (tx, ty))
+
+        came_from = {}
+        g_score = { (start_tx, start_ty): 0 }
+
+        # heurística: distancia Euclidiana
+        def h(tx, ty):
+            dx = tx - goal_tx
+            dy = ty - goal_ty
+            return (dx*dx + dy*dy) ** 0.5
+
+        f_score = { (start_tx, start_ty): h(start_tx, start_ty) }
+
+        # 8 direcciones
+        directions = [
+            (1, 0),  (-1, 0),
+            (0, 1),  (0, -1),
+            (1, -1), (1, 1),
+            (-1, -1),(-1, 1),
+        ]
+
+        visited = set()
+
+        while open_heap:
+            _, current = heapq.heappop(open_heap)
+            cx, cy = current
+
+            if current in visited:
+                continue
+            visited.add(current)
+
+            # Llegó al destino
+            if current == (goal_tx, goal_ty):
+                return self.reconstruct_path(came_from, current)
+
+            # Expandir vecinos
+            for dx, dy in directions:
+                nx, ny = cx + dx, cy + dy
+
+                # bloqueado por edificio
+                if self.map.is_blocked(nx, ny):
+                    continue
+
+                # Costo de superficie
+                px = nx * settings.TILE_SIZE
+                py = ny * settings.TILE_SIZE
+
+                sw = self.map.surface_weight(px, py)
+
+                # Penalización adicional si es parque
+                if self.map.is_park(nx, ny):
+                    sw *= 0.3
+
+                # Evitar 0
+                sw = max(sw, 0.1)
+
+                # Convertir surface_weight a costo → más lento = mayor costo
+                max_sw = 10.0
+                terrain_cost = max_sw / sw
+
+                # Diagonal más larga
+                move_cost = 1.41 if dx != 0 and dy != 0 else 1.0
+
+                tentative_g = g_score[(cx, cy)] + terrain_cost * move_cost
+
+                # Mejor camino encontrado hacia (nx, ny)
+                if tentative_g < g_score.get((nx, ny), 1e9):
+                    came_from[(nx, ny)] = (cx, cy)
+                    g_score[(nx, ny)] = tentative_g
+                    f = tentative_g + h(nx, ny)
+                    f_score[(nx, ny)] = f
+                    heapq.heappush(open_heap, (f, (nx, ny)))
+
+        return None  # si no hay camino
+    
+    def reconstruct_path(self, came_from, current):
+        path = [current]
+        while current in came_from:
+            current = came_from[current]
+            path.append(current)
+        path.reverse()
+        return path

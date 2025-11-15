@@ -4,7 +4,7 @@ FPS = 60
 
 # --- TIMER ---
 TIMER_START_SECONDS = 60*8
-TIMER_TEXT = (240, 240, 240)
+TIMER_TEXT = (0, 0, 0)
 
 # Movement & stamina
 BASE_SPEED = 3.0  # celdas/seg
