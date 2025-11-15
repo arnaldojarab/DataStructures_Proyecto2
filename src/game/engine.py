@@ -59,7 +59,7 @@ class Game:
         # 4) UI: menú + fuentes HUD 
         self.menu = MainMenu((window_w, window_h), self._load_game)
         self.hud_font = pygame.font.Font(settings.UI_FONT_NAME, settings.UI_FONT_SIZE)
-        self.small_font = pygame.font.Font(settings.UI_FONT_NAME, 18)  # para texto de clima
+        self.small_font = pygame.font.Font(settings.UI_FONT_NAME, 20)  # para texto de clima
 
         self.pause_menu = PauseMenu((window_w, window_h), self.hud_font, self.small_font)
 
@@ -297,10 +297,10 @@ class Game:
     def _draw_weather(self):
         # HUD: clima (condición, multiplicador y tiempo restante del estado)
         info = self.weather.debug_info()
-        weather_text = f"{info['condition']}  x{info['multiplier']}  t={info['time_left']}"
-        weather_surface = self.small_font.render(weather_text, True, (255, 255, 255))
+        weather_text = f"{info['condition']}: {info['time_left']}"
+        weather_surface = self.small_font.render(weather_text, True, (0, 0, 0))
 
-        margin = 10
+        margin = 5
         x = margin
         y = self.screen.get_height() - weather_surface.get_height() - margin
 
@@ -308,10 +308,10 @@ class Game:
 
     def _draw_play(self):
         #self._draw_temporizador()
-        self._draw_weather()
 
         self.job_logic.draw(self.screen)
         self.statistics_logic.draw(self.screen)
+        self._draw_weather()
 
 
     # --------- Clima ---------
