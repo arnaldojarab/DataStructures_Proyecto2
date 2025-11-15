@@ -3,6 +3,7 @@ import pygame
 import os
 import math
 
+import re
 from .. import settings
 
 class Enemy:
@@ -222,3 +223,27 @@ class Enemy:
         except Exception as e:
             print(f"Player.load_state error: {e}")
             return False
+    
+    def getRight(self, step: float):
+      # Devuelve la posicion de x,y del enemigo en caso de moverse a la derecha una casilla (title_size) multiplicado por los pasos
+      ts = settings.TILE_SIZE
+      new_x = self.x + (ts * step)
+      return (new_x, self.y)
+
+    def getLeft(self, step: float):
+      # Devuelve la posicion de x,y del enemigo en caso de moverse a la izquierda una casilla (title_size) multiplicado por los pasos
+      ts = settings.TILE_SIZE
+      new_x = self.x - (ts * step)
+      return (new_x, self.y)
+
+    def getTop(self, step: float):
+      # Devuelve la posicion de x,y del enemigo en caso de moverse hacia arriba una casilla (title_size) multiplicado por los pasos
+      ts = settings.TILE_SIZE
+      new_y = self.y - (ts * step)
+      return (self.x, new_y)
+
+    def getBottom(self, step: float):
+      # Devuelve la posicion de x,y del enemigo en caso de moverse hacia abajo una casilla (title_size) multiplicado por los pasos
+      ts = settings.TILE_SIZE
+      new_y = self.y + (ts * step)
+      return (self.x, new_y)
