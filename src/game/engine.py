@@ -23,6 +23,7 @@ from .sounds import SoundManager
 from .enemy_logic.enemy import Enemy
 from .enemy_logic.enemy_control import EnemyControl 
 from .enemy_logic.enemy_controller import EnemyController
+from .enemy_logic.enemy_logic import EnemyLogic
 
 class Game:
     def __init__(self):
@@ -98,6 +99,7 @@ class Game:
         self.pause_menu = PauseMenu((window_w, window_h), self.hud_font, self.small_font, self._save_game)
 
         self.enemy = Enemy((0, 0))
+        self.enemy_logic = EnemyLogic(self.enemy, self.map, self.job_logic)
         self.enemy_control = EnemyControl(self.enemy, self.map)
 
         
@@ -260,12 +262,15 @@ class Game:
             dy *= diag
 
         self.player.move_with_collision(dx, dy, self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
-        self.enemy_control.MoveEnemy("easy",self.job_logic.getEnemyWeight(),self.weather.get_current_condition())
+        #self.enemy_control.MoveEnemy("easy",self.job_logic.getEnemyWeight(),self.weather.get_current_condition())
         ##self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
+        self.enemy_logic.MoveEnemy("easy", self.job_logic.getEnemyWeight(), self.weather.get_current_condition(), dt)
+
+        self.enemy.update(dt)
 
         self.player.update(dt)
 
-        self.enemy.update(dt)
+        
 
 
         # 3) Actualiza Estadísticas
