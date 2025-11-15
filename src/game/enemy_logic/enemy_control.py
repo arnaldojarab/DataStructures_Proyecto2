@@ -16,6 +16,10 @@ class EnemyControl:
         self.direction = pygame.Vector2(0, 0)
         self.speed = 2  # píxeles por frame aprox., puedes ajustarlo
 
+    def update(self, dt, diffuculty):
+        pass
+        
+
     def MoveEnemy(self, diff,weight, weather):
         if diff == "easy":
             self.test(weight, weather)

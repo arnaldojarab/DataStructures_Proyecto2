@@ -135,6 +135,7 @@ class Game:
 
             self.weather.draw_weather_overlay(self.screen, self.player,dt)
             self.player.draw_stamina(self.screen)
+            self.enemy.draw_stamina(self.screen)
             draw()
 
             pygame.display.flip()
@@ -439,6 +440,7 @@ class Game:
             "statistics": self.statistics_logic.save_state(),
             "job_logic": self.job_logic.save_state(),
             "weather": self.weather.save_state(),
+            "difficulty": self.menu.get_difficulty(),
         }
     
     def set_current_data(self, data: dict) -> bool:
@@ -452,6 +454,7 @@ class Game:
         stats_state     = data.get("statistics")
         jobs_state      = data.get("job_logic")
         weather_state   = data.get("weather")
+        self.menu.set_difficulty(data.get("difficulty"))
 
         if not all(isinstance(x, dict) for x in (map_state, player_state, stats_state, jobs_state, weather_state)):
             return False

@@ -54,7 +54,9 @@ class Enemy:
         return False
 
     def move_with_collision(self, dx, dy, game_map, weight, weather):
-
+        if self.exhausted:
+            return
+        
         stamina_cost = 0.5
 
         stamina_cost += self.get_stamina_extra(weight, weather) / 2.5
@@ -88,9 +90,7 @@ class Enemy:
 
     def update(self, dt):
         "Delta time es tiempo en segundos."
-        
         recover_rate = 10 * dt  # puntos por segundo 
-
         if self.exhausted:
             # Solo recupera hasta 30%
             if self.stamina < 30:
@@ -115,21 +115,17 @@ class Enemy:
         margin = 10              
 
         x = screen.get_width() - bar_w - margin
-        y = margin * 2
-
+        y = margin
         pygame.draw.rect(screen, (100, 100, 100), (x, y, bar_w, bar_h))
 
         fill_w = int(bar_w * (self.stamina / 100))
-        color = (0, 0, 255) if self.exhausted else (50, 200, 50)
+        color = (235, 25, 25) if self.exhausted or self.stamina <= 30 else (0, 0, 255)
         pygame.draw.rect(screen, color, (x, y, fill_w, bar_h))
 
         pygame.draw.rect(screen, (255, 255, 255), (x, y, bar_w, bar_h), 2)
 
-
-
     def draw(self, screen):
         screen.blit(self.image, self.rect)
-
 
     def get_speed(self, peso_total):
         speed = 1
@@ -139,12 +135,8 @@ class Enemy:
             speed = speed * 0
         else:
             speed = speed * 1
-
         Mpeso = max(0.8, 1 - 0.03 * peso_total )
-        
-
         return speed * Mpeso
-    
 
     def reset(self):
         self.grid_pos = (1, 1)
@@ -172,9 +164,7 @@ class Enemy:
             self.x, self.y = x, y
 
     def get_stamina_extra(self, weight, weather):
-
         stamina_cost = 0
-
         if weight > 3:
             weight_multiplier = weight - 3
             stamina_cost += 0.2 * weight_multiplier
@@ -228,17 +218,7 @@ class Enemy:
 
             if not self._pos_history:
                 self._pos_history.append((self.x, self.y))
-
             return True
         except Exception as e:
             print(f"Player.load_state error: {e}")
             return False
-    
-
-
-
-        
-        
-
-
-
