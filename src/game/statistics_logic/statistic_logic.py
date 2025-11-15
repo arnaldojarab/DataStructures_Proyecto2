@@ -47,14 +47,15 @@ class statisticLogic:
         self._reset_money()
         self._reset_reputation()  
 
-    def update(self, dt: float, money: float = 0.0, reputation: int = 70) -> None:
+    def update(self, dt: float, money: float = 0.0, reputation: int = 70, moneyEnemy: float = 0.0, reputationEnemy: int = 70) -> None:
         """Actualiza TODAS las estadísticas frame a frame."""
         self._update_timer(dt)
         self._update_money(money)
         self._update_reputation(reputation)
+        self._update_moneyEnemy(moneyEnemy)
+        self._update_reputationEnemy(reputationEnemy)
+        
 
-    def updateEnemy(self, dt: float, money: float = 0.0, reputation: int = 70)-> None:
-        pass
 
     def draw(self, surface: pygame.Surface) -> None:
         """Dibuja TODAS las estadísticas en pantalla."""
@@ -84,26 +85,64 @@ class statisticLogic:
     def _reset_money(self) -> None:
         self._money = 0.0
     
+    def _reset_moneyEnemy(self) -> None:
+        self._moneyEnemy = 0.0
+    
     def _update_money(self, amount: float) -> None:
         self._money = amount
+
+    def _update_moneyEnemy(self, amount: float) -> None:
+        self._moneyEnemy = amount    
     
     def _draw_money(self, surface: pygame.Surface) -> None:
+        
         label = f'Dinero: ${self._money:,.0f} / ${self._meta_ingresos:,.0f}'
         fg = (16, 110, 16)
         pos = (10, 30) # margen sup-izq
         self._draw_text_with_outline(surface, label, fg, pos)
 
     def _draw_moneyEnemy(self, surface: pygame.Surface) -> None:
-        label = f'Dinero:\n${self._moneyEnemy:,.0f} / ${self._meta_ingresos:,.0f}'
+        
         fg = (16, 110, 16)
-        pos = (471, 30)  # margen sup-izq
-        self._draw_text_with_outline_v2(surface, label, fg, pos)
+
+        # Partes del texto
+        money_text = f'${self._moneyEnemy:,.0f}'
+        meta_text = f'/ ${self._meta_ingresos:,.0f}'
+        static_label = ':Dinero'   # este debe quedar fijo en pantalla
+
+        # Renders
+        money_surf = self._font_stats.render(money_text, True, fg)
+        meta_surf = self._font_stats.render(meta_text, True, fg)
+        static_surf = self._font_stats.render(static_label, True, fg)
+
+        # Anchos
+        money_w = money_surf.get_width()
+        meta_w = meta_surf.get_width()
+        static_w = static_surf.get_width()
+
+        # X fija donde siempre aparecerá ":Dinero"
+        base_x = 543
+        y = 30
+
+        x_money = base_x - (money_w + 5 + meta_w + 5)
+        x_meta = base_x - (meta_w + 5)
+        x_static = base_x  
+
+        self._draw_text_with_outline(surface, money_text, fg, (x_money, y))
+        self._draw_text_with_outline(surface, meta_text, fg, (x_meta, y))
+        self._draw_text_with_outline(surface, static_label, fg, (x_static, y))
 
     def _reset_reputation(self) -> None:
         self._reputation = 70
+        
+    def _reset_reputationEnemy(self) -> None:
+        self._reputationEnemy = 70    
     
     def _update_reputation(self, amount: int) -> None:
         self._reputation = amount
+    
+    def _update_reputationEnemy(self, amount: int) -> None:
+        self._reputationEnemy = amount
     
     def _draw_reputation(self, surface: pygame.Surface) -> None:
         label = f'Reputacion: {self._reputation}'
@@ -115,13 +154,30 @@ class statisticLogic:
         surface.blit(text_surf, pos)
 
     def _draw_reputationEnemy(self, surface: pygame.Surface) -> None:
-        label = f'Reputacion: {self._reputationEnemy}'
         fg = (255, 255, 255)
-        # calcular Y usando la altura de la fuente (+20px de padding)
-        line_h = self._font.get_height() + 40
-        pos = (470, 10 + line_h)
-        text_surf = self._font_stats.render(label, True, fg)
-        surface.blit(text_surf, pos)
+
+       
+        static_label = ":Reputacion"
+
+        # Render del texto estático (para obtener ancho)
+        static_surf = self._font_stats.render(static_label, True, fg)
+        static_width = static_surf.get_width()
+
+        # Render del número dinámico (para ajustar posición)
+        rep_text = str(self._reputationEnemy)
+        rep_surf = self._font_stats.render(rep_text, True, fg)
+        rep_width = rep_surf.get_width()
+
+       
+        base_x = 512
+        line_h = self._font.get_height()
+        y = 30 + line_h
+
+       
+        surface.blit(rep_surf, (base_x - rep_width - 5, y))
+
+        
+        surface.blit(static_surf, (base_x, y))
 
     # ---------------- Utilidades de posicionamiento ----------------
     def _place_rect(self, surface: pygame.Surface, rect: pygame.Rect) -> pygame.Rect:

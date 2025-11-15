@@ -264,8 +264,8 @@ class Game:
 
         self.player.move_with_collision(dx, dy, self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
         #self.enemy_control.MoveEnemy("easy",self.job_logic.getEnemyWeight(),self.weather.get_current_condition())
-        ##self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
-        self.enemy_logic.MoveEnemy("easy", self.job_logic.getEnemyWeight(), self.weather.get_current_condition(), dt)
+        self.enemy.move_with_collision((dx*-1), (dy*-1), self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
+        #self.enemy_logic.MoveEnemy("easy", self.job_logic.getEnemyWeight(), self.weather.get_current_condition(), dt)
 
         self.enemy.update(dt)
 
@@ -277,12 +277,14 @@ class Game:
         # 3) Actualiza Estadísticas
         currentMoney = self.job_logic.getMoney()
         currentReputation = self.job_logic.getReputation()
-        self.statistics_logic.update(dt, currentMoney, currentReputation)
-        if self.statistics_logic.check_time_finished() or currentReputation < settings.MIN_REPUTACION:
+        currentMoneyEnemy = self.job_logic.getEnemyMoney()
+        currentReputationEnemy = self.job_logic.getEnemyReputation()
+        self.statistics_logic.update(dt, currentMoney, currentReputation, currentMoneyEnemy, currentReputationEnemy)
+        if self.statistics_logic.check_time_finished() or currentReputation < settings.MIN_REPUTACION or currentMoneyEnemy >= settings.META_INGRESOS:
             self.game_over.set_title("GAME OVER (you lose)", win=False)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
-        if currentMoney >= settings.META_INGRESOS:
+        if currentMoney >= settings.META_INGRESOS or currentReputationEnemy < settings.MIN_REPUTACION:
             self.game_over.set_title("CONGRATS! (you win)", win=True)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
