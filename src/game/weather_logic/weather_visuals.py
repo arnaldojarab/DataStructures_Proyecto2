@@ -55,6 +55,9 @@ class WeatherVisuals:
             "cold": 120
         }
 
+        self.small_font = pygame.font.Font(settings.UI_FONT_NAME, 25)  # para texto de clima
+        self._load_weather_icons()
+
     def update(self, dt, condition: str, transitioning: bool):
         # actualizar nubes
         for cloud in self.clouds:
@@ -153,6 +156,57 @@ class WeatherVisuals:
             cloud.start_transition(150, 0, duration=3)
 
         self.clouds.append(cloud)
+    
+    def _load_weather_icons(self):
+        base = os.path.join(os.path.dirname(__file__), "..","..", "assets", "weather_icons")
+
+        self.weather_icons = {
+            "clear": pygame.image.load(os.path.join(base, "clear.png")).convert_alpha(),
+            "clouds": pygame.image.load(os.path.join(base, "clouds.png")).convert_alpha(),
+            "rain_light": pygame.image.load(os.path.join(base, "rain_light.png")).convert_alpha(),
+            "rain": pygame.image.load(os.path.join(base, "rain.png")).convert_alpha(),
+            "storm": pygame.image.load(os.path.join(base, "storm.png")).convert_alpha(),
+            "fog": pygame.image.load(os.path.join(base, "fog.png")).convert_alpha(),
+            "wind": pygame.image.load(os.path.join(base, "wind.png")).convert_alpha(),
+            "heat": pygame.image.load(os.path.join(base, "heat.png")).convert_alpha(),
+            "cold": pygame.image.load(os.path.join(base, "cold.png")).convert_alpha(),
+            "border": pygame.image.load(os.path.join(base, "border.png")).convert_alpha(),
+        }
+
+        for key in self.weather_icons:
+            if key != "border":
+                self.weather_icons[key] = pygame.transform.smoothscale(self.weather_icons[key], (26, 26))
+            else:
+                self.weather_icons[key] = pygame.transform.smoothscale(self.weather_icons[key], (600, 600))
+
+
+    def draw_weather_info(self, screen, debug_info):
+        info = debug_info
+
+        screen.blit(self.weather_icons.get("border"), (0, 0))
+
+        condition = info["condition"]
+        time_left = info["time_left"]
+
+        # Obtener el icono correspondiente
+        icon = self.weather_icons.get(condition)
+
+        # Texto del tiempo restante
+        time_text = f"{time_left:.1f}s"
+        text_surface = self.small_font.render(time_text, True, (0, 0, 0))
+
+        margin = 5
+        x = margin + 5
+        y = screen.get_height() - text_surface.get_height() - margin
+
+        # Dibujar icono si existe
+        if icon:
+            screen.blit(icon, (x, y - 5))
+            x += icon.get_width() + 15  # espacio entre icono y texto
+
+        # Dibujar texto
+        screen.blit(text_surface, (x, y))
+
 
     def draw_overlay(self, screen: pygame.Surface, player, dt, cond: str):
         w, h = screen.get_size()
@@ -262,6 +316,8 @@ class WeatherVisuals:
                     ])
 
             self.wind_gusts = new_gusts
+
+        
 
 
         # --- FILTRO AZUL SOLO PARA LLUVIA/STORM ---

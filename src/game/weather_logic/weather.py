@@ -4,6 +4,7 @@ from ..api_client import APIClient
 from .weather_visuals import WeatherVisuals
 
 
+
 class WeatherManager:
     """
     Lógica del clima: ráfagas, condiciones actuales y transiciones.
@@ -48,6 +49,7 @@ class WeatherManager:
         self.to_multiplier = self.from_multiplier
 
         self.visuals = WeatherVisuals(window_w, window_h)
+        
 
     # --------------------------
     # Internos
@@ -115,9 +117,12 @@ class WeatherManager:
             "time_left": round(self.burst_duration - self.burst_elapsed, 1),
             "transitioning": self.transitioning,
         }
+    
 
     def draw_weather_overlay(self, screen, player, dt):
+        info = self.debug_info()
         self.visuals.draw_overlay(screen, player, dt, self.current_condition)
+        self.visuals.draw_weather_info(screen, info)
 
     def reset(self, window_w=None, window_h=None):
        

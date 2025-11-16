@@ -307,11 +307,11 @@ class Game:
         self.screen.blit(weather_surface, (x, y))
 
     def _draw_play(self):
-        #self._draw_temporizador()
+       
 
         self.job_logic.draw(self.screen)
         self.statistics_logic.draw(self.screen)
-        self._draw_weather()
+       
 
 
     # --------- Clima ---------
