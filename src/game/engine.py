@@ -255,7 +255,7 @@ class Game:
 
         self.player.move_with_collision(dx, dy, self.map, self.job_logic.getWeight(), self.weather.get_current_condition())
         
-        self.enemy_controller.update(dt, self.menu.get_difficulty(), self.job_logic.getEnemyWeight(), self.weather.get_current_condition())
+        self.enemy_controller.update(dt, self.menu.get_difficulty(), self.job_logic.getEnemyWeight(), self.weather.get_current_condition(), self.weather.current_multiplier())
 
         self.enemy.update(dt)
 

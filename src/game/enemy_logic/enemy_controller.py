@@ -9,18 +9,18 @@ class EnemyController:
         self.job_logic = job_logic
         self.route = (0,0)
 
-    def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str):
+    def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str, current_multiplier : float):
         if difficulty == "Easy":
-            self.easy_algorithm(dt, enemy_weight, weather)
+            self.easy_algorithm(dt, enemy_weight, weather, current_multiplier)
         elif difficulty == "Medium":
-            self.medium_algorithm(dt, enemy_weight, weather)
+            self.medium_algorithm(dt, enemy_weight, weather, current_multiplier)
         elif difficulty == "Hard":
-            self.hard_algorithm(dt, enemy_weight, weather)
+            self.hard_algorithm(dt, enemy_weight, weather, current_multiplier)
 
-    def easy_algorithm(self, dt: float, enemy_weight: float, weather: str):
+    def easy_algorithm(self, dt: float, enemy_weight: float, weather: str, current_multiplier):
         pass  # Implementa la lógica fácil aquí
     
-    def medium_algorithm(self, dt: float, enemy_weight: float, weather: str):
+    def medium_algorithm(self, dt: float, enemy_weight: float, weather: str, current_multiplier: float):
         # 1) Obtener marcadores actuales
         enemy_dropoffs = self.job_logic.getEnemyDropoffMarkers()
         pickups = self.job_logic.getPickupMarkers()
@@ -67,10 +67,17 @@ class EnemyController:
         # 5) Convertir esa posición absoluta en una dirección normalizada
         dir_x, dir_y = self.position_to_direction(next_x, next_y)
 
+        speed_mult = self.getEnemyCurrentSpeed(enemy_weight, current_multiplier)
+
+        dir_x *= speed_mult
+        dir_y *= speed_mult
+
+
+
         # 6) Mover al enemigo usando la misma lógica de velocidad que el jugador
         self.moveEnemy(dir_x, dir_y, dt, enemy_weight, weather)
     
-    def hard_algorithm(self, dt: float, enemy_weight: float, weather: str):
+    def hard_algorithm(self, dt: float, enemy_weight: float, weather: str, current_multiplier):
 
         # 1) Obtener marcadores actuales (dropoffs enemigos primero)
         enemy_dropoffs = self.job_logic.getEnemyDropoffMarkers()
@@ -123,6 +130,11 @@ class EnemyController:
 
         # 5) Convertir a dirección
         dir_x, dir_y = self.position_to_direction(next_x, next_y)
+
+        speed_mult = self.getEnemyCurrentSpeed(enemy_weight, current_multiplier)
+
+        dir_x *= speed_mult
+        dir_y *= speed_mult
 
         # 6) Mover enemigo con tu sistema completo
         self.moveEnemy(dir_x, dir_y, dt, enemy_weight, weather)
@@ -353,6 +365,17 @@ class EnemyController:
                     heapq.heappush(open_heap, (f, (nx, ny)))
 
         return None  # si no hay camino
+    
+
+    def getEnemyCurrentSpeed(self, enemy_weight: float, weather_multiplier: float) -> float:
+
+        enemy_speed = self.enemy.get_speed(enemy_weight)
+        surface_weight = self.map.surface_weight(self.enemy.x, self.enemy.y)
+        rep_speed = self.job_logic.getEnemyRepSpeed() 
+
+        return weather_multiplier * enemy_speed * surface_weight* rep_speed
+
+        
     
     def reconstruct_path(self, came_from, current):
         path = [current]
