@@ -16,11 +16,11 @@ class Enemy:
         # Radio proporcional al tamaño del tile
         self.radius = int(ts * 0.35)
 
-         # resistencia 
+         # Resistencia 
         self.stamina = 100        
         self.exhausted = False   
 
-        # --- imagen del jugador ---
+        # --- imagen del enemigo ---
         self.base_image = self._select_Image()
         self.base_image = pygame.transform.scale(self.base_image, (ts*2, ts*2))
         self.image = self.base_image
@@ -255,7 +255,7 @@ def moveEnemy(enemy, map, dir_x: float, dir_y: float,
     if dir_x == 0 and dir_y == 0:
         return
 
-    # MISMA base que el player
+    # Misma base que el player
     base_px_per_sec = settings.TILE_SIZE * 8  # igual que en el jugador
 
     # Multiplicador de velocidad del enemigo (estamina + peso)

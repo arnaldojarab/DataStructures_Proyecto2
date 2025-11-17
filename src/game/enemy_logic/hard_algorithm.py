@@ -13,7 +13,7 @@ class HardAlgorithm:
         target_marker = None
 
         if dropoffs:
-            # Mejor dropoff: tiempo + distancia
+            # Si hay algún dropoff, fija como objetivo el más cercano
             target_marker = min(
                 dropoffs,
                 key=lambda m: (
@@ -22,6 +22,7 @@ class HardAlgorithm:
                 ),
             )
         elif pickups:
+            # Si no hay dropoffs, fija como objetivo el pickups más cercano
             target_marker = min(
                 pickups,
                 key=lambda m: (
@@ -30,14 +31,14 @@ class HardAlgorithm:
                 ),
             )
         else:
-            return  # No hay nada que hacer
+            return  # No hay nada que hacer, se queda quieto
 
-        # 2) El target está en píxeles → convertir a tiles
+        # 2) La ubicación del pedido lo pasa a tiles
         ts = settings.TILE_SIZE
         tx = int(target_marker["px"] // ts)
         ty = int(target_marker["py"] // ts)
 
-        # Asegurar que no sea un edificio
+        # Asegurar que no sea un edificio, retorna la calle más cercano al lugar del pedido
         valid_tile = self.map.get_valid_position(tx, ty)
         if valid_tile is None:
             return  # algo raro pasó, no hay calle cerca
@@ -48,32 +49,32 @@ class HardAlgorithm:
         path = self.astar_tile_to_tile(tx, ty)
 
         if not path or len(path) < 2:
-            return  # no hay ruta
+            return  # No hay ruta
 
         # El siguiente paso es path[1]
         nx, ny = path[1]
 
-        # 4) Convertir a píxeles centro
+        # Convertir a píxeles centro
         next_x = nx * ts + ts // 2
         next_y = ny * ts + ts // 2
 
-        # 5) Convertir a dirección
+        # Convertir a dirección
         dir_x, dir_y = position_to_direction(next_x, next_y, self.enemy.x, self.enemy.y)
 
         dir_x *= speed_mult
         dir_y *= speed_mult
 
-        # 6) Mover enemigo con tu sistema completo
+        # Mover enemigo
         moveEnemy(self.enemy, self.map, dir_x, dir_y, dt, enemy_weight, weather)
 
     def astar_tile_to_tile(self, goal_tx, goal_ty):
         ts = settings.TILE_SIZE
 
-        # convertir posición del enemigo a tile
+        # Pasa la posición del enemigo a tiles
         start_tx = int(self.enemy.x // ts)
         start_ty = int(self.enemy.y // ts)
 
-        # si está dentro de edificio, corregir
+        # Si está dentro de edificio, se corrige
         valid = self.map.get_valid_position(start_tx, start_ty)
         if valid is None:
             return None
@@ -94,7 +95,7 @@ class HardAlgorithm:
 
         f_score = { (start_tx, start_ty): h(start_tx, start_ty) }
 
-        # 8 direcciones
+        # 8 direcciones posibles
         directions = [
             (1, 0),  (-1, 0),
             (0, 1),  (0, -1),
@@ -120,7 +121,7 @@ class HardAlgorithm:
             for dx, dy in directions:
                 nx, ny = cx + dx, cy + dy
 
-                # bloqueado por edificio
+                # Bloqueado por edificio
                 if self.map.is_blocked(nx, ny):
                     continue
 
@@ -134,10 +135,10 @@ class HardAlgorithm:
                 if self.map.is_park(nx, ny):
                     sw *= 0.3
 
-                # Evitar 0
+                # Evitar 0, para no dividir entre 0
                 sw = max(sw, 0.1)
 
-                # Convertir surface_weight a costo → más lento = mayor costo
+                # Convertir surface_weight a costo 
                 max_sw = 10.0
                 terrain_cost = max_sw / sw
 
