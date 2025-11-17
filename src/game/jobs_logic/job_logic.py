@@ -91,17 +91,28 @@ class JobLogic:
             return pygame.image.load(os.path.join(assets_dir, "icon_1.png")).convert_alpha()
         elif type == 2:
             return pygame.image.load(os.path.join(assets_dir, "icon_2.png")).convert_alpha()
+        elif type == 3:
+            return pygame.image.load(os.path.join(assets_dir, "icon_3.png")).convert_alpha()
 
     def draw(self, screen: pygame.Surface) -> None:
 
         dropoff_icon = self._select_Image(0)
         pickup_icon = self._select_Image(1) 
         enemy_dropoff_icon = self._select_Image(2)
+        pickup_red_icon = self._select_Image(3) 
+
+        
 
         # Pickups
         for m in self._pickup_markers:
-            rect = pickup_icon.get_rect(center=(m.px, m.py))
-            screen.blit(pickup_icon, rect)
+            time_remaining = m.expires_at - self._game_elapsed
+
+            if time_remaining > 5  or round(time_remaining) % 2 != 0:
+                rect = pickup_icon.get_rect(center=(m.px, m.py))
+                screen.blit(pickup_icon, rect)
+            else:
+                rect = pickup_red_icon.get_rect(center=(m.px, m.py))
+                screen.blit(pickup_red_icon, rect)
 
         # Dropoffs (solamente el current)
         currentJob = self.orders.getCurrentJob()
