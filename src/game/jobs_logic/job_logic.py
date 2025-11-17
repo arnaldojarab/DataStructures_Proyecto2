@@ -12,6 +12,8 @@ from .job_manager import HistoryEntry
 # ---- Marcadores en pantalla ----
 from .markers import PickupMarker, DropoffMarker
 
+from ..sounds import SoundManager
+
 class JobLogic:
     """
     Maneja ofertas (pickup), aceptaciones (inventory) y entregas (dropoff + history).
@@ -59,7 +61,7 @@ class JobLogic:
         self.reputation = 70
         self.enemyReputation = 70
 
-    def update(self, dt: float, player_x: float, player_y: float, enemy_x: float, enemy_y: float) -> None:
+    def update(self, dt: float, player_x: float, player_y: float, enemy_x: float, enemy_y: float, sfx: SoundManager) -> None:
         """Avanza timers, lanza ofertas, expira pickups y verifica proximidades."""
         self._game_elapsed += dt
         self._job_offer_elapsed += dt
@@ -76,7 +78,9 @@ class JobLogic:
         self._expire_pickup_offers()
 
         # Proximidades (pickup y dropoff)
-        self._check_proximity(player_x, player_y, enemy_x, enemy_y)
+        self._check_proximity(player_x, player_y, enemy_x, enemy_y, sfx)
+
+
 
     def _select_Image(self, type):
         assets_dir = os.path.join(os.path.dirname(__file__), "..","..", "assets", "images")
@@ -289,7 +293,7 @@ class JobLogic:
         for i in reversed(to_remove):
             self._pickup_markers.pop(i)
 
-    def _check_proximity(self, player_x: float, player_y: float, enemy_x: float, enemy_y: float) -> None:
+    def _check_proximity(self, player_x: float, player_y: float, enemy_x: float, enemy_y: float, sfx: SoundManager) -> None:
         ts = self.tile_size
         pgx = int(player_x // ts)
         pgy = int(player_y // ts)
@@ -309,6 +313,7 @@ class JobLogic:
                 if(self.getWeight() < 5):
                     self.orders.accept_job(job.id)
                     print(f"Pedido aceptado (agregado al inventario), id: {job.id}")
+                    sfx.play("accept", fade_ms=20)
                     # Crear dropoff marker con due_at relativo
                     dx, dy = job.dropoff
                     qx, qy = self._grid_center_to_px(dx, dy)
@@ -336,7 +341,8 @@ class JobLogic:
                     pass  # El enemigo no puede aceptar más pedidos
 
         for i in reversed(to_remove_pickups):
-            self._pickup_markers.pop(i)
+            if self._pickup_markers != []:
+                self._pickup_markers.pop(i)
         
         # Dropoffs:
 
@@ -351,6 +357,7 @@ class JobLogic:
               on_time = self._game_elapsed <= m.due_at
               self.orders.mark_delivered(m.job_id, delivered_on_time=on_time)
               print(f"Pedido entregado (removido del inventario y agregado al historial), id: {m.job_id}, onTime={on_time}")
+              sfx.play("deliver", fade_ms=20)
               if on_time:
                   self.reputation += 10  # recompensa por entrega a tiempo
                   if self.reputation > 100:
