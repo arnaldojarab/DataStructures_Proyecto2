@@ -105,6 +105,9 @@ class EasyAlgorithm:
 
         target_marker = self.current_job
 
+        if target_marker == None:
+            return
+
 
 
         # Usamos el timer en segundos, decreciendo con dt
