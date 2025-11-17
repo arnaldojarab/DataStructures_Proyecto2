@@ -341,7 +341,8 @@ class JobLogic:
                     pass  # El enemigo no puede aceptar más pedidos
 
         for i in reversed(to_remove_pickups):
-            self._pickup_markers.pop(i)
+            if self._pickup_markers != []:
+                self._pickup_markers.pop(i)
         
         # Dropoffs:
 
