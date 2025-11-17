@@ -605,7 +605,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.medium_algorithm",
         "description": "src.game.enemy_logic.medium_algorithm",
-        "peekOfCode": "class MediumAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.change_dir_timer = 0\n        self.next_x, self.next_y = 0, 0\n        # Últimas 3 celdas reales donde ha estado el enemigo (en coordenadas de grilla)\n        self.last_cells = deque(maxlen=5)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None",
+        "peekOfCode": "class MediumAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.change_dir_timer = 0\n        self.next_x, self.next_y = 0, 0\n        # Últimas 5 celdas reales donde ha estado el enemigo (en coordenadas de grilla)\n        self.last_cells = deque(maxlen=5)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None",
         "detail": "src.game.enemy_logic.medium_algorithm",
         "documentation": {}
     },

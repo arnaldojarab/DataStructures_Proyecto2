@@ -9,7 +9,7 @@ class MediumAlgorithm:
         self.change_dir_timer = 0
         self.next_x, self.next_y = 0, 0
 
-        # Últimas 3 celdas reales donde ha estado el enemigo (en coordenadas de grilla)
+        # Últimas 5 celdas reales donde ha estado el enemigo (en coordenadas de grilla)
         self.last_cells = deque(maxlen=5)
 
     def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):
