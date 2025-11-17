@@ -67,6 +67,14 @@
         "documentation": {}
     },
     {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -543,7 +551,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.easy_algorithm",
         "description": "src.game.enemy_logic.easy_algorithm",
-        "peekOfCode": "class EasyAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.change_dir_timer = 0\n        self.direction = pygame.Vector2(0, 0)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        # Usamos el timer en segundos, decreciendo con dt\n        self.change_dir_timer -= 1\n        if self.change_dir_timer <= 0:",
+        "peekOfCode": "class EasyAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.change_dir_timer = 0\n        self.direction = pygame.Vector2(0, 0)\n        self.job_timer = 0.0   \n        self.dropoff_queue = deque()   \n        self.pickup_queue = deque()\n        self.current_job = None        ",
         "detail": "src.game.enemy_logic.easy_algorithm",
         "documentation": {}
     },
@@ -597,7 +605,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.medium_algorithm",
         "description": "src.game.enemy_logic.medium_algorithm",
-        "peekOfCode": "class MediumAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.change_dir_timer = 0\n        self.next_x, self.next_y = 0, 0\n        # Últimas 3 celdas reales donde ha estado el enemigo (en coordenadas de grilla)\n        self.last_cells = deque(maxlen=3)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None",
+        "peekOfCode": "class MediumAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.change_dir_timer = 0\n        self.next_x, self.next_y = 0, 0\n        # Últimas 3 celdas reales donde ha estado el enemigo (en coordenadas de grilla)\n        self.last_cells = deque(maxlen=5)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None",
         "detail": "src.game.enemy_logic.medium_algorithm",
         "documentation": {}
     },
