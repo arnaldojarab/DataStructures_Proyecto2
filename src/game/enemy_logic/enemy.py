@@ -147,8 +147,8 @@ class Enemy:
         ]
         self.stamina = 100
         ts = settings.TILE_SIZE
-        start_cx = 1 * ts + ts // 2
-        start_cy = 1 * ts + ts // 2
+        start_cx = 15 * ts + ts // 2
+        start_cy = 13 * ts + ts // 2
         self.x = start_cx
         self.y = start_cy
 
