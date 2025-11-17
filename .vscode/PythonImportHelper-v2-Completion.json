@@ -68,6 +68,15 @@
         "documentation": {}
     },
     {
+        "label": "heapq",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "heapq",
+        "description": "heapq",
+        "detail": "heapq",
+        "documentation": {}
+    },
+    {
         "label": "annotations",
         "importPath": "__future__",
         "description": "__future__",
@@ -535,7 +544,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.enemy_controller",
         "description": "src.game.enemy_logic.enemy_controller",
-        "peekOfCode": "class EnemyController:\n    def __init__(self, enemy, map_loader, job_logic):\n        self.enemy = enemy\n        self.map = map_loader\n        self.job_logic = job_logic\n        self.route = (0,0)\n    def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str):\n        if difficulty == \"Easy\":\n            self.easy_algorithm(dt, enemy_weight, weather)\n        elif difficulty == \"Medium\":",
+        "peekOfCode": "class EnemyController:\n    def __init__(self, enemy, map_loader, job_logic):\n        self.enemy = enemy\n        self.map = map_loader\n        self.job_logic = job_logic\n        self.route = (0,0)\n    def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str, current_multiplier : float):\n        if difficulty == \"Easy\":\n            self.easy_algorithm(dt, enemy_weight, weather, current_multiplier)\n        elif difficulty == \"Medium\":",
         "detail": "src.game.enemy_logic.enemy_controller",
         "documentation": {}
     },
@@ -1093,7 +1102,7 @@
         "kind": 5,
         "importPath": "src.game.settings",
         "description": "src.game.settings",
-        "peekOfCode": "TILE_SIZE = 20\nFPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*8\nTIMER_TEXT = (240, 240, 240)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo",
+        "peekOfCode": "TILE_SIZE = 20\nFPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*8\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo",
         "detail": "src.game.settings",
         "documentation": {}
     },
@@ -1102,7 +1111,7 @@
         "kind": 5,
         "importPath": "src.game.settings",
         "description": "src.game.settings",
-        "peekOfCode": "FPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*8\nTIMER_TEXT = (240, 240, 240)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---",
+        "peekOfCode": "FPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*8\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---",
         "detail": "src.game.settings",
         "documentation": {}
     },
@@ -1111,7 +1120,7 @@
         "kind": 5,
         "importPath": "src.game.settings",
         "description": "src.game.settings",
-        "peekOfCode": "TIMER_START_SECONDS = 60*8\nTIMER_TEXT = (240, 240, 240)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320",
+        "peekOfCode": "TIMER_START_SECONDS = 60*8\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320",
         "detail": "src.game.settings",
         "documentation": {}
     },
@@ -1120,7 +1129,7 @@
         "kind": 5,
         "importPath": "src.game.settings",
         "description": "src.game.settings",
-        "peekOfCode": "TIMER_TEXT = (240, 240, 240)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)",
+        "peekOfCode": "TIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320\nMENU_BG = (20, 20, 24)         # fondo general (opcional)",
         "detail": "src.game.settings",
         "documentation": {}
     },

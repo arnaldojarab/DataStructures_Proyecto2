@@ -267,8 +267,12 @@ class Game:
         currentMoneyEnemy = self.job_logic.getEnemyMoney()
         currentReputationEnemy = self.job_logic.getEnemyReputation()
         self.statistics_logic.update(dt, currentMoney, currentReputation, currentMoneyEnemy, currentReputationEnemy)
-        if self.statistics_logic.check_time_finished() or currentReputation < settings.MIN_REPUTACION or currentMoneyEnemy >= settings.META_INGRESOS:
+        if self.statistics_logic.check_time_finished() or currentReputation < settings.MIN_REPUTACION:
             self.game_over.set_title("GAME OVER (you lose)", win=False)
+            self.game_over.enter(self.get_score())
+            self.state = GameState.GAME_OVER
+        if currentMoneyEnemy >= settings.META_INGRESOS:
+            self.game_over.set_title("GAME OVER (Don Cristobal Win)", win=False)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         if currentMoney >= settings.META_INGRESOS or currentReputationEnemy < settings.MIN_REPUTACION:
