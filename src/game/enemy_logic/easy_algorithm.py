@@ -3,6 +3,7 @@ import pygame
 import math
 from .. import settings
 from .enemy import moveEnemy
+from collections import deque
 
 class EasyAlgorithm:
     def __init__(self, enemy, map):
@@ -10,8 +11,102 @@ class EasyAlgorithm:
         self.map = map
         self.change_dir_timer = 0
         self.direction = pygame.Vector2(0, 0)
+        self.job_timer = 0.0   
 
-    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):
+        self.dropoff_queue = deque()   
+        self.pickup_queue = deque()
+
+        self.current_job = None        
+        self.current_job_type = None 
+
+
+
+    def _sync_queues(self, dropoffs, pickups):
+        
+        """
+        Sincroniza las colas internas con los markers que existen en el mapa.
+        """
+
+        def sync_one(active_list, queue: deque):
+            # 1) Mantener en la cola solo los que siguen existiendo
+            new_q = deque([m for m in queue if m in active_list])
+
+            # 2) Añadir al final los nuevos que aún no estaban en la cola
+            for marker in active_list:
+                if marker not in new_q:
+                    new_q.append(marker)
+
+            return new_q
+
+        self.dropoff_queue = sync_one(dropoffs, self.dropoff_queue)
+        self.pickup_queue = sync_one(pickups, self.pickup_queue)
+
+    def _choose_new_job(self):
+
+        """
+        Elige un nuevo trabajo usando las colas
+        """
+        opciones = []
+        if self.dropoff_queue:
+            opciones.append("dropoff")
+        if self.pickup_queue:
+            opciones.append("pickup")
+
+        if not opciones:
+            self.current_job = None
+            self.current_job_type = None
+            self.job_timer = 0.0
+            return
+
+        job_type = random.choice(opciones)
+
+        if job_type == "dropoff":
+            marker = self.dropoff_queue.popleft()
+        else:
+            marker = self.pickup_queue.popleft()
+
+        self.current_job = marker
+        self.current_job_type = job_type
+
+        # Tiempo máximo que el bot se queda con este objetivo (segundos)
+        self.job_timer = random.uniform(5.0, 15.0)
+
+    def update(self, dt: float, dropoffs, pickups,
+               enemy_weight: float, weather: str, speed_mult: float):
+
+        self._sync_queues(dropoffs, pickups)
+
+        # 2) Actualizar timers
+        self.change_dir_timer -= dt
+        self.job_timer -= dt
+
+        # 3) Invalidar el trabajo actual si ya no existe en el mundo
+        if self.current_job is not None:
+            if self.current_job_type == "dropoff" and self.current_job not in dropoffs:
+                self.current_job = None
+                self.current_job_type = None
+                self.job_timer = 0.0
+            elif self.current_job_type == "pickup" and self.current_job not in pickups:
+                self.current_job = None
+                self.current_job_type = None
+                self.job_timer = 0.0
+
+        # 4) ¿Hay que elegir / rerrollear trabajo?
+        if self.current_job is None or self.job_timer <= 0:
+            # Si el trabajo caducó pero sigue siendo válido, lo reencolamos al final
+            if self.current_job is not None and self.job_timer <= 0:
+                if self.current_job_type == "dropoff" and self.current_job in dropoffs:
+                    self.dropoff_queue.append(self.current_job)
+                elif self.current_job_type == "pickup" and self.current_job in pickups:
+                    self.pickup_queue.append(self.current_job)
+
+            # Elegimos un nuevo trabajo desde las colas
+            self._choose_new_job()
+
+        target_marker = self.current_job
+
+
+
         # Usamos el timer en segundos, decreciendo con dt
         self.change_dir_timer -= 1
         if self.change_dir_timer <= 0:
