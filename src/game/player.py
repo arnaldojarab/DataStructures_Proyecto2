@@ -147,15 +147,11 @@ class Player:
     
 
     def reset(self):
-        self.grid_pos = (1, 1)
-        self.pixel_pos = [
-            self.grid_pos[0] * settings.TILE_SIZE,
-            self.grid_pos[1] * settings.TILE_SIZE,
-        ]
+
         self.stamina = 100
         ts = settings.TILE_SIZE
-        start_cx = 1 * ts + ts // 2
-        start_cy = 1 * ts + ts // 2
+        start_cx = 13 * ts + ts // 2
+        start_cy = 13 * ts + ts // 2
         self.x = start_cx
         self.y = start_cy
 
