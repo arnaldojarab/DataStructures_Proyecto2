@@ -247,3 +247,36 @@ class Enemy:
       ts = settings.TILE_SIZE
       new_y = self.y + (ts * step)
       return (self.x, new_y)
+
+
+def moveEnemy(enemy, map, dir_x: float, dir_y: float,
+              dt: float, enemy_weight: float, weather: str):
+    # Si no hay dirección, no se mueve
+    if dir_x == 0 and dir_y == 0:
+        return
+
+    # MISMA base que el player
+    base_px_per_sec = settings.TILE_SIZE * 8  # igual que en el jugador
+
+    # Multiplicador de velocidad del enemigo (estamina + peso)
+    speed_mult = enemy.get_speed(enemy_weight)
+
+    # Distancia a recorrer en este frame
+    distance = base_px_per_sec * dt * speed_mult
+
+    # dir_x y dir_y ya vienen normalizados desde position_to_direction
+    dx = dir_x * distance
+    dy = dir_y * distance
+
+    # El clima sigue afectando dentro de move_with_collision/map.surface_weight
+    enemy.move_with_collision(dx, dy, map, enemy_weight, weather)
+
+def position_to_direction(next_x: float, next_y: float, enemy_x: float, enemy_y: float):
+        dx = next_x - enemy_x
+        dy = next_y - enemy_y
+
+        length = math.hypot(dx, dy)
+        if length == 0:
+            return 0.0, 0.0
+
+        return dx / length, dy / length

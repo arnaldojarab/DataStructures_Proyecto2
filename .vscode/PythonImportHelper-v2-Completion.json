@@ -1,34 +1,11 @@
 [
     {
-        "label": "deque",
-        "importPath": "collections",
-        "description": "collections",
+        "label": "random",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "collections",
-        "documentation": {}
-    },
-    {
-        "label": "deque",
-        "importPath": "collections",
-        "description": "collections",
-        "isExtraImport": true,
-        "detail": "collections",
-        "documentation": {}
-    },
-    {
-        "label": "deque",
-        "importPath": "collections",
-        "description": "collections",
-        "isExtraImport": true,
-        "detail": "collections",
-        "documentation": {}
-    },
-    {
-        "label": "deque",
-        "importPath": "collections",
-        "description": "collections",
-        "isExtraImport": true,
-        "detail": "collections",
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
         "documentation": {}
     },
     {
@@ -41,21 +18,53 @@
         "documentation": {}
     },
     {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
         "label": "math",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "math",
         "description": "math",
         "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
@@ -446,15 +455,6 @@
         "documentation": {}
     },
     {
-        "label": "random",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "random",
-        "description": "random",
-        "detail": "random",
-        "documentation": {}
-    },
-    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
@@ -531,6 +531,15 @@
         "documentation": {}
     },
     {
+        "label": "EasyAlgorithm",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.easy_algorithm",
+        "description": "src.game.enemy_logic.easy_algorithm",
+        "peekOfCode": "class EasyAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.change_dir_timer = 0\n        self.direction = pygame.Vector2(0, 0)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        # Usamos el timer en segundos, decreciendo con dt\n        self.change_dir_timer -= 1\n        if self.change_dir_timer <= 0:",
+        "detail": "src.game.enemy_logic.easy_algorithm",
+        "documentation": {}
+    },
+    {
         "label": "Enemy",
         "kind": 6,
         "importPath": "src.game.enemy_logic.enemy",
@@ -540,12 +549,48 @@
         "documentation": {}
     },
     {
+        "label": "moveEnemy",
+        "kind": 2,
+        "importPath": "src.game.enemy_logic.enemy",
+        "description": "src.game.enemy_logic.enemy",
+        "peekOfCode": "def moveEnemy(enemy, map, dir_x: float, dir_y: float,\n              dt: float, enemy_weight: float, weather: str):\n    # Si no hay dirección, no se mueve\n    if dir_x == 0 and dir_y == 0:\n        return\n    # MISMA base que el player\n    base_px_per_sec = settings.TILE_SIZE * 8  # igual que en el jugador\n    # Multiplicador de velocidad del enemigo (estamina + peso)\n    speed_mult = enemy.get_speed(enemy_weight)\n    # Distancia a recorrer en este frame",
+        "detail": "src.game.enemy_logic.enemy",
+        "documentation": {}
+    },
+    {
+        "label": "position_to_direction",
+        "kind": 2,
+        "importPath": "src.game.enemy_logic.enemy",
+        "description": "src.game.enemy_logic.enemy",
+        "peekOfCode": "def position_to_direction(next_x: float, next_y: float, enemy_x: float, enemy_y: float):\n        dx = next_x - enemy_x\n        dy = next_y - enemy_y\n        length = math.hypot(dx, dy)\n        if length == 0:\n            return 0.0, 0.0\n        return dx / length, dy / length",
+        "detail": "src.game.enemy_logic.enemy",
+        "documentation": {}
+    },
+    {
         "label": "EnemyController",
         "kind": 6,
         "importPath": "src.game.enemy_logic.enemy_controller",
         "description": "src.game.enemy_logic.enemy_controller",
-        "peekOfCode": "class EnemyController:\n    def __init__(self, enemy, map_loader, job_logic):\n        self.enemy = enemy\n        self.map = map_loader\n        self.job_logic = job_logic\n        self.route = (0,0)\n    def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str, current_multiplier : float):\n        if difficulty == \"Easy\":\n            self.easy_algorithm(dt, enemy_weight, weather, current_multiplier)\n        elif difficulty == \"Medium\":",
+        "peekOfCode": "class EnemyController:\n    def __init__(self, enemy, map_loader, job_logic):\n        self.enemy = enemy\n        self.map = map_loader\n        self.job_logic = job_logic\n        # algorithms\n        self.medium_algorithm = MediumAlgorithm(self.enemy, self.map)\n        self.hard_algorithm = HardAlgorithm(self.enemy, self.map)\n        self.easy_algorithm = EasyAlgorithm(self.enemy, self.map)\n    def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str, current_multiplier : float):",
         "detail": "src.game.enemy_logic.enemy_controller",
+        "documentation": {}
+    },
+    {
+        "label": "HardAlgorithm",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.hard_algorithm",
+        "description": "src.game.enemy_logic.hard_algorithm",
+        "peekOfCode": "class HardAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.route = (0,0)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None\n        if dropoffs:\n            # Mejor dropoff: tiempo + distancia\n            target_marker = min(",
+        "detail": "src.game.enemy_logic.hard_algorithm",
+        "documentation": {}
+    },
+    {
+        "label": "MediumAlgorithm",
+        "kind": 6,
+        "importPath": "src.game.enemy_logic.medium_algorithm",
+        "description": "src.game.enemy_logic.medium_algorithm",
+        "peekOfCode": "class MediumAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None\n        # 2) Seleccionar target: primero dropoffs enemigos, luego pickups\n        if dropoffs:\n            # Toma el primer dropoff enemigo\n            target_marker = dropoffs[0]",
+        "detail": "src.game.enemy_logic.medium_algorithm",
         "documentation": {}
     },
     {
