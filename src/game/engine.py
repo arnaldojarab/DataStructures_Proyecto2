@@ -280,7 +280,7 @@ class Game:
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         # 4) Actualiza pedidos
-        self.job_logic.update(dt, self.player.x, self.player.y, self.enemy.x, self.enemy.y)
+        self.job_logic.update(dt, self.player.x, self.player.y, self.enemy.x, self.enemy.y, self.sfx)
 
 
     # --------- Estado: GAME OVER ---------
@@ -434,6 +434,7 @@ class Game:
             "job_logic": self.job_logic.save_state(),
             "weather": self.weather.save_state(),
             "difficulty": self.menu.get_difficulty(),
+            "enemy": self.enemy.save_state(),
         }
     
     def set_current_data(self, data: dict) -> bool:
@@ -448,6 +449,7 @@ class Game:
         jobs_state      = data.get("job_logic")
         weather_state   = data.get("weather")
         self.menu.set_difficulty(data.get("difficulty"))
+        enemy_state     = data.get("enemy")
 
         if not all(isinstance(x, dict) for x in (map_state, player_state, stats_state, jobs_state, weather_state)):
             return False
@@ -459,6 +461,7 @@ class Game:
         ok &= bool(self.job_logic.load_state(jobs_state))
         ok &= bool(self.weather.load_state(weather_state))
         ok &= bool(self.statistics_logic.load_state(stats_state))
+        ok &= bool(self.enemy.load_state(enemy_state))
 
         return ok
 

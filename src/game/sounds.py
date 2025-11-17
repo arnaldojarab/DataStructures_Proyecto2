@@ -10,6 +10,8 @@ class SoundManager:
         self._current_volume: float = float(default_volume)
 
         self._load("undo", "undo.ogg")  
+        self._load("accept", "accept.ogg")
+        self._load("deliver", "deliver.ogg")
         self.set_master_volume(self._current_volume)  
 
     def _load(self, key: str, filename: str) -> None:
