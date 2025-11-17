@@ -9,9 +9,9 @@ class EnemyController:
         self.job_logic = job_logic
 
         # algorithms
+        self.easy_algorithm = EasyAlgorithm(self.enemy, self.map)
         self.medium_algorithm = MediumAlgorithm(self.enemy, self.map)
         self.hard_algorithm = HardAlgorithm(self.enemy, self.map)
-        self.easy_algorithm = EasyAlgorithm(self.enemy, self.map)
 
     def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str, current_multiplier : float):
         pickups = self.job_logic.getPickupMarkers()

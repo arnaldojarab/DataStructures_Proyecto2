@@ -571,7 +571,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.enemy_controller",
         "description": "src.game.enemy_logic.enemy_controller",
-        "peekOfCode": "class EnemyController:\n    def __init__(self, enemy, map_loader, job_logic):\n        self.enemy = enemy\n        self.map = map_loader\n        self.job_logic = job_logic\n        # algorithms\n        self.medium_algorithm = MediumAlgorithm(self.enemy, self.map)\n        self.hard_algorithm = HardAlgorithm(self.enemy, self.map)\n        self.easy_algorithm = EasyAlgorithm(self.enemy, self.map)\n    def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str, current_multiplier : float):",
+        "peekOfCode": "class EnemyController:\n    def __init__(self, enemy, map_loader, job_logic):\n        self.enemy = enemy\n        self.map = map_loader\n        self.job_logic = job_logic\n        # algorithms\n        self.easy_algorithm = EasyAlgorithm(self.enemy, self.map)\n        self.medium_algorithm = MediumAlgorithm(self.enemy, self.map)\n        self.hard_algorithm = HardAlgorithm(self.enemy, self.map)\n    def update(self, dt: float, difficulty: str, enemy_weight: float, weather: str, current_multiplier : float):",
         "detail": "src.game.enemy_logic.enemy_controller",
         "documentation": {}
     },
@@ -1417,7 +1417,7 @@
         "kind": 6,
         "importPath": "src.game.sounds",
         "description": "src.game.sounds",
-        "peekOfCode": "class SoundManager:\n    def __init__(self, default_volume: float = 0.30): \n        self.sfx_dir = Path(__file__).resolve().parent.parent / \"assets\" / \"sfx\"\n        self._cache: dict[str, pygame.mixer.Sound] = {}\n        self._current_volume: float = float(default_volume)\n        self._load(\"undo\", \"undo.ogg\")  \n        self.set_master_volume(self._current_volume)  \n    def _load(self, key: str, filename: str) -> None:\n        path = self.sfx_dir / filename\n        if not path.exists():",
+        "peekOfCode": "class SoundManager:\n    def __init__(self, default_volume: float = 0.30): \n        self.sfx_dir = Path(__file__).resolve().parent.parent / \"assets\" / \"sfx\"\n        self._cache: dict[str, pygame.mixer.Sound] = {}\n        self._current_volume: float = float(default_volume)\n        self._load(\"undo\", \"undo.ogg\")  \n        self._load(\"accept\", \"accept.ogg\")\n        self._load(\"deliver\", \"deliver.ogg\")\n        self.set_master_volume(self._current_volume)  \n    def _load(self, key: str, filename: str) -> None:",
         "detail": "src.game.sounds",
         "documentation": {}
     },

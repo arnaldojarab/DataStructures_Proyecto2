@@ -41,7 +41,7 @@ class JobLogic:
         self._enemy_dropoff_markers: List[DropoffMarker] = []
 
         # Interno: cada cuánto intento lanzar oferta
-        self._offer_interval = 5.0
+        self._offer_interval = 3.0
 
         self.reputation = 70
         self.enemyReputation = 70
