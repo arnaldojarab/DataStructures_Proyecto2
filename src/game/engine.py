@@ -272,11 +272,15 @@ class Game:
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         if currentMoneyEnemy >= settings.META_INGRESOS:
-            self.game_over.set_title("GAME OVER (Don Cristobal Win)", win=False)
+            self.game_over.set_title("GAME OVER (Don Cristobal Won)", win=False)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
-        if currentMoney >= settings.META_INGRESOS or currentReputationEnemy < settings.MIN_REPUTACION:
+        if currentMoney >= settings.META_INGRESOS:
             self.game_over.set_title("CONGRATS! (you win)", win=True)
+            self.game_over.enter(self.get_score())
+            self.state = GameState.GAME_OVER
+        if currentReputationEnemy < settings.MIN_REPUTACION:
+            self.game_over.set_title("CONGRATS! (Don Cristobal lost)", win=True)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         # 4) Actualiza pedidos

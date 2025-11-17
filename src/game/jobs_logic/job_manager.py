@@ -96,7 +96,7 @@ class OrderManager:
         # Registrar la entrega directamente en el historial
         self.enemyHistory.append(HistoryEntry(job_id=job_id, accepted=True, onTime=delivered_on_time))
 
-        self.currentEnemyJob_id = None
+        self.set_current_enemy_job_default()
         
         return True
 

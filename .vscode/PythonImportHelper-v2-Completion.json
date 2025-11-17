@@ -59,6 +59,14 @@
         "documentation": {}
     },
     {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -589,7 +597,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.medium_algorithm",
         "description": "src.game.enemy_logic.medium_algorithm",
-        "peekOfCode": "class MediumAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None\n        # 2) Seleccionar target: primero dropoffs enemigos, luego pickups\n        if dropoffs:\n            # Toma el primer dropoff enemigo\n            target_marker = dropoffs[0]",
+        "peekOfCode": "class MediumAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.change_dir_timer = 0\n        self.next_x, self.next_y = 0, 0\n        # Últimas 3 celdas reales donde ha estado el enemigo (en coordenadas de grilla)\n        self.last_cells = deque(maxlen=3)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None",
         "detail": "src.game.enemy_logic.medium_algorithm",
         "documentation": {}
     },

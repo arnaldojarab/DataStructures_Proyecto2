@@ -283,7 +283,7 @@ class JobLogic:
             if self._game_elapsed >= m.expires_at:
                 self.orders.record_offer_result(m.job_id, accepted=False)
                 print(f"Pedido expirado (agregado a ambos historial como rechazado), id: {m.job_id}")
-                self.reputation -= 10  # penalización por no aceptar
+                #self.reputation -= 10  # penalización por no aceptar
                 self.enemyReputation -= 10
                 if self.reputation < 0:
                     self.reputation = 0
@@ -306,7 +306,6 @@ class JobLogic:
             mgx = int(m.px // ts)
             mgy = int(m.py // ts)
             dist = abs(mgx - pgx) + abs(mgy - pgy)
-            enemyDist = abs(mgx - egx) + abs(mgy - egy)
             if dist <= self._PICKUP_RADIUS_TILES:
                 job = self.jobs.get(m.job_id)
                 # Aceptar en inventario
@@ -325,6 +324,8 @@ class JobLogic:
                     if not self.weight_warning:
                         print("Peso maximo alcanzado")
                         self.weight_warning = True
+                        
+            enemyDist = abs(mgx - egx) + abs(mgy - egy)
             if enemyDist <= self._PICKUP_RADIUS_TILES:
                 job = self.jobs.get(m.job_id)
                 # Aceptar en inventario del enemigo
