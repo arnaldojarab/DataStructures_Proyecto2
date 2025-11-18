@@ -560,7 +560,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.enemy",
         "description": "src.game.enemy_logic.enemy",
-        "peekOfCode": "class Enemy:\n    def __init__(self, cell_pos):\n        ts = settings.TILE_SIZE\n        self.x = cell_pos[0] * ts + ts // 2\n        self.y = cell_pos[1] * ts + ts // 2\n        # Radio proporcional al tamaño del tile\n        self.radius = int(ts * 0.35)\n         # resistencia \n        self.stamina = 100        \n        self.exhausted = False   ",
+        "peekOfCode": "class Enemy:\n    def __init__(self, cell_pos):\n        ts = settings.TILE_SIZE\n        self.x = cell_pos[0] * ts + ts // 2\n        self.y = cell_pos[1] * ts + ts // 2\n        # Radio proporcional al tamaño del tile\n        self.radius = int(ts * 0.35)\n         # Resistencia \n        self.stamina = 100        \n        self.exhausted = False   ",
         "detail": "src.game.enemy_logic.enemy",
         "documentation": {}
     },
@@ -569,7 +569,7 @@
         "kind": 2,
         "importPath": "src.game.enemy_logic.enemy",
         "description": "src.game.enemy_logic.enemy",
-        "peekOfCode": "def moveEnemy(enemy, map, dir_x: float, dir_y: float,\n              dt: float, enemy_weight: float, weather: str):\n    # Si no hay dirección, no se mueve\n    if dir_x == 0 and dir_y == 0:\n        return\n    # MISMA base que el player\n    base_px_per_sec = settings.TILE_SIZE * 8  # igual que en el jugador\n    # Multiplicador de velocidad del enemigo (estamina + peso)\n    speed_mult = enemy.get_speed(enemy_weight)\n    # Distancia a recorrer en este frame",
+        "peekOfCode": "def moveEnemy(enemy, map, dir_x: float, dir_y: float,\n              dt: float, enemy_weight: float, weather: str):\n    # Si no hay dirección, no se mueve\n    if dir_x == 0 and dir_y == 0:\n        return\n    # Misma base que el player\n    base_px_per_sec = settings.TILE_SIZE * 8  # igual que en el jugador\n    # Multiplicador de velocidad del enemigo (estamina + peso)\n    speed_mult = enemy.get_speed(enemy_weight)\n    # Distancia a recorrer en este frame",
         "detail": "src.game.enemy_logic.enemy",
         "documentation": {}
     },
@@ -596,7 +596,7 @@
         "kind": 6,
         "importPath": "src.game.enemy_logic.hard_algorithm",
         "description": "src.game.enemy_logic.hard_algorithm",
-        "peekOfCode": "class HardAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.route = (0,0)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None\n        if dropoffs:\n            # Mejor dropoff: tiempo + distancia\n            target_marker = min(",
+        "peekOfCode": "class HardAlgorithm:\n    def __init__(self, enemy, map):\n        self.enemy = enemy\n        self.map = map\n        self.route = (0,0)\n    def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):\n        target_marker = None\n        if dropoffs:\n            # Si hay algún dropoff, fija como objetivo el más cercano\n            target_marker = min(",
         "detail": "src.game.enemy_logic.hard_algorithm",
         "documentation": {}
     },
@@ -1163,7 +1163,7 @@
         "kind": 5,
         "importPath": "src.game.settings",
         "description": "src.game.settings",
-        "peekOfCode": "TILE_SIZE = 20\nFPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*8\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo",
+        "peekOfCode": "TILE_SIZE = 20\nFPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*5\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo",
         "detail": "src.game.settings",
         "documentation": {}
     },
@@ -1172,7 +1172,7 @@
         "kind": 5,
         "importPath": "src.game.settings",
         "description": "src.game.settings",
-        "peekOfCode": "FPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*8\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---",
+        "peekOfCode": "FPS = 60\n# --- TIMER ---\nTIMER_START_SECONDS = 60*5\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---",
         "detail": "src.game.settings",
         "documentation": {}
     },
@@ -1181,7 +1181,7 @@
         "kind": 5,
         "importPath": "src.game.settings",
         "description": "src.game.settings",
-        "peekOfCode": "TIMER_START_SECONDS = 60*8\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320",
+        "peekOfCode": "TIMER_START_SECONDS = 60*5\nTIMER_TEXT = (0, 0, 0)\n# Movement & stamina\nBASE_SPEED = 3.0  # celdas/seg\nSTAMINA_MAX = 100\nSTAMINA_CONSUME_PER_CELL = 0.5\nSTAMINA_RECOVERY_IDLE = 5.0  # por segundo\n# --- UI / MENÚ ---\nMENU_TITLE_FONT_SIZE = 40\nMENU_PANEL_WIDTH = 320",
         "detail": "src.game.settings",
         "documentation": {}
     },

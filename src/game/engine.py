@@ -2,6 +2,7 @@ import pygame
 import os
 import pickle
 import tempfile
+import math
 import re
 from . import settings
 from .map_logic.map_loader import MapLoader
@@ -98,6 +99,8 @@ class Game:
 
         self.enemy = Enemy((15, 13))
         self.enemy_controller = EnemyController(self.enemy, self.map, self.job_logic)
+
+        self.win = False
 
     # --------- Ciclo principal ---------
     def run(self):
@@ -268,19 +271,23 @@ class Game:
         currentReputationEnemy = self.job_logic.getEnemyReputation()
         self.statistics_logic.update(dt, currentMoney, currentReputation, currentMoneyEnemy, currentReputationEnemy)
         if self.statistics_logic.check_time_finished() or currentReputation < settings.MIN_REPUTACION:
-            self.game_over.set_title("GAME OVER (you lose)", win=False)
+            win = False
+            self.game_over.set_title("GAME OVER (you lose)", win)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         if currentMoneyEnemy >= settings.META_INGRESOS:
-            self.game_over.set_title("GAME OVER (Don Cristobal Won)", win=False)
+            win = False
+            self.game_over.set_title("GAME OVER (Don Cristobal Won)", win)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         if currentMoney >= settings.META_INGRESOS:
-            self.game_over.set_title("CONGRATS! (you win)", win=True)
+            win = True
+            self.game_over.set_title("CONGRATS! (you win)", win)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         if currentReputationEnemy < settings.MIN_REPUTACION:
-            self.game_over.set_title("CONGRATS! (Don Cristobal lost)", win=True)
+            win = True
+            self.game_over.set_title("CONGRATS! (Don Cristobal lost)", win)
             self.game_over.enter(self.get_score())
             self.state = GameState.GAME_OVER
         # 4) Actualiza pedidos
@@ -345,21 +352,58 @@ class Game:
         self.inventory_ui.draw(self.screen)
 
     def get_score(self) -> float:
-      pago = self.job_logic.getMoney()
-      pay_mult = 1 + self.job_logic.getReputation()/100
-      # Calculo del bono por tiempo:
-      bonus_tiempo = 0
-      if self.statistics_logic.time_left > 0.2 * settings.TIMER_START_SECONDS:
-          bonus_tiempo = 2000
-      if self.statistics_logic.time_left > 0.3 * settings.TIMER_START_SECONDS:
-          bonus_tiempo = 4000
-      if self.statistics_logic.time_left > 0.5 * settings.TIMER_START_SECONDS:
-          bonus_tiempo = 8000
-      penalizaciones = 2500 if self.job_logic.reputation < 50 else 0
+        # --- Datos base ---
+        base_pay = self.job_logic.getMoney()
+        reputation = self.job_logic.getReputation()
+        time_left = max(0.0, float(self.statistics_logic.time_left))
+        total_time = float(settings.TIMER_START_SECONDS)
 
-      score = pago * pay_mult + bonus_tiempo - penalizaciones
+        # Score base: pago ajustado por reputación (igual que antes)
+        pay_mult = 1.0 + reputation / 100.0
+        base_score = base_pay * pay_mult
 
-      return score
+        # Penalización fuerte por reputación baja
+        # Si reputation < 50, penaliza de forma lineal hasta ~4000 puntos
+        reputation_penalty = 0.0
+        if reputation < 50:
+            reputation_penalty = (50 - reputation) * 80.0   # Ajustable
+
+        if self.win:
+            # -------------------- VICTORIA --------------------
+            # t en [0, 1]: proporción de tiempo restante
+            if total_time > 0:
+                t = min(1.0, time_left / total_time)
+            else:
+                t = 0.0
+
+            # Factor de bonus exponencial por tiempo
+            # t cerca de 0 -> factor ≈ 1
+            # t cerca de 1 -> factor ≈ MAX_TIME_MULT
+            MAX_TIME_MULT = 3.0   # hasta 3x el score base por acabar rapidísimo
+            K = 2.0               # qué tan “curva” es la exponencial
+
+            # Normalizamos exp para que vaya bonito de 1 a MAX_TIME_MULT
+            num = math.exp(K * t) - 1.0
+            den = math.exp(K) - 1.0
+            time_multiplier = 1.0 + (MAX_TIME_MULT - 1.0) * (num / den if den != 0 else 0.0)
+
+            score = base_score * time_multiplier - reputation_penalty
+
+            # Evitar scores negativos
+            if score < 0:
+                score = 0.0
+
+        else:
+            # -------------------- DERROTA --------------------
+            # Consolación: una fracción pequeña del score base
+            LOSS_MULT = 0.15  # 15% del score base (ajustable)
+            score = base_score * LOSS_MULT - reputation_penalty * 0.5
+
+            # Aún con derrota y mala reputación, dejamos piso en 0
+            if score < 0:
+                score = 0.0
+
+        return float(score)
     
     def _save_game(self, filename: str) -> bool:
       # --- sanea y normaliza el nombre ---

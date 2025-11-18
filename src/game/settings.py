@@ -3,7 +3,7 @@ TILE_SIZE = 20
 FPS = 60
 
 # --- TIMER ---
-TIMER_START_SECONDS = 60*8
+TIMER_START_SECONDS = 60*5
 TIMER_TEXT = (0, 0, 0)
 
 # Movement & stamina
