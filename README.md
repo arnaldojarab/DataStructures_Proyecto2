@@ -70,4 +70,31 @@ La lógica del clima se divide en tres clases: WeatherManager, que maneja la ló
 
 ### Estructuras encontradas en `game_over`
 
-- **_rows**: Lista de diccionarios que guardan informacion sobre los 3 jugadores con los mejores puntajes y el jugador actual. 
+- **_rows**: Lista de diccionarios que guardan informacion sobre los 3 jugadores con los mejores puntajes y el jugador actual.
+
+## Inteligencia Artificial
+### Estructuras encontradas en easy_algorithm
+- **dropoff_queue** y **pickup_queue** : Son una cola que almacena los trabajos válidos en el mapa y los desencola despues de cierto tiempo o si se entrego el pedido.
+- **direction**: Es un vector de 2 posiciones que almacena una dirección valida a la que se moverá el enemigo.
+  
+Este algoritmo selecciona alguno de los trabajos validos en el mapa y los encola, despues de cierto tiempo, o si se entrego el pedido se vuelve a seleccionar uno al azar de la cola.
+Luego selecciona alguna direccion valida al azar y mueve al enemigo a esta evitando los edificios.
+
+### Estructuras encontradas en medium_algorithm
+
+### Estructuras encontradas en hard_algorithm
+- **dropoffs**: Es una lista de diccionarios que contienen información de cada entrega pendiente, incluyendo posición y tiempo restante.
+- **pickups**: Es una lista de diccionarios que representan pedidos disponibles para recoger, con datos como posición y tiempo restante.
+- **target_marker**: Es un diccionario que almacena el objetivo actual seleccionado (ya sea un dropoff o un pickup).
+- **open_heap**: Es una lista utilizada como cola de prioridad (heap) que guarda tuplas de la forma `(f_score, (tx, ty))`. Se usa en A* para elegir el siguiente nodo a explorar.
+- **came_from**: Es un diccionario donde cada clave es un tile `(tx, ty)` y su valor es el tile anterior. Se usa para reconstruir el camino final una vez que A* encuentra el destino.
+- **g_score**: Es un diccionario que almacena el costo real acumulado para llegar a cada tile desde el inicio.
+- **f_score**: Es un diccionario que guarda el costo total estimado para cada tile `(g_score + heurística)`. Se utiliza para priorizar nodos en el A*.
+- **directions**: Es una lista de tuplas que representan los 8 movimientos posibles en el mapa.
+- **visited**: Es un conjunto que almacena los tiles procesados por el algoritmo A*, evitando revisarlos nuevamente.
+- **path**: Es una lista de tuplas que representan la ruta final desde el inicio hasta el objetivo después de reconstruirla.
+
+Este algoritmo revisa primero si existen entregas pendientes (dropoffs). Si no las hay, busca un pedido disponible (pickup) entre todos los pedidos del mapa, tomando en cuenta la cercanía al enemigo y el tiempo restante de cada pedido.
+Una vez seleccionado el objetivo, el algoritmo calcula un camino desde la posición actual del enemigo hasta el objetivo, ya sea para entregar un pedido o para recoger uno.
+El sistema de búsqueda de caminos está implementado con el algoritmo A*. Este A* considera únicamente rutas transitables, por lo que evita edificios y selecciona el camino más rapido. Además, incorpora penalizaciones como los parques que reducen la velocidad, por lo que el algoritmo ajusta el costo de esos tiles para evitar que el enemigo los atraviese si hay alternativas más rápidas.
+
