@@ -70,4 +70,13 @@ La lógica del clima se divide en tres clases: WeatherManager, que maneja la ló
 
 ### Estructuras encontradas en `game_over`
 
-- **_rows**: Lista de diccionarios que guardan informacion sobre los 3 jugadores con los mejores puntajes y el jugador actual. 
+- **_rows**: Lista de diccionarios que guardan informacion sobre los 3 jugadores con los mejores puntajes y el jugador actual.
+
+## Inteligencia Artificial
+### Estructuras encontradas en easy_algorithm
+- **dropoff_queue** y **pickup_queue** : Son una cola que almacena los trabajos válidos en el mapa y los desencola despues de cierto tiempo o si se entrego el pedido.
+- **direction**: Es un vector de 2 posiciones que almacena una dirección valida a la que se moverá el enemigo.
+  
+Este algoritmo selecciona alguno de los trabajos validos en el mapa y los encola, despues de cierto tiempo, o si se entrego el pedido se vuelve a seleccionar uno al azar de la cola.
+Luego selecciona alguna direccion valida al azar y mueve al enemigo a esta evitando los edificios.
+
