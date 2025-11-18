@@ -7,7 +7,7 @@ class HardAlgorithm:
         self.enemy = enemy
         self.map = map
 
-        self.route = (0,0)
+     
 
     def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):
         target_marker = None
