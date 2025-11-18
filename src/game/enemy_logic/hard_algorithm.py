@@ -7,7 +7,7 @@ class HardAlgorithm:
         self.enemy = enemy
         self.map = map
 
-        self.route = (0,0)
+     
 
     def update(self, dt: float, dropoffs, pickups, enemy_weight: float, weather: str, speed_mult: float):
         target_marker = None
@@ -87,7 +87,7 @@ class HardAlgorithm:
         came_from = {}
         g_score = { (start_tx, start_ty): 0 }
 
-        # heurística: distancia Euclidiana
+        # heurística
         def h(tx, ty):
             dx = tx - goal_tx
             dy = ty - goal_ty
@@ -130,7 +130,7 @@ class HardAlgorithm:
                 py = ny * settings.TILE_SIZE
 
                 sw = self.map.surface_weight(px, py)
-
+                
                 # Penalización adicional si es parque
                 if self.map.is_park(nx, ny):
                     sw *= 0.3
@@ -163,3 +163,5 @@ class HardAlgorithm:
             path.append(current)
         path.reverse()
         return path
+    
+    
