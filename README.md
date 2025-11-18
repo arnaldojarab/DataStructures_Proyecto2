@@ -88,9 +88,24 @@ Coordina qué algoritmo de IA se usa según la dificultad y conecta la IA con el
 Calcula la velocidad efectiva del enemigo combinando: velocidad propia (estamina y peso), tipo de superficie del mapa y multiplicador por reputación/clima.
 
 ### Estructuras encontradas en easy_algorithm
-- **dropoff_queue** y **pickup_queue** : Son una cola que almacena los trabajos válidos en el mapa y los desencola despues de cierto tiempo o si se entrego el pedido.
-- **direction**: Es un vector de 2 posiciones que almacena una dirección valida a la que se moverá el enemigo.
-  
+Implementa la lógica de la dificultad Fácil: el enemigo se mueve de forma aleatoria, pero con una noción básica de “trabajos” (pickups y dropoffs).
+
+**Colas de trabajos**
+
+- Usa dos deque: dropoff_queue y pickup_queue para guardar el orden de trabajos a considerar.
+
+- _sync_queues mantiene estas colas sincronizadas con los markers actuales del mapa, eliminando los que ya no existen y agregando los nuevos.
+
+- _choose_new_job selecciona aleatoriamente si atacar primero un dropoff o un pickup, y fija un tiempo máximo (job_timer) durante el cual persigue ese objetivo antes de “rerrollear”.
+
+**Movimiento aleatorio con colisiones**
+
+- update elige o renueva el trabajo actual, y solo si hay uno válido, inicia un movimiento aleatorio.
+
+- Cada cierto tiempo (change_dir_timer) se llama a get_random_valid_direction para escoger una nueva dirección (incluyendo diagonales) que no choque con edificios, respetando además colisiones diagonales para que no atraviese esquinas.
+
+- La dirección elegida se normaliza, se escala por la velocidad y se pasa a moveEnemy para aplicar colisiones, clima y peso.
+
 Este algoritmo selecciona alguno de los trabajos validos en el mapa y los encola, despues de cierto tiempo, o si se entrego el pedido se vuelve a seleccionar uno al azar de la cola.
 Luego selecciona alguna direccion valida al azar y mueve al enemigo a esta evitando los edificios.
 
