@@ -79,10 +79,10 @@ La lógica del enemigo se divide en varias clases según su responsabilidad y la
 ### enemy_controller.py
 
 Coordina qué algoritmo de IA se usa según la dificultad y conecta la IA con el mapa y la lógica de pedidos.
-- **Selección de algoritmo por dificultad**
+**Selección de algoritmo por dificultad**
 - Crea instancias de EasyAlgorithm, MediumAlgorithm y HardAlgorithm usando el mismo objeto Enemy y el mismo mapa.
 - En update, según la dificultad "Easy", "Medium" o "Hard", delega el movimiento al algoritmo correspondiente.
-- **Integración con pedidos y mapa**
+**Integración con pedidos y mapa**
 - Obtiene las listas de pickups y dropoffs desde job_logic y las pasa al algoritmo activo.
 
 Calcula la velocidad efectiva del enemigo combinando: velocidad propia (estamina y peso), tipo de superficie del mapa y multiplicador por reputación/clima.
@@ -100,13 +100,13 @@ Implementa la lógica de la dificultad Media: usa un enfoque tipo Greedy Best-Fi
 
 - **Selección sencilla de objetivo**
 - Toma siempre el primer dropoff enemigo disponible; si no hay, usa el primer pickup. Si no hay ningún trabajo, el enemigo se queda quieto.
-- **Historial de celdas recientes**
+**Historial de celdas recientes**
 - Mantiene last_cells, un deque con las últimas celdas de la grilla por las que pasó el enemigo, para ayudar a evitar bucles y devolverse constantemente a los mismos puntos.
-- **Greedy Best-First con mirada de 2 pasos**
+**Greedy Best-First con mirada de 2 pasos**
 - Greedy_BestFirst_v5 convierte posición y objetivo a coordenadas de grilla y explora las 4 direcciones cardinales (arriba, abajo, izquierda, derecha).
 - Para cada movimiento posible mira hasta 2 pasos hacia adelante, estimando la distancia cuadrática al objetivo y eligiendo el primer paso que lleve, en el mejor de los casos, más cerca del target.
 - Intenta primero elegir un paso que no esté en last_cells; si no es posible, elige el mejor paso general para no quedar totalmente bloqueado.
-- **Actualización y movimiento**
+**Actualización y movimiento**
 - update no recalcula la siguiente celda en cada frame, sino cada cierto número de ticks (change_dir_timer) para suavizar el movimiento.
  -Convierte la celda elegida a coordenadas de píxeles, obtiene un vector dirección con position_to_direction, aplica el factor de velocidad y finalmente mueve al enemigo con moveEnemy.
 
